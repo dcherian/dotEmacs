@@ -87,6 +87,10 @@
     :bind (:map dc-bindings-map
 		("<f13>" . helm-unicode)))
 
+  (use-package helm-describe-modes
+    :config
+    (global-set-key [remap describe-mode] #'helm-describe-modes))
+
   (use-package helm-ls-git
     :bind (:map dc-bindings-map
 		("C-x C-d" . helm-browse-project)))
