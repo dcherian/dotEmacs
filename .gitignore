@@ -1,0 +1,5 @@
+*.*~
+*.desktop*
+/elpa/
+/org-mode/
+recentf*
