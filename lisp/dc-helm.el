@@ -25,6 +25,7 @@
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
   (global-unset-key (kbd "C-x c"))
   :bind (("M-x" . helm-M-x)
+	 ("C-q" . helm-M-x)
 	 :map helm-map
 	 ("<tab>" . helm-execute-persistent-action)
 	 ("C-i" . helm-execute-persistent-action) ; make TAB works in terminal
@@ -36,7 +37,7 @@
 	 :map dc-bindings-map
 	 ("M-y" . helm-show-kill-ring)
 	 ("C-x b" . helm-mini)
-	 ("C-x C-b" . helm-buffers-list)
+	 ("C-x C-b" . helm-mini)
 	 ("C-x C-f" . helm-find-files)
 	 ("C-x m" . helm-man-woman)
 	 ("C-h o" . helm-occur)
