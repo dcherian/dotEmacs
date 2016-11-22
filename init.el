@@ -11,7 +11,7 @@
  '(org-agenda-files (quote ("~/eq_waves/notes/paper/paper.org")))
  '(package-selected-packages
    (quote
-    (goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+    (helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -174,6 +174,22 @@
 (use-package comment-dwim-2
   :bind (:map dc-bindings-map
 	      ("C-;" . comment-dwim-2)))
+
+(use-package projectile
+  :config
+  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+  (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
+
+  (use-package helm-projectile
+    :bind (:map projectile-command-map
+		("s" . helm-projectile-ag))
+    :config
+    (helm-projectile-on)
+    (setq projectile-completion-system 'helm
+	  projectile-switch-project-action 'helm-projectile-find-file
+	  projectile-switch-project-action 'helm-projectile))
+
+  (projectile-global-mode))
 
 (use-package uniquify
   :config
