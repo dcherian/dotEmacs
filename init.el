@@ -11,7 +11,7 @@
  '(org-agenda-files (quote ("~/eq_waves/notes/paper/paper.org")))
  '(package-selected-packages
    (quote
-    (helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+    (goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -132,6 +132,10 @@
   :diminish hungry-delete-mode
   :config
   (global-hungry-delete-mode t))
+
+(use-package goto-last-change
+  :bind (:map dc-bindings-map
+	      ("C-x x" . goto-last-change)))
 
 (use-package volatile-highlights
   :demand t
@@ -269,3 +273,9 @@
 
 ;; Garbage collector - decrease threshold to 15 MB
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold (* 15 1024 1024))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
