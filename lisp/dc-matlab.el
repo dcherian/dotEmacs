@@ -3,7 +3,7 @@
 ;; - Deepak Cherian
 
 (use-package matlab-mode
-  :mode ("\\.m$" . matlab-mode)
+  :mode "\\.m$"
   :bind (:map matlab-mode-map
 	      ("C-c C-m" . matlab-shell))
   :config
@@ -14,7 +14,7 @@
 
   (defun dc/matlab-shell-other-window ()
     (interactive)
-    (other-window)
+    (other-window 1)
     (matlab-shell))
 
   (comint-read-input-ring))
