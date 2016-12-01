@@ -85,10 +85,12 @@
 (save-place-mode 1)
 (blink-cursor-mode 0)
 (display-time-mode t)
+(electric-pair-mode t)
 (global-visual-line-mode t)
 (global-hl-line-mode 1)
 (global-subword-mode 1)
 (global-prettify-symbols-mode t)
+(windmove-default-keybindings)
 
 ;; diminsh some built-in modes
 (diminish 'auto-revert-mode)
