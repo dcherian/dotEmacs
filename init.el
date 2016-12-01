@@ -269,6 +269,7 @@
 (require 'dc-org)
 (require 'dc-helm)
 (require 'dc-company)
+(require 'dc-comint)
 (require 'dc-matlab)
 (require 'dc-latex) ; (require 'dc-comint)
 (require 'dc-editing)
