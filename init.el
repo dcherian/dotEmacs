@@ -11,7 +11,7 @@
  '(org-agenda-files (quote ("~/eq_waves/notes/paper/paper.org")))
  '(package-selected-packages
    (quote
-    (helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+    (paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -114,6 +114,16 @@
 ;; use aspell
 (setq ispell-program-name "aspell")
 (add-hook 'text-mode-hook 'flyspell-mode)
+
+(use-package paredit
+  :disabled t
+  :config
+  (paredit-mode))
+
+(use-package avy
+  :bind (("C-'" . avy-goto-char-timer)
+	 :map isearch-mode-map
+	 ("C-'" . avy-isearch)))
 
 (use-package multiple-cursors
   :bind (:map dc-bindings-map
