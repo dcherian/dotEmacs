@@ -103,6 +103,8 @@
 (global-set-key "\C-xw" 'delete-frame)
 (global-set-key "\C-x\C-r" 'eval-region)
 (global-set-key (kbd "C-.") 'just-one-space)
+(global-set-key (kbd "M-&") 'replace-string)
+(global-set-key (kbd "M-*") 'replace-regexp)
 
 (global-set-key (kbd "<f5>") 'gud-cont)
 (global-set-key (kbd "<f11>") 'gud-step) ;; equiv matlab step in
@@ -180,7 +182,8 @@
 (use-package projectile
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
-  (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
+  (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name)))
+	projectile-sort-order 'access-time)
 
   (use-package helm-projectile
     :bind (:map projectile-command-map
@@ -251,7 +254,9 @@
   (add-hook 'magit-section-set-visibility-hook
 	    'local-magit-initially-hide-untracked)
   (add-hook 'magit-section-set-visibility-hook
-	    'local-magit-initially-hide-stashes))
+	    'local-magit-initially-hide-stashes)
+  (magit-auto-revert-mode)
+  (setq vc-handled-backends (delq 'Git vc-handled-backends)))
 
 (use-package discover-my-major
   :bind (:map dc-bindings-map
