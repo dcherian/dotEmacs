@@ -61,7 +61,8 @@
 
   (use-package org-bullets
     :config
-    (add-hook 'org-mode-hook 'org-bullets-mode))
+    (add-hook 'org-mode-hook 'org-bullets-mode)
+    (setq org-bullets-bullet-list '("⊢" "⋮" "⋱" "•")))
 
   ;; my customized preamble
   (use-package ox-latex
