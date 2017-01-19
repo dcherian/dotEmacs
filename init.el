@@ -288,6 +288,7 @@
 (require 'dc-matlab)
 (require 'dc-latex) ; (require 'dc-comint)
 (require 'dc-editing)
+(require 'dc-website)
 
 ;; do my keybindings
 (define-minor-mode dc-bindings-mode
