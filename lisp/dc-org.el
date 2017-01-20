@@ -60,6 +60,7 @@
 	  ("\\.pdf\\'" . "open %s")))
 
   (use-package org-bullets
+    :ensure t
     :config
     (add-hook 'org-mode-hook 'org-bullets-mode)
     (setq org-bullets-bullet-list '("⊢" "⋮" "⋱" "•")))
@@ -199,10 +200,11 @@
 	       )))
 
 (use-package org-ref
+  :ensure t
   :demand t
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-helm-insert-ref-link)
-	      ("C-c ]" . org-ref-ivy-insert-cite-link)
+	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
   :config
   (set-face-attribute 'org-ref-cite-face nil
@@ -259,6 +261,7 @@ Argument KEY is the bibtex key."
   ;; (message "file: %s" (funcall org-ref-get-pdf-filename-function "Farrar2012"))
 
   (use-package helm-bibtex
+    :ensure t
     :defer 5
     :bind (:map dc-bindings-map
 		("C-c h b" . helm-bibtex))

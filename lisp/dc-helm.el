@@ -1,4 +1,5 @@
 (use-package helm-flx
+  :ensure t
   :init
   (helm-flx-mode 1)
   ;; garbage collection
@@ -52,6 +53,7 @@
   (helm-linum-relative-mode 1)
 
   (use-package helm-swoop
+    :ensure t
     :bind (:map dc-bindings-map
 		("M-i" . helm-swoop)
 		("M-I" . helm-swoop-back-to-last-point)
@@ -80,22 +82,27 @@
 	  helm-swoop-speed-or-color t))
 
   (use-package helm-descbinds
+    :ensure t
     :config
     (helm-descbinds-mode 1))
 
   (use-package helm-ag
+    :ensure t
     :bind (:map dc-bindings-map
 		("M-s" . helm-ag)))
 
   (use-package helm-unicode
+    :ensure t
     :bind (:map dc-bindings-map
 		("<f13>" . helm-unicode)))
 
   (use-package helm-describe-modes
+    :ensure t
     :config
     (global-set-key [remap describe-mode] #'helm-describe-modes))
 
   (use-package helm-ls-git
+    :ensure t
     :bind (:map dc-bindings-map
 		("C-x C-d" . helm-browse-project)))
   

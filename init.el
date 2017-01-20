@@ -11,7 +11,7 @@
  '(org-agenda-files (quote ("~/eq_waves/notes/paper/paper.org")))
  '(package-selected-packages
    (quote
-    (paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+    (ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -121,11 +121,13 @@
   (paredit-mode))
 
 (use-package avy
+  :ensure t
   :bind (("C-'" . avy-goto-char-timer)
 	 :map isearch-mode-map
 	 ("C-'" . avy-isearch)))
 
 (use-package multiple-cursors
+  :ensure t
   :bind (:map dc-bindings-map
 	      ("C-c m c" . mc/edit-lines)
 	      ;; Remember `er/expand-region' is bound to M-2!
@@ -134,24 +136,29 @@
 	      ("M-1" . mc/mark-all-like-this-dwim)))
 
 (use-package adaptive-wrap
+  :ensure t
   :config
   (adaptive-wrap-prefix-mode 1))
 
 (use-package aggressive-indent
+  :ensure t
   :diminish aggressive-indent-mode
   :config
   (global-aggressive-indent-mode 1))
 
 (use-package hungry-delete
+  :ensure t
   :diminish hungry-delete-mode
   :config
   (global-hungry-delete-mode t))
 
 (use-package goto-last-change
+  :ensure t
   :bind (:map dc-bindings-map
 	      ("C-x x" . goto-last-change)))
 
 (use-package volatile-highlights
+  :ensure t
   :demand t
   :diminish volatile-highlights-mode
   :config
@@ -163,19 +170,27 @@
 
 (use-package undo-tree
   :demand t
+  :ensure t
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode t))
 
 (use-package expand-region
+  :ensure t
   :bind (:map dc-bindings-map
 	      ("M-2" . er/expand-region)))
 
 (use-package yasnippet
+  :ensure t
+  :bind (:map dc-bindings-map
+	      ("C-3 C-n" . yas-new-snippet)
+	      ("C-3 C-s" . yas-insert-snippet)
+	      ("C-3 C-v" . yas-visit-snippet-file))
   :config
   (yas-minor-mode))
 
 (use-package crux
+  :ensure t
   :bind (:map dc-bindings-map
 	      ("C-a" . crux-move-beginning-of-line)
 	      ("C-c s" . crux-transpose-windows)
@@ -186,16 +201,19 @@
 	      ("C-^" . crux-top-join-lines)))
 
 (use-package comment-dwim-2
+  :ensure t
   :bind (:map dc-bindings-map
 	      ("C-;" . comment-dwim-2)))
 
 (use-package projectile
+  :ensure t
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
   (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name)))
 	projectile-sort-order 'access-time)
 
   (use-package helm-projectile
+    :ensure t
     :bind (:map projectile-command-map
 		("s" . helm-projectile-ag))
     :config
@@ -207,15 +225,18 @@
   (projectile-global-mode))
 
 (use-package uniquify
+  :ensure t
   :config
   (setq uniquify-buffer-name-style 'forward))
 
 (use-package ws-butler
+  :ensure t
   :demand t
   :config
   (ws-butler-global-mode t))
 
 (use-package writegood-mode
+  :ensure t
   :load-path "~/.emacs.d/writegood-mode/"
   :bind (:map dc/toggle-map
 	      ("g" . writegood-mode))
@@ -228,6 +249,7 @@
 		      :underline nil))
 
 (use-package visual-fill-column
+  :ensure t
   :demand t
   :bind (:map dc/toggle-map
 	      ("f" . visual-fill-column-mode))
@@ -246,6 +268,7 @@
   (sml/setup))
 
 (use-package magit
+  :ensure t
   :bind (:map dc-bindings-map
 	      ("C-x g" . magit-status)
 	      ("C-x l" . magit-log-buffer-file))
@@ -269,11 +292,13 @@
   (setq vc-handled-backends (delq 'Git vc-handled-backends)))
 
 (use-package discover-my-major
+  :ensure t
   :bind (:map dc-bindings-map
 	      ("C-h C-m" . discover-my-major)
 	      ("C-h M-m" . discover-my-mode)))
 
 (use-package which-key
+  :ensure t
   :diminish which-key-mode
   :init
   (setq which-key-sort-order 'which-key-key-order-alpha)
