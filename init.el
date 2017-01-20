@@ -1,5 +1,9 @@
 (package-initialize)
 
+
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+
 ;; Increase the garbage collection threshold to 500 MB to ease startup
 (setq gc-cons-threshold (* 500 1024 1024))
 
@@ -38,9 +42,6 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
-
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
 
 (defvar dc-bindings-map (make-keymap) "A keymap for custom bindings.")
 
@@ -225,7 +226,6 @@
   (projectile-global-mode))
 
 (use-package uniquify
-  :ensure t
   :config
   (setq uniquify-buffer-name-style 'forward))
 

@@ -1,5 +1,6 @@
 (use-package company
   :diminish company-mode
+  :ensure t
   :config
   (setq company-idle-delay 0.2
 	company-dabbrev-downcase nil
