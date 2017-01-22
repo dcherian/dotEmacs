@@ -4,7 +4,13 @@
 
 ;;; Code:
 ;; org-mode class for my latex style
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org/") ;; for orgmk
+
+;; for orgmk
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org/")
+
+;; for orgmk
+(unless (boundp 'dc-bindings-map)
+  (defvar dc-bindings-map (make-keymap) "A keymap for custom bindings."))
 
 (use-package org
   :load-path "/usr/local/share/emacs/site-lisp/org/"
