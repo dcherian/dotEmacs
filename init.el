@@ -225,7 +225,6 @@
   (projectile-global-mode))
 
 (use-package uniquify
-  :ensure t
   :config
   (setq uniquify-buffer-name-style 'forward))
 
