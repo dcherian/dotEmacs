@@ -21,8 +21,6 @@
   :config
   (setq org-directory "~/org")
 
-  (require 'dc-website)
-
   (setq org-startup-indented t
 	org-hide-leading-stars t
 	org-return-follows-link t

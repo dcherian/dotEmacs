@@ -18,13 +18,13 @@
 	 :html-head-include-scripts nil
 	 :html-head-include-default-style nil
 	 :html-validation-link nil
-	 :publishing-directory "~/website/"
+	 :publishing-directory "~/website/publish/"
 	 :publishing-function org-html-publish-to-html)
 
 	("blog-static"
 	 :base-directory "~/website/org/static/"
 	 :base-extension "png\\|jpg\\|gif\\|pdf\\|mp4"
-	 :publishing-directory "~/website/static/"
+	 :publishing-directory "~/website/publish/static/"
 	 :recursive t
 	 :publishing-function org-publish-attachment)))
 
