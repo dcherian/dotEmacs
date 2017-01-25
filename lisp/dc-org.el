@@ -58,8 +58,14 @@
   (set-face-attribute 'org-link nil
 		      :inherit 'org-link :foreground nil) ; links are only underlined
   (set-face-attribute 'org-footnote nil
-		      :inherit '(font-lock-comment-face org-footnote)
-		      :foreground nil) ; footnotes shouldn't be highlighted
+		      :inherit '(font-lock-comment-face org-foreground)
+		      :footnote nil) ; footnotes shouldn't be highlighted
+  (set-face-attribute 'org-checkbox nil
+		      :inherit '(font-lock-comment-face)
+		      :weight 'light
+		      :box nil)
+  (set-face-attribute 'org-todo nil
+		      :weight 'normal)
 
   (setq org-file-apps
 	'((auto-mode . emacs)
