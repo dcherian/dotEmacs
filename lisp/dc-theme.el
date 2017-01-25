@@ -14,7 +14,7 @@
 
 (set-face-attribute 'default nil :height 145)
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 4)
 
 (set-face-attribute 'tooltip nil
 		    :inherit 'default

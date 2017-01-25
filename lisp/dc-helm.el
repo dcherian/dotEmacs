@@ -40,7 +40,6 @@
 	 ("C-x b" . helm-mini)
 	 ("C-`" . helm-mini)
 	 ("C-," . helm-mini)
-	 ("C-x C-b" . helm-mini)
 	 ("C-x C-f" . helm-find-files)
 	 ("C-x m" . helm-man-woman)
 	 ("C-h o" . helm-occur)
@@ -55,7 +54,7 @@
   (use-package helm-swoop
     :ensure t
     :bind (:map dc-bindings-map
-		("M-i" . helm-swoop)
+		("C-s" . helm-swoop)
 		("M-I" . helm-swoop-back-to-last-point)
 		("C-c M-i" . helm-multi-swoop)
 		:map helm-swoop-map
