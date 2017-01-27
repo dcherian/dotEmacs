@@ -12,7 +12,7 @@
 		    :foreground "#b58900"
 		    :bold nil)
 
-(set-face-attribute 'default nil :height 165)
+(set-face-attribute 'default nil :height 160)
 
 (setq-default line-spacing 6)
 

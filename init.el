@@ -15,7 +15,7 @@
  '(org-agenda-files (quote ("~/eq_waves/notes/paper/paper.org")))
  '(package-selected-packages
    (quote
-    (restart-emacs helm-unicode helm-descbinds ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+    (restart-emacs ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -104,18 +104,21 @@
 (global-set-key "\C-xk" 'kill-this-buffer)
 (global-set-key "\C-xw" 'delete-frame)
 (global-set-key "\C-x\C-r" 'eval-region)
+(global-set-key "\C-x\C-b" 'eval-buffer)
 (global-set-key (kbd "C-.") 'just-one-space)
 (global-set-key (kbd "M-&") 'replace-string)
 (global-set-key (kbd "M-*") 'replace-regexp)
 
 (global-set-key (kbd "<f5>") 'gud-cont)
 (global-set-key (kbd "<f11>") 'gud-step) ;; equiv matlab step in
-(global-set-key (kbd "<f10>") 'gud-next) ;; equiv matlab step 1
+(global-set-key (kbd "<f6>") 'gud-next) ;; equiv matlab step 1
 (global-set-key (kbd "<f7>") 'gud-finish) ;; equiv matlab step out
 
 ;; use aspell
 (setq ispell-program-name "aspell")
 (add-hook 'text-mode-hook 'flyspell-mode)
+
+					; (define-key fortran-mode-map (kbd "C-c C-c") 'compile)
 
 (use-package paredit
   :disabled t

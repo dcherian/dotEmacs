@@ -63,6 +63,8 @@
 		      :box nil)
   (set-face-attribute 'org-todo nil
 		      :weight 'normal)
+  (set-face-attribute 'org-done nil
+		      :weight 'normal)
 
   (setq org-file-apps
 	'((auto-mode . emacs)
