@@ -49,7 +49,7 @@
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
-  (helm-linum-relative-mode 1)
+  ;;  (helm-linum-relative-mode 1)
 
   (use-package helm-swoop
     :ensure t

@@ -15,7 +15,7 @@
  '(org-agenda-files (quote ("~/eq_waves/notes/paper/paper.org")))
  '(package-selected-packages
    (quote
-    (ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+    (restart-emacs helm-unicode helm-descbinds ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -32,8 +32,9 @@
 ;; mac-specific
 (when (memq window-system '(mac ns))
   (setq ns-command-modifier 'meta)
-  (mac-auto-operator-composition-mode)
-  (exec-path-from-shell-initialize))
+  ;; (mac-auto-operator-composition-mode)
+  (exec-path-from-shell-initialize)
+  )
 
 (eval-when-compile
   (require 'use-package))
@@ -261,6 +262,7 @@
   (global-visual-fill-column-mode))
 
 (use-package smart-mode-line
+  :ensure t
   :demand t
   :config
   (setq sml/no-confirm-load-theme t

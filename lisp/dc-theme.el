@@ -12,9 +12,9 @@
 		    :foreground "#586e75"
 		    :bold nil)
 
-(set-face-attribute 'default nil :height 145)
+(set-face-attribute 'default nil :height 165)
 
-(setq-default line-spacing 4)
+(setq-default line-spacing 6)
 
 (set-face-attribute 'tooltip nil
 		    :inherit 'default
