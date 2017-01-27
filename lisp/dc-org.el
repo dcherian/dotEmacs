@@ -4,7 +4,13 @@
 
 ;;; Code:
 ;; org-mode class for my latex style
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org/") ;; for orgmk
+
+;; for orgmk
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org/")
+
+;; for orgmk
+(unless (boundp 'dc-bindings-map)
+  (defvar dc-bindings-map (make-keymap) "A keymap for custom bindings."))
 
 (use-package org
   :load-path "/usr/local/share/emacs/site-lisp/org/"
@@ -14,8 +20,6 @@
 	       ("C-c b" . org-iswitchb)))
   :config
   (setq org-directory "~/org")
-
-  (require 'dc-website)
 
   (setq org-startup-indented t
 	org-hide-leading-stars t
@@ -52,8 +56,14 @@
   (set-face-attribute 'org-link nil
 		      :inherit 'org-link :foreground nil) ; links are only underlined
   (set-face-attribute 'org-footnote nil
-		      :inherit '(font-lock-comment-face org-footnote)
-		      :foreground nil) ; footnotes shouldn't be highlighted
+		      :inherit '(font-lock-comment-face org-foreground)
+		      :footnote nil) ; footnotes shouldn't be highlighted
+  (set-face-attribute 'org-checkbox nil
+		      :inherit '(font-lock-comment-face)
+		      :weight 'light
+		      :box nil)
+  (set-face-attribute 'org-todo nil
+		      :weight 'normal)
 
   (setq org-file-apps
 	'((auto-mode . emacs)
