@@ -9,7 +9,7 @@
 		    :bold nil)
 
 (set-face-attribute 'font-lock-builtin-face nil
-		    :foreground "#586e75"
+		    :foreground "#b58900"
 		    :bold nil)
 
 (set-face-attribute 'default nil :height 165)

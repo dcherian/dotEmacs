@@ -56,8 +56,7 @@
   (set-face-attribute 'org-link nil
 		      :inherit 'org-link :foreground nil) ; links are only underlined
   (set-face-attribute 'org-footnote nil
-		      :inherit '(font-lock-comment-face org-foreground)
-		      :footnote nil) ; footnotes shouldn't be highlighted
+		      :inherit '(font-lock-comment-face org-foreground)) ; footnotes shouldn't be highlighted
   (set-face-attribute 'org-checkbox nil
 		      :inherit '(font-lock-comment-face)
 		      :weight 'light
