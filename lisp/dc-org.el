@@ -48,7 +48,7 @@
   (add-hook 'org-mode-hook 'my-org-mode-hook)
 
   (set-face-attribute 'org-level-1 nil
-		      :inherit 'outline-1 :height 1.3)
+		      :inherit 'outline-1 :height 1.25)
   (set-face-attribute 'org-level-2 nil
 		      :inherit 'outline-2 :height 1.2)
   (set-face-attribute 'org-level-3 nil
