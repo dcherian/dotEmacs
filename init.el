@@ -138,7 +138,8 @@
 	      ;; Remember `er/expand-region' is bound to M-2!
 	      ("M-3" . mc/mark-next-like-this)
 	      ("M-4" . mc/mark-previous-like-this)
-	      ("M-1" . mc/mark-all-like-this-dwim)))
+	      ("M-1" . mc/mark-all-like-this-dwim)
+	      ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
 (use-package adaptive-wrap
   :ensure t
