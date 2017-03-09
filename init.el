@@ -33,8 +33,14 @@
 (when (memq window-system '(mac ns))
   (setq ns-command-modifier 'meta)
   ;; (mac-auto-operator-composition-mode)
-  (exec-path-from-shell-initialize)
   )
+
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (exec-path-from-shell-initialize))
+(setq shell-file-name "bash")
+(setq shell-command-switch "-ic")
 
 (eval-when-compile
   (require 'use-package))
@@ -124,6 +130,9 @@
   :disabled t
   :config
   (paredit-mode))
+
+(use-package wc-mode
+  :ensure t)
 
 (use-package avy
   :ensure t
@@ -320,6 +329,7 @@
 (require 'dc-latex) ; (require 'dc-comint)
 (require 'dc-editing)
 (require 'dc-website)
+(require 'dc-python)
 
 ;; do my keybindings
 (define-minor-mode dc-bindings-mode

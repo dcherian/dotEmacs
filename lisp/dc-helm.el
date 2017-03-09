@@ -18,6 +18,11 @@
   :init
   (helm-fuzzier-mode))
 
+(use-package helm-ext
+  :ensure t
+  :config
+  (helm-ext-ff-enable-skipping-dots t))
+
 (use-package helm-config
   :ensure helm
   :diminish helm-mode
