@@ -2,6 +2,7 @@
 # name: python block
 # key: py
 # --
-#+BEGIN_SRC ipython :session ${1::file ${2:$$(let ((temporary-file-directory "./images/temp/")) (make-temp-file "py" nil ".png"))} }:exports ${3:both}
+
+#+BEGIN_SRC ipython :session :exports both :file ${$$(concat "images/temp/" (make-temp-name "py") ".png")}
 $0
 #+END_SRC
