@@ -21,6 +21,8 @@
   :config
   (setq org-directory "~/org")
 
+  (define-key dc/toggle-map "h" #'org-hide-block-all)
+
   (setq org-startup-indented t
 	org-hide-leading-stars t
 	org-return-follows-link t
@@ -65,6 +67,9 @@
 		      :weight 'normal)
   (set-face-attribute 'org-done nil
 		      :weight 'normal)
+  (set-face-attribute 'org-block nil
+		      :foreground nil
+		      :background "#f7f0dd")
 
   (setq org-file-apps
 	'((auto-mode . emacs)

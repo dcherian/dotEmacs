@@ -24,6 +24,7 @@
   :ensure t
   :bind (:map dc-bindings-map
 	      ("C-M-i" . ob-ipython-inspect)
-	      ("C-c c" . python-shell-switch-to-shell)))
+	      ("C-c t" . python-shell-switch-to-shell)
+	       ("C-<tab>" . org-hide-block-toggle-maybe)))
 
 (provide 'dc-python)
