@@ -111,11 +111,12 @@
 ;; global key bindings
 (global-set-key "\C-xk" 'kill-this-buffer)
 (global-set-key "\C-xw" 'delete-frame)
-(global-set-key "\C-x\C-r" 'eval-region)
-(global-set-key "\C-x\C-b" 'eval-buffer)
+(global-set-key "\C-c\C-r" 'eval-region)
+(global-set-key "\C-c\C-b" 'eval-buffer)
 (global-set-key (kbd "C-.") 'just-one-space)
 (global-set-key (kbd "M-&") 'replace-string)
 (global-set-key (kbd "M-*") 'replace-regexp)
+(global-set-key (kbd "M-9") 'imenu)
 
 (global-set-key (kbd "<f5>") 'gud-cont)
 (global-set-key (kbd "<f11>") 'gud-step) ;; equiv matlab step in
@@ -200,9 +201,9 @@
 (use-package yasnippet
   :ensure t
   :bind (:map dc-bindings-map
-	      ("C-3 C-n" . yas-new-snippet)
-	      ("C-3 C-s" . yas-insert-snippet)
-	      ("C-3 C-v" . yas-visit-snippet-file))
+	      ("M-0 n" . yas-new-snippet)
+	      ("M-0 s" . yas-insert-snippet)
+	      ("M-0 v" . yas-visit-snippet-file))
   :config
   (yas-minor-mode))
 
