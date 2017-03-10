@@ -38,7 +38,9 @@
 (use-package exec-path-from-shell
   :ensure t
   :init
+  (exec-path-from-shell-copy-env "PYTHONPATH")
   (exec-path-from-shell-initialize))
+
 (setq shell-file-name "bash")
 (setq shell-command-switch "-ic")
 
