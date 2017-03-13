@@ -315,6 +315,12 @@
 	      ("C-h C-m" . discover-my-major)
 	      ("C-h M-m" . discover-my-mode)))
 
+(use-package fancy-narrow
+  :ensure t
+  :diminish fancy-narrow-mode
+  :config
+  (fancy-narrow-mode))
+
 (use-package which-key
   :ensure t
   :diminish which-key-mode
