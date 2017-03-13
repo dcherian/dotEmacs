@@ -23,6 +23,12 @@
   :config
   (helm-ext-ff-enable-skipping-dots t))
 
+(use-package helm-org-rifle
+  :ensure t
+  :bind (:map dc-bindings-map
+	      ("C-x C-r" . helm-org-rifle)
+	      ("C-x C-o" . helm-org-rifle-org-directory)))
+
 (use-package helm-config
   :ensure helm
   :diminish helm-mode
