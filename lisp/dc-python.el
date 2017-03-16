@@ -1,5 +1,14 @@
 (require 'ob-ipython)
 
+(use-package company-jedi
+  :ensure t
+  :config
+  (defun dc/use-company-jedi ()
+    (add-to-list 'company-backends 'company-jedi))
+
+  (setq jedi:complete-on-dot t)
+  (add-hook 'python-mode-hook 'dc/use-company-jedi))
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ipython . t)
