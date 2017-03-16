@@ -310,7 +310,7 @@
   (add-hook 'magit-section-set-visibility-hook
 	    'local-magit-initially-hide-stashes)
   (magit-auto-revert-mode)
-  (setq vc-handled-backends (delq 'Git vc-handled-backends)))
+  (setq vc-handled-backends '(SVN Hg)))
 
 (use-package discover-my-major
   :ensure t
@@ -328,7 +328,7 @@
   :ensure t
   :diminish which-key-mode
   :init
-  (setq which-key-sort-order 'which-key-key-order-alpha)
+  (setq which-key-sort-order 'which-key-local-then-key-order)
   :config
   (which-key-setup-side-window-bottom)
   (which-key-mode))
