@@ -34,7 +34,7 @@
 	org-catch-invisible-edits 'show
 	org-list-allow-alphabetical t
 	org-hide-emphasis-markers t
-	org-image-actual-width nil
+	org-image-actual-width 800
 	org-export-in-background nil
 	org-src-fontify-natively 1
 	org-src-tab-acts-natively 1
