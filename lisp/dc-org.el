@@ -11,6 +11,9 @@
 ;; for orgmk
 (unless (boundp 'dc-bindings-map)
   (defvar dc-bindings-map (make-keymap) "A keymap for custom bindings."))
+(unless (boundp 'dc-toggle-map)
+  (define-prefix-command 'dc/toggle-map)
+  (define-key ctl-x-map "t" 'dc/toggle-map))
 
 (use-package org
   :load-path "/usr/local/share/emacs/site-lisp/org/"
