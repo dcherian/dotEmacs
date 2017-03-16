@@ -25,6 +25,12 @@
 (set-face-attribute 'comint-highlight-prompt nil
 		    :inherit 'font-lock-constant-face)
 
+;; how is this not the default?!
+(define-key comint-mode-map (kbd "<up>")
+  'comint-previous-matching-input-from-input)
+(define-key comint-mode-map (kbd "<down>")
+  'comint-next-matching-input-from-input)
+
 ;; close comint Completion buffers by default
 ;; from https://snarfed.org/automatically_close_completions_in_emacs_shell_comint_mode
 (defun comint-close-completions ()

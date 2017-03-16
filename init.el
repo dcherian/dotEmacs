@@ -118,6 +118,9 @@
 (global-set-key (kbd "M-*") 'replace-regexp)
 (global-set-key (kbd "M-9") 'imenu)
 
+(global-set-key (kbd "s-<left>") 'previous-buffer)
+(global-set-key (kbd "s-<right>") 'next-buffer)
+
 (global-set-key (kbd "<f5>") 'gud-cont)
 (global-set-key (kbd "<f11>") 'gud-step) ;; equiv matlab step in
 (global-set-key (kbd "<f6>") 'gud-next) ;; equiv matlab step 1

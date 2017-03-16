@@ -43,9 +43,9 @@
 	 ("C-i" . helm-execute-persistent-action) ; make TAB works in terminal
 	 ("C-z" .  helm-select-action) ; list actions using C-z
 	 :map shell-mode-map
-	 ("C-c C-l" . helm-comint-input-ring)
+	 ("C-<up>" . helm-comint-input-ring)
 	 :map comint-mode-map
-	 ("C-c C-l" . helm-comint-input-ring)
+	 ("C-<up>" . helm-comint-input-ring)
 	 :map dc-bindings-map
 	 ("M-y" . helm-show-kill-ring)
 	 ("C-x b" . helm-mini)
