@@ -1,39 +1,10 @@
 (package-initialize)
 
-
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 
 ;; Increase the garbage collection threshold to 500 MB to ease startup
 (setq gc-cons-threshold (* 500 1024 1024))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/eq_waves/notes/paper/paper.org")))
- '(package-selected-packages
-   (quote
-    (restart-emacs ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
- '(safe-local-variable-values
-   (quote
-    ((eval when
-	   (fboundp
-	    (quote rainbow-mode))
-	   (rainbow-mode 1))
-     (org-latex-table-scientific-notation)
-     (org-latex-hyperref-template)
-     (TeX-engine . xetex)
-     (TeX-master . t)
-     (org-image-actual-width . 600)
-     (org-latex-remove-logfiles)))))
-
-;; mac-specific
-(when (memq window-system '(mac ns))
-  (setq ns-command-modifier 'meta)
-  ;; (mac-auto-operator-composition-mode)
-  )
 
 (use-package exec-path-from-shell
   :ensure t
@@ -43,6 +14,12 @@
 
 (setq shell-file-name "bash")
 (setq shell-command-switch "-ic")
+
+;; mac-specific
+(when (memq window-system '(mac ns))
+  (setq ns-command-modifier 'meta)
+  ;; (mac-auto-operator-composition-mode)
+  )
 
 (eval-when-compile
   (require 'use-package))
@@ -366,3 +343,27 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(electric-indent-mode t)
+ '(global-aggressive-indent-mode t)
+ '(package-selected-packages
+   (quote
+    (company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext company helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+ '(safe-local-variable-values
+   (quote
+    ((org-publish-use-timestamps-flag)
+     (eval when
+	   (fboundp
+	    (quote rainbow-mode))
+	   (rainbow-mode 1))
+     (org-latex-table-scientific-notation)
+     (org-latex-hyperref-template)
+     (TeX-engine . xetex)
+     (TeX-master . t)
+     (org-image-actual-width . 600)
+     (org-latex-remove-logfiles)))))
