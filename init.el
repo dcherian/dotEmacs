@@ -116,7 +116,6 @@
 (global-set-key (kbd "C-.") 'just-one-space)
 (global-set-key (kbd "M-&") 'replace-string)
 (global-set-key (kbd "M-*") 'replace-regexp)
-(global-set-key (kbd "M-9") 'imenu)
 
 (global-set-key (kbd "s-<left>") 'previous-buffer)
 (global-set-key (kbd "s-<right>") 'next-buffer)

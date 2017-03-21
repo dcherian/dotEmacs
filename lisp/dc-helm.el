@@ -56,7 +56,7 @@
 	 ("C-h o" . helm-occur)
 	 ("C-h a" . helm-apropos)
 	 ("C-h t" . helm-world-time)
-	 ("C-h i" . helm-semantic-or-imenu))
+	 ("M-9" . helm-semantic-or-imenu))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -121,7 +121,9 @@
 	helm-recentf-fuzzy-match t
 	helm-buffers-fuzzy-matching t
 	helm-locate-fuzzy-match nil
-	helm-mode-fuzzy-match t)
+	helm-mode-fuzzy-match t
+	helm-semantic-fuzzy-match t
+	helm-imenu-fuzzy-match t)
 
   ;; Work with Spotlight on OS X instead of the regular locate
   (setq helm-locate-command "mdfind -name -onlyin ~ %s %s")
