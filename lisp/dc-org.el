@@ -15,6 +15,9 @@
   (define-prefix-command 'dc/toggle-map)
   (define-key ctl-x-map "t" 'dc/toggle-map))
 
+;;use org mode for eml files (useful for thunderbird plugin)
+(add-to-list 'auto-mode-alist '("\\.eml\\'" . org-mode))
+
 (use-package org
   :load-path "/usr/local/share/emacs/site-lisp/org/"
   :bind ((:map dc-bindings-map
