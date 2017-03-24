@@ -9,7 +9,7 @@
 	 :base-directory "~/website/org/"
 	 :base-extension "org"
 	 :recursive t
-	 :html-head "<link rel=\"stylesheet\" href=\"./website.css\" type=\"text/css\" />"
+	 :html-head "<link rel=\"stylesheet\" href=\"./website.css\" type=\"text/css\" /> <link href=\"https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500\" rel=\"stylesheet\">"
 	 :html-postamble nil
 	 :creator-info nil
 	 :author nil
