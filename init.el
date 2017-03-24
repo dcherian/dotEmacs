@@ -99,8 +99,8 @@
 
 (global-set-key (kbd "<f5>") 'gud-cont)
 (global-set-key (kbd "<f11>") 'gud-step) ;; equiv matlab step in
-(global-set-key (kbd "<f6>") 'gud-next) ;; equiv matlab step 1
-(global-set-key (kbd "<f7>") 'gud-finish) ;; equiv matlab step out
+(global-set-key (kbd "<f7>") 'gud-next) ;; equiv matlab step 1
+(global-set-key (kbd "<f8>") 'gud-finish) ;; equiv matlab step out
 
 ;; use aspell
 (setq ispell-program-name "aspell")
@@ -242,6 +242,10 @@
   :demand t
   :ensure t
   :diminish undo-tree-mode
+  :bind (:map dc-bindings-map
+	      ("M--" . undo-tree-undo)
+	      ("M-=" . undo-tree-redo)
+	      ("M-u" . undo-tree-visualize))
   :config
   (global-undo-tree-mode t))
 
@@ -284,7 +288,9 @@
 
   (use-package helm-projectile
     :ensure t
-    :bind (:map projectile-command-map
+    :bind (:map dc-bindings-map
+		("C-c C-f" . helm-projectile-find-file-dwim)
+		:map projectile-command-map
 		("s" . helm-projectile-ag))
     :config
     (helm-projectile-on)

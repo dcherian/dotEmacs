@@ -50,13 +50,14 @@
 	 ("M-y" . helm-show-kill-ring)
 	 ("C-x b" . helm-mini)
 	 ("C-`" . helm-mini)
-	 ("C-," . helm-mini)
+	 ("C-/" . helm-mini)
 	 ("C-x C-f" . helm-find-files)
 	 ("C-x m" . helm-man-woman)
 	 ("C-h o" . helm-occur)
 	 ("C-h a" . helm-apropos)
 	 ("C-h t" . helm-world-time)
-	 ("M-9" . helm-semantic-or-imenu))
+	 ("M-9" . helm-semantic-or-imenu)
+	 ("C-h C-i" . helm-imenu-in-all-buffers))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -104,7 +105,7 @@
   (use-package helm-unicode
     :ensure t
     :bind (:map dc-bindings-map
-		("<f13>" . helm-unicode)))
+		("C-h u" . helm-unicode)))
 
   (use-package helm-describe-modes
     :ensure t
