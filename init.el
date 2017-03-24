@@ -72,7 +72,7 @@
 (save-place-mode 1)
 (blink-cursor-mode 0)
 (display-time-mode t)
-(electric-pair-mode t)
+(electric-pair-mode nil)
 (global-visual-line-mode t)
 (global-hl-line-mode 1)
 (global-subword-mode 1)
@@ -164,6 +164,79 @@
 		      :background nil
 		      :inherit 'isearch)
   (volatile-highlights-mode t))
+
+(use-package smartparens-config
+  :ensure smartparens
+  :bind (:map smartparens-mode-map
+	      ("C-M-a" . sp-beginning-of-sexp)
+	      ("C-M-e" . sp-end-of-sexp)
+
+	      ("C-M-<down>" . sp-down-sexp)
+	      ("C-M-<up>"   . sp-up-sexp)
+	      ;; ("M-<down>" . sp-backward-down-sexp)
+	      ;; ("M-<up>"   . sp-backward-up-sexp)
+
+	      ("C-M-f" . sp-forward-sexp)
+	      ("C-M-b" . sp-backward-sexp)
+
+	      ("C-M-n" . sp-next-sexp)
+	      ("C-M-p" . sp-previous-sexp)
+
+	      ("C-S-f" . sp-forward-symbol)
+	      ("C-S-b" . sp-backward-symbol)
+
+	      ("C-M-<right>" . sp-forward-slurp-sexp)
+	      ;; ("M-<right>" . sp-forward-barf-sexp)
+	      ("C-M-<left>"  . sp-backward-slurp-sexp)
+	      ;;("M-<left>"  . sp-backward-barf-sexp)
+
+	      ("C-M-t" . sp-transpose-sexp)
+	      ("C-M-k" . sp-kill-sexp)
+	      ("C-k"   . sp-kill-hybrid-sexp)
+	      ("M-k"   . sp-backward-kill-sexp)
+	      ("C-M-w" . sp-copy-sexp)
+	      ("C-M-d" . delete-sexp)
+
+	      ("M-<backspace>" . backward-kill-word)
+	      ("C-<backspace>" . sp-backward-kill-word)
+	      ([remap sp-backward-kill-word] . backward-kill-word)
+
+	      ("M-[" . sp-backward-unwrap-sexp)
+	      ("M-]" . sp-unwrap-sexp)
+
+	      ("C-x C-t" . sp-transpose-hybrid-sexp)
+
+	      ("C-x ("  . wrap-with-parens)
+	      ("C-x ["  . wrap-with-brackets)
+	      ("C-x {"  . wrap-with-braces)
+	      ("C-x '"  . wrap-with-single-quotes)
+	      ("C-x \"" . wrap-with-double-quotes)
+	      ("C-x _"  . wrap-with-underscores)
+	      ("C-x `"  . wrap-with-back-quotes))
+  :config
+  (progn
+    (show-smartparens-global-mode t))
+
+  (defmacro def-pairs (pairs)
+    `(progn
+       ,@(loop for (key . val) in pairs
+	       collect
+	       `(defun ,(read (concat
+			       "wrap-with-"
+			       (prin1-to-string key)
+			       "s"))
+		    (&optional arg)
+		  (interactive "p")
+		  (sp-wrap-with-pair ,val)))))
+
+  (def-pairs ((paren . "(")
+	      (bracket . "[")
+	      (brace . "{")
+	      (single-quote . "'")
+	      (double-quote . "\"")
+	      (back-quote . "`")))
+  (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
+  (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode))
 
 (use-package undo-tree
   :demand t
