@@ -309,6 +309,14 @@
   (which-key-setup-side-window-bottom)
   (which-key-mode))
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
 (require 'dc-org)
 (require 'dc-helm)
 (require 'dc-company)
