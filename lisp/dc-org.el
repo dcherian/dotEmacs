@@ -293,5 +293,12 @@ Argument KEY is the bibtex key."
 	  bibtex-completion-notes-path "~/org/papers.org"
 	  bibtex-completion-pdf-field "file"))))
 
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ipython . t)
+   (matlab . t)
+   (emacs-lisp . t)))
+
 (provide 'dc-org)
 ;;; dc-org ends here
