@@ -87,6 +87,11 @@
     (add-hook 'org-mode-hook 'org-bullets-mode)
     (setq org-bullets-bullet-list '("⊢" "⋮" "⋱" "•")))
 
+  (use-package org-edit-latex
+    :ensure t
+    :config
+    (org-edit-latex-mode))
+
   ;; my customized preamble
   (use-package ox-latex
     :defer t
@@ -298,7 +303,8 @@ Argument KEY is the bibtex key."
  'org-babel-load-languages
  '((ipython . t)
    (matlab . t)
-   (emacs-lisp . t)))
+   (emacs-lisp . t)
+   (latex . t)))
 
 (provide 'dc-org)
 ;;; dc-org ends here
