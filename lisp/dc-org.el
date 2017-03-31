@@ -79,7 +79,8 @@
 
   (setq org-file-apps
 	'((auto-mode . emacs)
-	  ("\\.pdf\\'" . "open %s")))
+	  ("\\.pdf\\'" . "mupdf %s")
+	  ("\\.png\\'" . "gpicview %s")))
 
   (use-package org-bullets
     :ensure t
@@ -91,6 +92,9 @@
     :ensure t
     :config
     (org-edit-latex-mode))
+
+  (use-package ox-gfm
+    :ensure t)
 
   ;; my customized preamble
   (use-package ox-latex

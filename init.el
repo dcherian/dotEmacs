@@ -13,7 +13,7 @@
   (exec-path-from-shell-initialize))
 
 (setq shell-file-name "bash")
-(setq shell-command-switch "-ic")
+;; (setq shell-command-switch "-ic")
 
 ;; mac-specific
 (when (memq window-system '(mac ns))
@@ -41,6 +41,11 @@
 (autoload 'dired-toggle-read-only "dired" nil t)
 (define-key dc/toggle-map "w" #'whitespace-mode)
 
+(use-package transpose-frame
+  :ensure t
+  :bind (:map dc/toggle-map
+	      ("f" . transpose-frame)))
+
 (require 'dc-theme)
 
 (tool-bar-mode 0)
@@ -57,7 +62,9 @@
       ediff-window-setup-function 'ediff-setup-windows-plain
       save-place-file (concat user-emacs-directory "places")
       backup-directory-alist `(("." . ,(concat user-emacs-directory
-					       "backups"))))
+					       "backups")))
+      split-height-threshold 100
+      split-width-threshold 120)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -159,11 +166,11 @@
   :demand t
   :diminish volatile-highlights-mode
   :config
+  (volatile-highlights-mode t)
   (set-face-attribute 'vhl/default-face nil
 		      :foreground nil
 		      :background nil
-		      :inherit 'isearch)
-  (volatile-highlights-mode t))
+		      :inherit 'isearch))
 
 (use-package smartparens-config
   :ensure smartparens
@@ -212,7 +219,8 @@
 	      ("C-x '"  . wrap-with-single-quotes)
 	      ("C-x \"" . wrap-with-double-quotes)
 	      ("C-x _"  . wrap-with-underscores)
-	      ("C-x `"  . wrap-with-back-quotes))
+	      ("C-x `"  . wrap-with-back-quotes)
+	      ("C-x ~" . wrap-with-tilde))
   :config
   (progn
     (show-smartparens-global-mode t))
@@ -234,7 +242,8 @@
 	      (brace . "{")
 	      (single-quote . "'")
 	      (double-quote . "\"")
-	      (back-quote . "`")))
+	      (back-quote . "`")
+	      (tilde . "~")))
   (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
   (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode))
 
@@ -261,7 +270,7 @@
 	      ("M-0 s" . yas-insert-snippet)
 	      ("M-0 v" . yas-visit-snippet-file))
   :config
-  (yas-minor-mode))
+  (yas-global-mode))
 
 (use-package crux
   :ensure t
@@ -330,10 +339,9 @@
 	      ("f" . visual-fill-column-mode))
   :init
   (setq visual-fill-column-center-text t
-	visual-fill-column-width 90)
+	visual-fill-column-width 100)
   (advice-add 'text-scale-adjust :after
-	      #'visual-fill-column-adjust)
-  (global-visual-fill-column-mode))
+	      #'visual-fill-column-adjust))
 
 (use-package smart-mode-line
   :ensure t
@@ -400,11 +408,12 @@
 (require 'dc-helm)
 (require 'dc-company)
 (require 'dc-comint)
-(require 'dc-matlab)
 (require 'dc-latex) ; (require 'dc-comint)
 (require 'dc-editing)
 (require 'dc-website)
 (require 'dc-python)
+(require 'dc-matlab)
+(require 'ox-ipynb)
 
 ;; do my keybindings
 (define-minor-mode dc-bindings-mode
