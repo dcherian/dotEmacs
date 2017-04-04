@@ -27,6 +27,16 @@
 (if (string-equal system-name "darya")
     (darya-setup))
 
+
+(defun python-shell-run-region-or-line ()
+  (interactive)
+  (if (and transient-mark-mode mark-active)
+      (python-shell-send-region (mark) (point))
+    (python-shell-send-region (point-at-bol) (point-at-eol))))
+
+(bind-key (kbd "C-c C-c") 'python-shell-run-region-or-line python-mode-map)
+(bind-key (kbd "C-c C-b") 'python-shell-send-buffer python-mode-map)
+
 (use-package ob-ipython
   :ensure t
   :bind (:map dc-bindings-map
