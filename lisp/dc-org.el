@@ -46,6 +46,8 @@
 	org-src-tab-acts-natively 1
 	org-pretty-entities t
 	org-pretty-entities-include-sub-superscripts t
+	org-export-dispatch-use-expert-ui t
+	org-latex-image-default-width "\\linewidth"
 	fill-column 90)
 
   (defun my-org-mode-hook ()
@@ -124,8 +126,10 @@
 	  org-latex-compiler-file-string nil
 	  org-highlight-latex-and-related '(latex script entities))
 
+    (add-to-list 'org-latex-listings-langs '(ipython "Python"))
+
     (setq org-latex-pdf-process
-	  '("source ~/.bashrc; tail -n +3 %f | sed '/./,$!d' > %f.nolines; mv %f.nolines %f; latexmk %f; exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf"))
+	  '("source ~/.bashrc; latexmk %f; exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf"))
 
     (add-to-list 'org-latex-classes
 		 '("dcbeamer"
@@ -133,6 +137,28 @@
 		   ("\\section{%s}" . "\\section*{%s}")
 		   ("\\subsection{%s}" . "\\subsection*{%s}")
 		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+    (add-to-list 'org-latex-classes
+		 '("dcnotebook"
+		   "%&~/tools/latex/preamble-memoir
+[NO-DEFAULT-PACKAGES]
+[NO-PACKAGES]
+[EXTRA]
+\\usepackage{listings}
+\\usepackage{fontspec}
+\\usepackage{unicode-math}
+\\setromanfont[Ligatures=TeX]{TeX Gyre Pagella}
+\\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Pagella Math}
+\\setmonofont{Inconsolata}
+\\setsecnumdepth{subsubsection}
+\\counterwithout{section}{chapter}
+\\counterwithout{figure}{chapter}
+\\counterwithout{table}{chapter}"
+		 ("\\section{%s}" . "\\section*{%s}")
+		 ("\\subsection{%s}" . "\\subsection*{%s}")
+		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
     (add-to-list 'org-latex-classes
 		 '("dcarticle"
@@ -300,8 +326,7 @@ Argument KEY is the bibtex key."
     (setq bibtex-completion-bibliography "~/Papers/bibtexLibrary.bib"
 	  bibtex-completion-library-path "~/Papers/"
 	  bibtex-completion-notes-path "~/org/papers.org"
-	  bibtex-completion-pdf-field "file"))))
-
+	  bibtex-completion-pdf-field "file")))
 
 (org-babel-do-load-languages
  'org-babel-load-languages

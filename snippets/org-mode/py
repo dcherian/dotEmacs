@@ -3,6 +3,6 @@
 # key: py
 # --
 
-#+BEGIN_SRC ipython :session :exports both :file ${$$(concat "images/temp/" (make-temp-name "py") ".png")}
+#+BEGIN_SRC ipython :session :tangle yes :exports results :eval never-export :file ${$$(concat "images/temp/" (make-temp-name "py") ".png")}
 $0
 #+END_SRC
