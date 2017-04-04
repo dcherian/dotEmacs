@@ -11,6 +11,7 @@
 ;; for orgmk
 (unless (boundp 'dc-bindings-map)
   (defvar dc-bindings-map (make-keymap) "A keymap for custom bindings."))
+
 (unless (boundp 'dc-toggle-map)
   (define-prefix-command 'dc/toggle-map)
   (define-key ctl-x-map "t" 'dc/toggle-map))
@@ -47,7 +48,7 @@
 	org-pretty-entities t
 	org-pretty-entities-include-sub-superscripts t
 	org-export-dispatch-use-expert-ui t
-	org-latex-image-default-width "\\linewidth"
+	org-latex-image-default-width "\\textwidth"
 	fill-column 90)
 
   (defun my-org-mode-hook ()
@@ -129,7 +130,7 @@
     (add-to-list 'org-latex-listings-langs '(ipython "Python"))
 
     (setq org-latex-pdf-process
-	  '("source ~/.bashrc; latexmk %f; exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf"))
+	  '("source ~/.bashrc; sed '/./,$!d' %f > %f.nolines; mv %f.nolines %f; latexmk %f; exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf"))
 
     (add-to-list 'org-latex-classes
 		 '("dcbeamer"
