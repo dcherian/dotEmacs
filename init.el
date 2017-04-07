@@ -1,7 +1,24 @@
 (package-initialize)
 
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+;; from https://glyph.twistedmatrix.com/2015/11/editor-malware.html
+(set-variable 'package-archives
+	      `(("gnu" . "https://elpa.gnu.org/packages/")
+		("melpa" . "https://melpa.org/packages/")))
+
+(setq tls-checktrust t)
+
+(let ((trustfile
+       (replace-regexp-in-string
+        "\\\\" "/"
+        (replace-regexp-in-string
+         "\n" ""
+         (shell-command-to-string "python -m certifi")))))
+  (setq tls-program
+        (list
+         (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
+                 (if (eq window-system 'w32) ".exe" "") trustfile)))
+  (setq gnutls-verify-error t)
+  (setq gnutls-trustfiles (list trustfile)))
 
 ;; Increase the garbage collection threshold to 500 MB to ease startup
 (setq gc-cons-threshold (* 500 1024 1024))
