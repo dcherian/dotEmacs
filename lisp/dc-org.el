@@ -83,7 +83,8 @@
   (setq org-file-apps
 	'((auto-mode . emacs)
 	  ("\\.pdf\\'" . "mupdf %s")
-	  ("\\.png\\'" . "gpicview %s")))
+	  ("\\.png\\'" . "gpicview %s")
+	  ("\\.html\\'" . "firefox %s")))
 
   (use-package org-bullets
     :ensure t
@@ -178,8 +179,8 @@
 		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
   (add-to-list 'org-latex-classes
-	       '("dcthesis"
-		 "[NO-DEFAULT-PACKAGES]
+	     '("dcthesis"
+	       "[NO-DEFAULT-PACKAGES]
 [NO-PACKAGES]"
 		 ("\\chapter{%s}" . "\\chapter*{%s}")
 		 ("\\section{%s}" . "\\section*{%s}")
@@ -220,9 +221,7 @@
 	       ("\\subsection{%s}" . "\\subsection*{%s}")
 	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
-	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
-	       ))
-
+	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 (add-to-list 'org-latex-classes
 	     '("JMR-review"
 	       "[NO-DEFAULT-PACKAGES]
@@ -254,8 +253,7 @@
 	       ("\\subsection{%s}" . "\\subsection*{%s}")
 	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
-	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
-	       )))
+	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))))
 
 (use-package org-ref
   :ensure t
