@@ -112,8 +112,14 @@
     :config
     (global-set-key [remap describe-mode] #'helm-describe-modes))
 
+  (use-package kaomoji
+    :ensure t
+    :bind (:map dc-bindings-map
+		("C-c h k" . kaomoji)))
+
   (use-package helm-ls-git
     :ensure t
+    :disabled t
     :bind (:map dc-bindings-map
 		("C-x C-d" . helm-browse-project)))
   
