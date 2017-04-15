@@ -6,6 +6,8 @@
 
 (elpy-enable)
 
+(add-to-list 'aggressive-indent-excluded-modes 'python-mode)
+
 (use-package company-jedi
   :ensure t
   :disable t
