@@ -209,9 +209,9 @@
 	      ("C-S-f" . sp-forward-symbol)
 	      ("C-S-b" . sp-backward-symbol)
 
-	      ("C-M-<right>" . sp-forward-slurp-sexp)
-	      ;; ("M-<right>" . sp-forward-barf-sexp)
-	      ("C-M-<left>"  . sp-backward-slurp-sexp)
+	      ("C-M-<right>" . sp-slurp-hybrid-sexp)
+	      ("C-M-<left>" . sp-barf-hybrid-sexp)
+	      ;;("C-M-<left>"  . sp-backward-slurp-sexp)
 	      ;;("M-<left>"  . sp-backward-barf-sexp)
 
 	      ("C-M-t" . sp-transpose-sexp)
@@ -261,6 +261,8 @@
 	      (double-quote . "\"")
 	      (back-quote . "`")
 	      (tilde . "~")))
+
+  (require 'smartparens-python)
   (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
   (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode))
 
