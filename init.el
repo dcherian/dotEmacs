@@ -368,14 +368,6 @@
   (advice-add 'text-scale-adjust :after
 	      #'visual-fill-column-adjust))
 
-(use-package smart-mode-line
-  :ensure t
-  :demand t
-  :config
-  (setq sml/no-confirm-load-theme t
-	sml/theme 'respectful)
-  (sml/setup))
-
 (use-package magit
   :ensure t
   :bind (:map dc-bindings-map
