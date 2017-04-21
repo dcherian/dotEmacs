@@ -43,6 +43,13 @@
       (python-shell-send-region (mark) (point))
     (python-shell-send-region (point-at-bol) (point-at-eol))))
 
+(defun dc-switch-to-python-shell ()
+  (interactive)
+  (recenter-top-bottom)
+  (split-window-below)
+  (other-window 1)
+  (switch-to-buffer "*Python*"))
+
 (bind-key (kbd "C-c C-c") 'python-shell-run-region-or-line python-mode-map)
 (bind-key (kbd "C-c C-b") 'python-shell-send-buffer python-mode-map)
 
@@ -50,7 +57,7 @@
   :ensure t
   :bind (:map dc-bindings-map
 	      ("C-M-i" . ob-ipython-inspect)
-	      ("C-c t" . python-shell-switch-to-shell)
+	      ("C-c t" . dc-switch-to-python-shell)
 	      ("C-<tab>" . org-hide-block-toggle-maybe)))
 
 (provide 'dc-python)
