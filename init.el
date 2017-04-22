@@ -217,10 +217,13 @@
 	      ("C-S-f" . sp-forward-symbol)
 	      ("C-S-b" . sp-backward-symbol)
 
+	      ;; arrows based on how delimiter moves
+	      ;; Shift moves left delimiter
+	      ;; Alt moves right delimiter
 	      ("C-M-<right>" . sp-slurp-hybrid-sexp)
-	      ("C-M-<left>" . sp-barf-hybrid-sexp)
-	      ;;("C-M-<left>"  . sp-backward-slurp-sexp)
-	      ;;("M-<left>"  . sp-backward-barf-sexp)
+	      ("C-M-<left>" . sp-forward-barf-sexp)
+	      ("C-S-<left>"  . sp-backward-slurp-sexp)
+	      ("C-S-<right>"  . sp-backward-barf-sexp)
 
 	      ("C-M-t" . sp-transpose-sexp)
 	      ("C-M-k" . sp-kill-sexp)
