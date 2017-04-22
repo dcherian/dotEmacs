@@ -49,6 +49,9 @@
     (use-package all-the-icons
       :ensure t)
 
-    (spaceline-all-the-icons-theme)))
+    (spaceline-all-the-icons-theme))
+
+  (set-face-attribute 'spaceline-highlight-face nil
+		      :background "#93a1a1"))
 
 (provide 'dc-theme)
