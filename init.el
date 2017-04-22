@@ -95,6 +95,8 @@
       select-enable-primary t
       select-enable-clipboard t)
 
+(setq tab-always-indent 'complete)
+
 ;; enable built-in modes
 (desktop-save-mode 1)
 (delete-selection-mode 1)

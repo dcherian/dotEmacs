@@ -24,7 +24,7 @@
 ;; modeline options
 (use-package smart-mode-line
   :ensure t
-  :disable t
+  :disabled t
   :config
   (setq sml/no-confirm-load-theme t
 	sml/theme 'respectful)
@@ -33,7 +33,7 @@
 ;; powerline
 (use-package powerline
   :ensure t
-  :disable t
+  :disabled t
   :config
   (powerline-default-theme))
 

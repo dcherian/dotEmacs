@@ -6,11 +6,14 @@
 
 (elpy-enable)
 
+(use-package pydoc
+  :ensure t)
+
 (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
 
 (use-package company-jedi
   :ensure t
-  :disable t
+  :disabled t
   :config
   (defun dc/use-company-jedi ()
     (add-to-list 'company-backends 'company-jedi))
