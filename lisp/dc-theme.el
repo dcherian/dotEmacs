@@ -38,9 +38,11 @@
   (powerline-default-theme))
 
 ;; spaceline
-(use-package spaceline
-  :ensure t
+(use-package spaceline-config
+  :ensure spaceline
   :config
+
+  (spaceline-helm-mode)
   (use-package spaceline-all-the-icons
     :after spaceline
     :ensure t
@@ -49,7 +51,8 @@
     (use-package all-the-icons
       :ensure t)
 
-    (spaceline-all-the-icons-theme))
+    (spaceline-all-the-icons-theme)
+    (setq spaceline-all-the-icons-separator-type 'arrow))
 
   (set-face-attribute 'spaceline-highlight-face nil
 		      :background "#93a1a1"))
