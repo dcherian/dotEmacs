@@ -110,6 +110,7 @@
 (global-subword-mode 1)
 (global-prettify-symbols-mode t)
 (windmove-default-keybindings)
+(which-function-mode t)
 
 ;; diminsh some built-in modes
 (diminish 'auto-revert-mode)
@@ -188,7 +189,6 @@
 
 (use-package volatile-highlights
   :ensure t
-  :demand t
   :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode t)

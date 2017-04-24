@@ -59,6 +59,7 @@
 (use-package ob-ipython
   :ensure t
   :bind (:map dc-bindings-map
+	      ("C-c p" . python-shell-run-region-or-line)
 	      ("C-M-i" . ob-ipython-inspect)
 	      ("C-c t" . dc-switch-to-python-shell)
 	      ("C-<tab>" . org-hide-block-toggle-maybe)))
