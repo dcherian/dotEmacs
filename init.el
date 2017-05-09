@@ -193,9 +193,8 @@
   :config
   (volatile-highlights-mode t)
   (set-face-attribute 'vhl/default-face nil
-		      :foreground nil
-		      :background nil
-		      :inherit 'isearch))
+		      :foreground "#fdf6e3"
+		      :background "#d33682"))
 
 (use-package undo-tree
   :demand t
