@@ -2,9 +2,23 @@
   :diminish company-mode
   :ensure t
   :config
-  (setq company-idle-delay 0.2
-	company-dabbrev-downcase nil
-	company-dabbrev-ignore-case t)
+  ;; Enable company-mode globally.
+  (global-company-mode)
+  ;; Except when you're in term-mode.
+  (setq company-global-modes '(not term-mode))
+
+  (setq company-minimum-prefix-length 2
+        company-selection-wrap-around t
+        company-show-numbers t
+        company-tooltip-align-annotations t
+        company-require-match nil
+        company-dabbrev-downcase nil
+	company-dabbrev-ignore-case nil)
+  (setq company-idle-delay 0.6)
+
+  ;; Sort completion candidates that already occur in the current
+  ;; buffer at the top of the candidate list.
+  (setq company-transformers '(company-sort-by-occurrence))
 
   (setq company-backends
 	'((company-files company-elisp company-semantic company-files company-dabbrev-code company-gtags company-etags company-keywords company-dabbrev)))
