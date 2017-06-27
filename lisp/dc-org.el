@@ -242,11 +242,11 @@ Use a prefix arg to get regular RET. "
 \\counterwithout{section}{chapter}
 \\counterwithout{figure}{chapter}
 \\counterwithout{table}{chapter}"
-		 ("\\section{%s}" . "\\section*{%s}")
-		 ("\\subsection{%s}" . "\\subsection*{%s}")
-		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+		   ("\\section{%s}" . "\\section*{%s}")
+		   ("\\subsection{%s}" . "\\subsection*{%s}")
+		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
     (add-to-list 'org-latex-classes
 		 '("dcarticle"
@@ -258,26 +258,26 @@ Use a prefix arg to get regular RET. "
 \\counterwithout{figure}{chapter}
 \\counterwithout{table}{chapter}
 "
-		 ("\\section{%s}" . "\\section*{%s}")
-		 ("\\subsection{%s}" . "\\subsection*{%s}")
-		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+		   ("\\section{%s}" . "\\section*{%s}")
+		   ("\\subsection{%s}" . "\\subsection*{%s}")
+		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  (add-to-list 'org-latex-classes
-	     '("dcthesis"
-	       "[NO-DEFAULT-PACKAGES]
+    (add-to-list 'org-latex-classes
+		 '("dcthesis"
+		   "[NO-DEFAULT-PACKAGES]
 [NO-PACKAGES]"
-		 ("\\chapter{%s}" . "\\chapter*{%s}")
-		 ("\\section{%s}" . "\\section*{%s}")
-		 ("\\subsection{%s}" . "\\subsection*{%s}")
-		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+		   ("\\chapter{%s}" . "\\chapter*{%s}")
+		   ("\\section{%s}" . "\\section*{%s}")
+		   ("\\subsection{%s}" . "\\subsection*{%s}")
+		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  (add-to-list 'org-latex-classes
-	       '("ametsoc"
-		 "[NO-DEFAULT-PACKAGES]
+    (add-to-list 'org-latex-classes
+		 '("ametsoc"
+		   "[NO-DEFAULT-PACKAGES]
 [NO-PACKAGES]
 \\documentclass{ametsoc}
 \\usepackage[english]{babel}
@@ -303,14 +303,14 @@ Use a prefix arg to get regular RET. "
 \\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = --, per-mode=reciprocal, retain-unity-mantissa=false }
 \\bibpunct{(}{)}{;}{a}{}{,}
 [EXTRA]"
-	       ("\\section{%s}" . "\\section*{%s}")
-	       ("\\subsection{%s}" . "\\subsection*{%s}")
-	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
-	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-(add-to-list 'org-latex-classes
-	     '("JMR-review"
-	       "[NO-DEFAULT-PACKAGES]
+		   ("\\section{%s}" . "\\section*{%s}")
+		   ("\\subsection{%s}" . "\\subsection*{%s}")
+		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    (add-to-list 'org-latex-classes
+		 '("JMR-review"
+		   "[NO-DEFAULT-PACKAGES]
 [NO-PACKAGES]
 \\documentclass[12pt,titlepage]{article}
 \\usepackage{endfloat}
@@ -335,11 +335,24 @@ Use a prefix arg to get regular RET. "
 \\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = --, per-mode=reciprocal, retain-unity-mantissa=false }\
 \\usepackage{JMR}
 [EXTRA]"
-	       ("\\section{%s}" . "\\section*{%s}")
-	       ("\\subsection{%s}" . "\\subsection*{%s}")
-	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
-	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))))
+		   ("\\section{%s}" . "\\section*{%s}")
+		   ("\\subsection{%s}" . "\\subsection*{%s}")
+		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))))
+
+(use-package org-sticky-header
+  :ensure t
+  :config
+  (setq org-sticky-header-full-path 'reversed)
+  (add-hook 'org-mode-hook 'org-sticky-header-mode)
+  (set-face-attribute 'header-line 'nil
+		      :foreground "#586e75"
+		      :background "#eee8d5"
+		      :underline 'unspecified
+		      :height 'unspecified
+		      :box 'unspecified
+		      :inherit 'unspecified))
 
 (use-package org-ref
   :ensure t
