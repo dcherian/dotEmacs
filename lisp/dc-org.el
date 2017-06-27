@@ -56,13 +56,17 @@
   :bind ((:map dc-bindings-map
 	       ("C-c c" . org-capture)
 	       ("C-c a" . org-agenda)
-	       ("C-c b" . org-iswitchb)))
+	       ("C-c b" . org-iswitchb)
+	       ("s-j" . org-babel-next-src-block)
+	       ("s-k" . org-babel-previous-src-block)
+	       ("s-l" . org-edit-src-code)))
   :config
   (setq org-directory "~/org")
 
   (define-key dc/toggle-map "h" #'org-hide-block-all)
 
   (setq org-startup-indented t
+	org-startup-with-inline-images "inlineimages"
 	org-hide-leading-stars t
 	org-return-follows-link t
 	org-footnote-define-inline t
@@ -73,10 +77,11 @@
 	org-catch-invisible-edits 'show
 	org-list-allow-alphabetical t
 	org-hide-emphasis-markers t
-	org-image-actual-width 600
+	org-image-actual-width 680
 	org-export-in-background nil
 	org-src-fontify-natively 1
 	org-src-tab-acts-natively 1
+	org-src-preserve-indentation t
 	org-pretty-entities t
 	org-pretty-entities-include-sub-superscripts t
 	org-export-dispatch-use-expert-ui t
