@@ -12,7 +12,9 @@
 		    :foreground "#b58900"
 		    :bold nil)
 
-(set-face-attribute 'default nil :height 160)
+(set-face-attribute 'default nil
+		    :family "mononoki"
+		    :height 130)
 
 (setq-default line-spacing 6)
 
@@ -24,7 +26,6 @@
 ;; modeline options
 (use-package smart-mode-line
   :ensure t
-  :disabled t
   :config
   (setq sml/no-confirm-load-theme t
 	sml/theme 'respectful)
@@ -40,6 +41,7 @@
 ;; spaceline
 (use-package spaceline-config
   :ensure spaceline
+  :disabled t
   :config
 
   (spaceline-helm-mode)
