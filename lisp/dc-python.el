@@ -39,7 +39,6 @@
 (if (string-equal system-name "darya")
     (darya-setup))
 
-
 (defun python-shell-run-region-or-line ()
   (interactive)
   (if (and transient-mark-mode mark-active)
@@ -49,7 +48,7 @@
 (defun dc-switch-to-python-shell ()
   (interactive)
   (recenter-top-bottom)
-  (split-window-below)
+  (split-window-below -15)
   (other-window 1)
   (switch-to-buffer "*Python*"))
 
@@ -63,5 +62,15 @@
 	      ("C-M-i" . ob-ipython-inspect)
 	      ("C-c t" . dc-switch-to-python-shell)
 	      ("C-<tab>" . org-hide-block-toggle-maybe)))
+
+(setq org-babel-default-header-args:ipython
+      '(;;(:results . "output replace")
+	;;(:session . "none")
+	(:exports . "results")
+	(:cache .   "no")
+	(:noweb . "no")
+	(:hlines . "no")
+	(:tangle . "no")
+	(:eval . "never-export")))
 
 (provide 'dc-python)
