@@ -1,22 +1,21 @@
 (use-package smartparens-config
   :ensure smartparens
   :bind (:map smartparens-mode-map
-	      ("C-M-a" . sp-beginning-of-sexp)
-	      ("C-M-e" . sp-end-of-sexp)
+	      ("C-S-a" . sp-beginning-of-sexp)
+	      ("C-S-e" . sp-end-of-sexp)
 
-	      ("C-M-<down>" . sp-down-sexp)
-	      ("C-M-<up>"   . sp-up-sexp)
+	      ("C-S-<down>" . sp-down-sexp)
+	      ("C-S-<up>"   . sp-up-sexp)
 	      ;; ("M-<down>" . sp-backward-down-sexp)
 	      ;; ("M-<up>"   . sp-backward-up-sexp)
 
-	      ("C-M-f" . sp-forward-sexp)
-	      ("C-M-b" . sp-backward-sexp)
+	      ("C-S-f" . sp-forward-sexp)
+	      ("C-S-b" . sp-backward-sexp)
 
-	      ("C-M-n" . sp-next-sexp)
-	      ("C-M-p" . sp-previous-sexp)
-
-	      ("C-S-f" . sp-forward-symbol)
-	      ("C-S-b" . sp-backward-symbol)
+	      ("C-S-n" . sp-next-sexp)
+	      ("C-S-p" . sp-previous-sexp)
+	      ;; ("C-S-f" . sp-forward-symbol)
+	      ;; ("C-S-b" . sp-backward-symbol)
 
 	      ;; arrows based on how delimiter moves
 	      ;; Shift moves left delimiter
@@ -78,3 +77,5 @@
   (require 'smartparens-python)
   (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
   (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode))
+
+(provide 'dc-parens)
