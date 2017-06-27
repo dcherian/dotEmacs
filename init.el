@@ -1,4 +1,10 @@
+(setq load-prefer-newer t)
 (package-initialize)
+(require 'auto-compile)
+(auto-compile-on-load-mode)
+(auto-compile-on-save-mode)
+
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0 t)
 
 ;; from https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 (set-variable 'package-archives
@@ -30,7 +36,7 @@
   (exec-path-from-shell-initialize))
 
 (setq shell-file-name "bash")
-;; (setq shell-command-switch "-ic")
+(setq shell-command-switch "-ic")
 
 ;; mac-specific
 (when (memq window-system '(mac ns))
@@ -310,9 +316,9 @@
 	 'hide))
 
   (add-hook 'magit-section-set-visibility-hook
-	    'local-magit-initially-hide-untracked)
+   	    'local-magit-initially-hide-untracked)
   (add-hook 'magit-section-set-visibility-hook
-	    'local-magit-initially-hide-stashes)
+  	    'local-magit-initially-hide-stashes)
   (magit-auto-revert-mode)
   (setq vc-handled-backends '(SVN Hg)))
 
@@ -324,6 +330,7 @@
 
 (use-package fancy-narrow
   :ensure t
+  :disabled t
   :diminish fancy-narrow-mode
   :config
   (fancy-narrow-mode))
@@ -404,4 +411,5 @@
      (TeX-engine . xetex)
      (TeX-master . t)
      (org-image-actual-width . 600)
-     (org-latex-remove-logfiles)))))
+     (org-latex-remove-logfiles))))
+ '(yas-global-mode t))
