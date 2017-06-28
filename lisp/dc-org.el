@@ -51,6 +51,11 @@
 (set-face-attribute 'org-latex-and-related nil
 		    :foreground "#cb4b16")
 
+(define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
+(define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
+(define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
+(define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
+
 (use-package org
   :load-path "/usr/local/share/emacs/site-lisp/org/"
   :bind ((:map dc-bindings-map
