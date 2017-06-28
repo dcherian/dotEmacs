@@ -29,6 +29,22 @@
 ;; Increase the garbage collection threshold to 500 MB to ease startup
 (setq gc-cons-threshold (* 500 1024 1024))
 
+(use-package whitespace
+  :config
+  (setq-default show-trailing-whitespace t)
+  (defun no-trailing-whitespace ()
+    (setq show-trailing-whitespace nil))
+  (add-hook 'minibuffer-setup-hook
+	    'no-trailing-whitespace)
+  (add-hook 'eww-mode-hook
+	    'no-trailing-whitespace)
+  (add-hook 'ielm-mode-hook
+	    'no-trailing-whitespace)
+  (add-hook 'gdb-mode-hook
+	    'no-trailing-whitespace)
+  (add-hook 'help-mode-hook
+	    'no-trailing-whitespace))
+
 (use-package exec-path-from-shell
   :ensure t
   :init
@@ -75,6 +91,15 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 
+;; from https://ogbe.net/emacsconfig.html
+(defvar backup-dir (expand-file-name "~/.emacs.d/backups/"))
+(defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
+(setq backup-directory-alist (list (cons ".*" backup-dir)))
+(setq auto-save-list-file-prefix autosave-dir)
+(setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
+(setq tramp-backup-directory-alist backup-directory-alist)
+(setq tramp-auto-save-directory autosave-dir)
+
 (setq inhibit-startup-message t
       initial-scratch-message ""
       inhibit-splash-screen t
@@ -84,8 +109,6 @@
       scroll-margin 3
       ediff-window-setup-function 'ediff-setup-windows-plain
       save-place-file (concat user-emacs-directory "places")
-      backup-directory-alist `(("." . ,(concat user-emacs-directory
-					       "backups")))
       split-height-threshold 100
       split-width-threshold 120)
 
