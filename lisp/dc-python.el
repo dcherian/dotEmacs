@@ -59,7 +59,7 @@
   :ensure t
   :bind (:map dc-bindings-map
 	      ("C-c p" . python-shell-run-region-or-line)
-	      ("C-M-i" . ob-ipython-inspect)
+	      ("s-i" . ob-ipython-inspect)
 	      ("C-c t" . dc-switch-to-python-shell)
 	      ("C-<tab>" . org-hide-block-toggle-maybe)))
 
@@ -101,23 +101,7 @@
 	   ("Any" .      #x2754)
 	   ("Union" .    #x22c3)))))
 
-;; from https://ogbe.net/emacsconfig.html
-(when (executable-find "ipython")
-  (setq
-   python-shell-interpreter "jupyter"
-   python-shell-interpreter-args "--simple-prompt -i"
-   python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-   python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-   python-shell-completion-setup-code
-   "from IPython.core.completerlib import module_completion"
-   python-shell-completion-module-string-code
-   "';'.join(module_completion('''%s'''))\n"
-   python-shell-completion-string-code
-   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
-
-(add-hook 'inferior-python-mode-hook 'no-trailing-whitespace)
-(add-hook 'inferior-python-mode-hook
-          '(lambda ()
-             (setq-local ml-interactive? t)))
+(define-key elpy-mode-map (kbd "C-<up>") 'nil)
+(define-key elpy-mode-map (kbd "C-<down>") 'nil)
 
 (provide 'dc-python)
