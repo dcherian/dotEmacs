@@ -129,6 +129,8 @@
 
 (setq tab-always-indent 'complete)
 
+(setq tramp-default-method "ssh")
+
 ;; enable built-in modes
 (desktop-save-mode 1)
 (delete-selection-mode 1)
@@ -151,13 +153,15 @@
 (diminish 'abbrev-mode)
 
 ;; global key bindings
-(global-set-key "\C-xk" 'kill-this-buffer)
 (global-set-key "\C-xw" 'delete-frame)
 (global-set-key "\C-c\C-r" 'eval-region)
 (global-set-key "\C-c\C-b" 'eval-buffer)
 (global-set-key (kbd "C-.") 'just-one-space)
 (global-set-key (kbd "M-&") 'replace-string)
 (global-set-key (kbd "M-*") 'replace-regexp)
+;; below works even when kill-this-buffer doesn't
+(global-set-key (kbd "C-x k")
+		(lambda () (interactive) (kill-buffer (current-buffer))))
 
 (global-set-key (kbd "s-<left>") 'previous-buffer)
 (global-set-key (kbd "s-<right>") 'next-buffer)
