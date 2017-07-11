@@ -29,9 +29,12 @@
 ;; Increase the garbage collection threshold to 500 MB to ease startup
 (setq gc-cons-threshold (* 500 1024 1024))
 
+(use-package restart-emacs
+  :ensure)
+
 (use-package whitespace
   :config
-  (setq-default show-trailing-whitespace t)
+  (setq-default show-trailing-whitespace nil)
   (defun no-trailing-whitespace ()
     (setq show-trailing-whitespace nil))
   (add-hook 'minibuffer-setup-hook
@@ -357,6 +360,15 @@
   :diminish fancy-narrow-mode
   :config
   (fancy-narrow-mode))
+
+(use-package dumb-jump
+  :ensure
+  :bind (("M-g o" . dumb-jump-go-other-window)
+	 ("M-g j" . dumb-jump-go)
+	 ("M-g x" . dumb-jump-go-prefer-external)
+	 ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :config (setq dumb-jump-selector 'helm)
+  :init (dumb-jump-mode))
 
 (use-package which-key
   :ensure t
