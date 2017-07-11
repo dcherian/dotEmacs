@@ -29,6 +29,21 @@
 	      ("C-x C-r" . helm-org-rifle)
 	      ("C-x C-o" . helm-org-rifle-org-directory)))
 
+(use-package helm-dash
+  :ensure t
+  :config
+  (defun python-doc ()
+    (interactive)
+    (setq-local helm-dash-docsets '("Python 3"
+				    "Numpy" "Scipy" "Matplotlib")))
+  (defun org-doc ()
+    (interactive)
+    (setq-local helm-dash-docsets '("Org Mode" "Python 3" "HTML"
+				    "Numpy" "Scipy" "Matplotlib")))
+
+  (add-hook 'python-mode-hook 'python-doc)
+  (add-hook 'org-mode-hook 'org-doc))
+
 (use-package helm-config
   :ensure helm
   :diminish helm-mode
