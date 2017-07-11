@@ -23,7 +23,7 @@
 
 ;; don’t prompt me to confirm everytime I want to evaluate a block
 (setq org-confirm-babel-evaluate nil)
-(setq python-indent-offset 4)
+(setq-default python-indent-offset 4)
 (setq python-shell-prompt-detect-failure-warning nil)
 
 ;; display/update images in the buffer after I evaluate
@@ -70,7 +70,7 @@
 	(:cache .   "no")
 	(:noweb . "no")
 	(:hlines . "no")
-	(:tangle . "no")
+	(:tangle . "yes")
 	(:eval . "never-export")))
 
 ;; from https://ekaschalk.github.io/post/prettify-mode/
