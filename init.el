@@ -116,10 +116,15 @@
       split-width-threshold 120)
 
 ;; smoooth - scrolling?
-(setq scroll-margin 1
-      scroll-conservatively 4
-      scroll-up-aggressively 0.1
-      scroll-down-aggressively 0.1)
+;; (setq scroll-margin 1
+;;       scroll-conservatively 4
+;;       scroll-up-aggressively 0.1
+;;       scroll-down-aggressively 0.1)
+
+(use-package smooth-scrolling
+  :ensure
+  :config
+  (smooth-scrolling-mode t))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
