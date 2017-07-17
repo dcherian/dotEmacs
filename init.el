@@ -1,4 +1,6 @@
 (setq load-prefer-newer t)
+(setq use-package-verbose t)
+(setq use-package-minimum-reported-time 0.05)
 (package-initialize)
 (require 'auto-compile)
 (auto-compile-on-load-mode)
