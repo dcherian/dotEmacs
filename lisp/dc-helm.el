@@ -31,16 +31,19 @@
 
 (use-package helm-dash
   :ensure t
+  :bind (:map dc-bindings-map
+	      ("C-," . helm-dash-at-point))
   :config
   (defun python-doc ()
     (interactive)
     (setq-local helm-dash-docsets '("Python 3"
-				    "Numpy" "Scipy" "Matplotlib")))
+				    "NumPy" "SciPy" "Matplotlib")))
   (defun org-doc ()
     (interactive)
-    (setq-local helm-dash-docsets '("Org Mode" "Python 3" "HTML"
-				    "Numpy" "Scipy" "Matplotlib")))
+    (setq-local helm-dash-docsets '("Org_Mode" "Python 3" "HTML"
+				    "NumPy" "SciPy" "Matplotlib")))
 
+  (add-hook 'python-shell-first-prompt-hook 'python-doc)
   (add-hook 'python-mode-hook 'python-doc)
   (add-hook 'org-mode-hook 'org-doc))
 
