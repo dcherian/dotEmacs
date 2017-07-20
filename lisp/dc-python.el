@@ -31,8 +31,8 @@
 
 (defun darya-setup ()
   (message "Setting python paths for darya.")
-  (setq python-shell-interpreter "~/anaconda3/bin/python")
-  (setq-default org-babel-python-command "~/anaconda3/bin/python")
+  (setq python-shell-interpreter "~/anaconda3/bin/ipython")
+  (setq-default org-babel-python-command "~/anaconda3/bin/ipython")
   (setq-default ob-ipython-command "~/anaconda3/bin/jupyter")
   (setq exec-path (append exec-path '("~/anaconda3/bin/"))))
 
