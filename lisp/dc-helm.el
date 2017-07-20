@@ -132,12 +132,6 @@
     :bind (:map dc-bindings-map
 		("C-c h k" . kaomoji)))
 
-  (use-package helm-ls-git
-    :ensure t
-    :disabled t
-    :bind (:map dc-bindings-map
-		("C-x C-d" . helm-browse-project)))
-  
   ;; Fuzzy matching for everything
   (setq helm-M-x-fuzzy-match t
 	helm-recentf-fuzzy-match t
