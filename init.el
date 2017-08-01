@@ -189,6 +189,12 @@
   :config
   (paredit-mode))
 
+(use-package beginend
+  :ensure
+  :diminish beginend-global-mode
+  :config
+  (beginend-global-mode))
+
 (use-package wc-mode
   :ensure t)
 
