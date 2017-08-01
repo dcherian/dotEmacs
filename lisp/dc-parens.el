@@ -50,9 +50,6 @@
 	      ("C-x `"  . wrap-with-back-quotes)
 	      ("C-x ~" . wrap-with-tilde))
   :config
-  (smartparens-global-mode)
-  (show-smartparens-global-mode t)
-
   ;; from http://ebzzry.io/en/emacs-pairs/
   (defmacro def-pairs (pairs)
     `(progn
@@ -76,6 +73,9 @@
 
   (require 'smartparens-python)
   (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-  (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode))
+  (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
+  :init
+  (smartparens-global-mode)
+  (show-smartparens-global-mode))
 
 (provide 'dc-parens)
