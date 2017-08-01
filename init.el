@@ -343,6 +343,7 @@
 
 (use-package magit
   :ensure t
+  :diminish (magit-auto-revert-mode magit-wip-after-save-mode magit-wip-after-apply-mode magit-wip-after-change)
   :bind (:map dc-bindings-map
 	      ("C-x g" . magit-status)
 	      ("C-x l" . magit-log-buffer-file))
