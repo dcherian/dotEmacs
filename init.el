@@ -1,7 +1,13 @@
+;; (package-initialize)
+
+(setq package-enable-at-startup nil)
+
 (setq load-prefer-newer t)
 (setq use-package-verbose t)
+(setq use-package-always-defer t)
+(setq use-package-always-ensure t)
 (setq use-package-minimum-reported-time 0.05)
-(package-initialize)
+(require 'use-package)
 (require 'auto-compile)
 (auto-compile-on-load-mode)
 (auto-compile-on-save-mode)
