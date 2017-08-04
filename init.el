@@ -1,4 +1,4 @@
-;; (package-initialize)
+(package-initialize)
 
 (setq package-enable-at-startup nil)
 
@@ -229,6 +229,7 @@
   :ensure t
   :diminish aggressive-indent-mode
   :config
+  (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
   (global-aggressive-indent-mode 1))
 
 (use-package hungry-delete
@@ -377,13 +378,6 @@
   :bind (:map dc-bindings-map
 	      ("C-h C-m" . discover-my-major)
 	      ("C-h M-m" . discover-my-mode)))
-
-(use-package fancy-narrow
-  :ensure t
-  :disabled t
-  :diminish fancy-narrow-mode
-  :config
-  (fancy-narrow-mode))
 
 (use-package dumb-jump
   :ensure

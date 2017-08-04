@@ -38,6 +38,11 @@
     (interactive)
     (setq-local helm-dash-docsets '("Python 3"
 				    "NumPy" "SciPy" "Matplotlib")))
+
+  (defun matlab-doc ()
+    (interactive)
+    (setq-local helm-dash-docsets '("MATLAB")))
+
   (defun org-doc ()
     (interactive)
     (setq-local helm-dash-docsets '("Org_Mode" "Python 3" "HTML"
@@ -45,6 +50,7 @@
 
   (add-hook 'python-shell-first-prompt-hook 'python-doc)
   (add-hook 'python-mode-hook 'python-doc)
+  (add-hook 'matlab-mode-hook 'matlab-doc)
   (add-hook 'org-mode-hook 'org-doc))
 
 (use-package helm-config
@@ -70,6 +76,7 @@
 	 :map dc-bindings-map
 	 ("M-y" . helm-show-kill-ring)
 	 ("C-x b" . helm-mini)
+	 ("C-x C-b" . helm-mini)
 	 ("C-`" . helm-mini)
 	 ("C-x C-f" . helm-find-files)
 	 ("C-x m" . helm-man-woman)
@@ -80,7 +87,7 @@
 	 ("C-h C-i" . helm-imenu-in-all-buffers))
   :config
   (helm-mode 1)
-  (helm-autoresize-mode 1)
+  (helm-autoresize-mode nil)
   ;;  (helm-linum-relative-mode 1)
 
   (use-package helm-swoop
