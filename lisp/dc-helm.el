@@ -127,7 +127,10 @@
   (use-package helm-ag
     :ensure t
     :bind (:map dc-bindings-map
-		("M-s" . helm-ag)))
+		("M-s" . helm-ag))
+    :config
+    (setq helm-ag-command
+	  "rg --smart-case -M 60 --no-heading --line-number %s %s %s"))
 
   (use-package helm-unicode
     :ensure t
