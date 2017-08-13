@@ -47,13 +47,14 @@ is already narrowed."
 	((derived-mode-p 'latex-mode)
 	 (LaTeX-narrow-to-environment))
 	(t (narrow-to-defun))))
+
 ;; This line actually replaces Emacs' entire narrowing
 ;; keymap, that's how much I like this command. Only
 ;; copy it if that's what you want.
 (define-key ctl-x-map "n" #'narrow-or-widen-dwim)
 (add-hook 'LaTeX-mode-hook
 	  (lambda ()
-	    (define-key LaTeX-mode-map "\C-xn"
+	    (define-key LaTeX-mode-map "\C-xnn"
 	      nil)))
 
 ;; Maybe not when I program elisp, since that's sexp-based, but for other programming languages these two come in very handy. They simply move the current line one step up or down.
