@@ -31,10 +31,11 @@
 
 (defun darya-setup ()
   (message "Setting python paths for darya.")
-  (setq python-shell-interpreter "~/anaconda3/bin/ipython")
-  (setq-default org-babel-python-command "~/anaconda3/bin/ipython")
-  (setq-default ob-ipython-command "~/anaconda3/bin/jupyter")
-  (setq exec-path (append exec-path '("~/anaconda3/bin/"))))
+  (setq python-shell-interpreter "/home/deepak/anaconda3/bin/ipython")
+  (setq python-shell-interpreter-args "--simple-prompt --pylab")
+  (setq-default org-babel-python-command "/home/deepak/anaconda3/bin/ipython")
+  (setq-default ob-ipython-command "/home/deepak/anaconda3/bin/jupyter")
+  (setq exec-path (append exec-path '("/home/deepak/anaconda3/bin/"))))
 
 (if (string-equal system-name "darya")
     (darya-setup))
