@@ -5,11 +5,11 @@
              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
 (elpy-enable)
+(setq elpy-rpc-backend "jedi")
 
 (use-package pydoc
-  :ensure t)
-
-(add-to-list 'aggressive-indent-excluded-modes 'python-mode)
+  :ensure t
+  :disabled t)
 
 (use-package company-jedi
   :ensure t
@@ -35,6 +35,7 @@
   (setq python-shell-interpreter-args "--simple-prompt --pylab")
   (setq-default org-babel-python-command "/home/deepak/anaconda3/bin/ipython")
   (setq-default ob-ipython-command "/home/deepak/anaconda3/bin/jupyter")
+  (setq-default ob-ipython-kernel-extra-args 'nil)
   (setq exec-path (append exec-path '("/home/deepak/anaconda3/bin/"))))
 
 (if (string-equal system-name "darya")

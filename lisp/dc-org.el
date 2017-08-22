@@ -6,7 +6,7 @@
 ;; org-mode class for my latex style
 
 ;; for orgmk
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org/")
+;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org/")
 
 ;; for orgmk
 (unless (boundp 'dc-bindings-map)

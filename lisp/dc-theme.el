@@ -29,7 +29,8 @@
   :config
   (setq sml/no-confirm-load-theme t
 	sml/theme 'respectful)
-  (sml/setup))
+  (sml/setup)
+  (smart-mode-line-enable))
 
 ;; powerline
 (use-package powerline

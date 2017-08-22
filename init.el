@@ -17,7 +17,8 @@
 ;; from https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 (set-variable 'package-archives
 	      `(("gnu" . "https://elpa.gnu.org/packages/")
-		("melpa" . "https://melpa.org/packages/")))
+		("melpa" . "https://melpa.org/packages/")
+		("org" . "http://orgmode.org/elpa/")))
 
 (setq tls-checktrust t)
 
@@ -295,6 +296,7 @@
 
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
   (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name)))
