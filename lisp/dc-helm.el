@@ -157,12 +157,14 @@
   (defun python-doc ()
     (interactive)
     (setq-local helm-dash-docsets '("Python 3"
-				    "NumPy" "SciPy" "Matplotlib")))
+				    "NumPy" "SciPy" "Matplotlib"
+				    "Pandas")))
 
   (defun org-doc ()
     (interactive)
     (setq-local helm-dash-docsets '("Org_Mode" "Python 3" "HTML"
-				    "NumPy" "SciPy" "Matplotlib")))
+				    "NumPy" "SciPy" "Matplotlib"
+				    "CSS" "LaTeX" "Pandas")))
 
   (add-hook 'python-shell-first-prompt-hook 'python-doc)
   (add-hook 'python-mode-hook 'python-doc)
