@@ -168,7 +168,6 @@
 
   (add-hook 'python-shell-first-prompt-hook 'python-doc)
   (add-hook 'python-mode-hook 'python-doc)
-  (add-hook 'matlab-mode-hook 'matlab-doc)
   (add-hook 'org-mode-hook 'org-doc))
 
 (provide 'dc-helm)
