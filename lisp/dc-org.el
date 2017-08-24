@@ -19,45 +19,12 @@
 ;;use org mode for eml files (useful for thunderbird plugin)
 (add-to-list 'auto-mode-alist '("\\.eml\\'" . org-mode))
 
-;; modify faces before loading org?!
-(set-face-attribute 'org-level-1 nil
-		    :inherit 'outline-1 :height 1.25)
-(set-face-attribute 'org-level-2 nil
-		    :inherit 'outline-2 :height 1.2)
-(set-face-attribute 'org-level-3 nil
-		    :inherit 'outline-3 :height 1.15)
-(set-face-attribute 'org-link nil
-		    :inherit 'org-link
-		    :foreground nil) ; links are only underlined
-;; footnotes shouldn't be highlighted
-(set-face-attribute 'org-footnote nil
-		    :foreground nil
-		    :underline nil
-		    :inherit '(font-lock-comment-face org-foreground))
-(set-face-attribute 'org-checkbox nil
-		    :inherit '(font-lock-comment-face)
-		    :weight 'light
-		    :box nil)
-(set-face-attribute 'org-todo nil
-		    :weight 'normal)
-(set-face-attribute 'org-done nil
-		    :weight 'normal)
-(set-face-attribute 'org-block nil
-		    :foreground nil
-		    :background "#f7f0dd")
-(set-face-attribute 'org-date nil
-		    :foreground nil
-		    :inherit 'org-link)
-(set-face-attribute 'org-latex-and-related nil
-		    :foreground "#cb4b16")
-
 (define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
 (define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
 (define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
 (define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
 
 (use-package org
-  :load-path "/usr/local/share/emacs/site-lisp/org/"
   :bind ((:map dc-bindings-map
 	       ("C-c c" . org-capture)
 	       ("C-c a" . org-agenda)
@@ -67,6 +34,7 @@
 	       ("s-l" . org-edit-src-code)))
   :config
   (setq org-directory "~/org")
+  (require 'ox-ipynb)
 
   (define-key dc/toggle-map "h" #'org-hide-block-all)
 
@@ -92,6 +60,38 @@
 	org-export-dispatch-use-expert-ui t
 	org-latex-image-default-width "\\textwidth"
 	fill-column 90)
+
+  ;; org-faces
+  (set-face-attribute 'org-level-1 nil
+		      :inherit 'outline-1 :height 1.25)
+  (set-face-attribute 'org-level-2 nil
+		      :inherit 'outline-2 :height 1.2)
+  (set-face-attribute 'org-level-3 nil
+		      :inherit 'outline-3 :height 1.15)
+  (set-face-attribute 'org-link nil
+		      :inherit 'org-link
+		      :foreground nil) ; links are only underlined
+  ;; footnotes shouldn't be highlighted
+  (set-face-attribute 'org-footnote nil
+		      :foreground nil
+		      :underline nil
+		      :inherit '(font-lock-comment-face org-foreground))
+  (set-face-attribute 'org-checkbox nil
+		      :inherit '(font-lock-comment-face)
+		      :weight 'light
+		      :box nil)
+  (set-face-attribute 'org-todo nil
+		      :weight 'normal)
+  (set-face-attribute 'org-done nil
+		      :weight 'normal)
+  (set-face-attribute 'org-block nil
+		      :foreground nil
+		      :background "#f7f0dd")
+  (set-face-attribute 'org-date nil
+		      :foreground nil
+		      :inherit 'org-link)
+  (set-face-attribute 'org-latex-and-related nil
+		      :foreground "#cb4b16")
 
   (require 'org-inlinetask)
   (defun scimax/org-return (&optional ignore)
@@ -378,6 +378,8 @@ Use a prefix arg to get regular RET. "
 	org-ref-bibliography-notes "~/org/papers.org"
 	org-ref-default-bibliography '("~/Papers/bibtexLibrary.bib")
 	org-ref-pdf-directory "~/Papers/")
+
+  (setq org-ref-show-broken-links nil)
 
   ;; make sure org-ref notes lines up with those from helm-BibTeX
   (setq org-ref-note-title-format

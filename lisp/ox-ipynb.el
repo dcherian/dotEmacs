@@ -1,1 +1,1 @@
-/home/deepak/gits/scimax/ox-ipynb.el
+/home/deepak/gits/ox-ipynb/ox-ipynb.el
