@@ -2,30 +2,30 @@
 ;; My matlab-mode configuration
 ;; - Deepak Cherian
 
-(defvar default-fill-column 100)
+(defvar default-fill-column 200)
 
-(use-package matlab-mode
-  :ensure t
-  :mode "\\.m$"
-  :bind (:map matlab-mode-map
-	      ("C-c C-m" . matlab-shell)
-	      ("C-c C-c" . matlab-shell-run-region-or-line)
-	      ("C-c C-a" . matlab-shell-run-cell)
-	      ("C-c C-o" . dc/matlab-shell-other-window)))
-
-(setq-default matlab-shell-command "matlab"
-	      matlab-indent-function-body t   ; if you want function bodies indented
-	      matlab-functions-have-end t
-	      matlab-verify-on-save-flag nil
-	      matlab-shell-command-switches '("-nodesktop -nosplash")
-	      matlab-mode-verify-fix-functions nil
-	      matlab-shell-history-file "~/.matlab/R2016b/history.m")
+;; needs to be matlab not matlab-mode!
+;; this is because matlab.el is present, not matlab-mode.el
+(require 'matlab)
 
 (defun dc/matlab-shell-other-window ()
   (interactive)
   (other-window 1)
   (matlab-shell))
 
+(setq matlab-shell-command "matlab"
+      matlab-indent-function-body t
+      matlab-functions-have-end t
+      matlab-verify-on-save-flag nil
+      matlab-shell-command-switches '("-nodesktop -nosplash")
+      matlab-mode-verify-fix-functions nil
+      matlab-shell-history-file "~/.matlab/R2016b/history.m")
+
 (add-hook 'matlab-shell-hook 'comint-read-input-ring)
+
+(bind-key "C-c C-m" 'matlab-shell matlab-mode-map)
+(bind-key "C-c C-c" 'matlab-shell-run-region-or-line matlab-mode-map)
+(bind-key "C-c C-a" 'matlab-shell-run-cell matlab-mode-map)
+(bind-key "C-c C-o" 'dc/matlab-shell-other-window matlab-mode-map)
 
 (provide 'dc-matlab)
