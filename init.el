@@ -93,6 +93,7 @@
 
 (use-package transpose-frame
   :ensure t
+  :demand
   :bind (:map dc/toggle-map
 	      ("f" . transpose-frame)))
 
@@ -291,30 +292,35 @@
 
 (use-package comment-dwim-2
   :ensure t
+  :demand
   :bind (:map dc-bindings-map
 	      ("C-;" . comment-dwim-2)))
 
 (use-package projectile
   :ensure t
+  :demand
   :diminish projectile-mode
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
   (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name)))
 	projectile-sort-order 'access-time)
 
-  (use-package helm-projectile
-    :ensure t
-    :bind (:map dc-bindings-map
-		("C-c C-f" . helm-projectile-find-file-dwim)
-		:map projectile-command-map
-		("s" . helm-projectile-ag))
-    :config
-    (helm-projectile-on)
-    (setq projectile-completion-system 'helm
-	  projectile-switch-project-action 'helm-projectile-find-file
-	  projectile-switch-project-action 'helm-projectile))
-
   (projectile-global-mode))
+
+
+(use-package helm-projectile
+  :ensure t
+  :demand
+  :after projectile
+  :bind (:map dc-bindings-map
+	      ("C-c C-f" . helm-projectile-find-file-dwim)
+	      :map projectile-command-map
+	      ("s" . helm-projectile-ag))
+  :config
+  (helm-projectile-on)
+  (setq projectile-completion-system 'helm
+	projectile-switch-project-action 'helm-projectile-find-file
+	projectile-switch-project-action 'helm-projectile))
 
 (use-package ws-butler
   :ensure t
@@ -348,6 +354,7 @@
 
 (use-package magit
   :ensure t
+  :demand
   :diminish (magit-auto-revert-mode magit-wip-after-save-mode magit-wip-after-apply-mode magit-wip-after-change)
   :bind (:map dc-bindings-map
 	      ("C-x g" . magit-status)
@@ -364,9 +371,9 @@
   (eval-after-load "projectile"
     '(progn (setq magit-repository-directories (mapcar (lambda (dir)
 							 (substring dir 0 -1))
-						       (remove-if-not (lambda (project)
-									(file-directory-p (concat project "/.git/")))
-								      (projectile-relevant-known-projects))))
+						       (cl-remove-if-not (lambda (project)
+									   (file-directory-p (concat project "/.git/")))
+									 (projectile-relevant-known-projects))))
 	    (setq magit-repository-directories-depth 1)))
 
   ;; set untracked files to not be visible by default
@@ -404,6 +411,7 @@
 
 (use-package which-key
   :ensure t
+  :demand
   :diminish which-key-mode
   :init
   (setq which-key-sort-order 'which-key-local-then-key-order)
@@ -430,6 +438,7 @@
 (require 'dc-python)
 (require 'dc-matlab)
 (require 'ox-ipynb)
+;; (require 'dc-ibuffer)
 
 ;; do my keybindings
 (define-minor-mode dc-bindings-mode
