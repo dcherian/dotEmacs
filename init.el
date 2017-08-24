@@ -1,11 +1,10 @@
 (package-initialize)
-
-(setq package-enable-at-startup nil)
+(setq package-enable-at-startup t)
 
 (setq load-prefer-newer t)
 (setq use-package-verbose t)
 (setq use-package-always-defer t)
-(setq use-package-always-ensure t)
+;; (setq use-package-always-ensure t)
 (setq use-package-minimum-reported-time 0.05)
 (require 'use-package)
 (require 'auto-compile)
@@ -111,6 +110,7 @@
 (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
 (setq tramp-backup-directory-alist backup-directory-alist)
 (setq tramp-auto-save-directory autosave-dir)
+(setq uniquify-buffer-name-style 'forward)
 
 (setq inhibit-startup-message t
       initial-scratch-message ""
@@ -315,10 +315,6 @@
 	  projectile-switch-project-action 'helm-projectile))
 
   (projectile-global-mode))
-
-(use-package uniquify
-  :config
-  (setq uniquify-buffer-name-style 'forward))
 
 (use-package ws-butler
   :ensure t
