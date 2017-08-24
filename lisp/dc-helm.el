@@ -150,6 +150,7 @@
 
 (use-package helm-dash
   :ensure t
+  :demand
   :bind (:map dc-bindings-map
 	      ("C-," . helm-dash-at-point))
   :config
@@ -157,10 +158,6 @@
     (interactive)
     (setq-local helm-dash-docsets '("Python 3"
 				    "NumPy" "SciPy" "Matplotlib")))
-
-  (defun matlab-doc ()
-    (interactive)
-    (setq-local helm-dash-docsets '("MATLAB")))
 
   (defun org-doc ()
     (interactive)
