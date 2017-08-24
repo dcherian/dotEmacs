@@ -109,9 +109,19 @@
 (setq backup-directory-alist (list (cons ".*" backup-dir)))
 (setq auto-save-list-file-prefix autosave-dir)
 (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
+(setq delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
+
+;; tramp
+(setq tramp-default-method "ssh")
 (setq tramp-backup-directory-alist backup-directory-alist)
 (setq tramp-auto-save-directory autosave-dir)
-(setq uniquify-buffer-name-style 'forward)
+
+;; recentf
+(setq recentf-max-saved-items 200)
+(run-at-time (current-time) 300 'recentf-save-list)
 
 (setq inhibit-startup-message t
       initial-scratch-message ""
@@ -123,7 +133,14 @@
       ediff-window-setup-function 'ediff-setup-windows-plain
       save-place-file (concat user-emacs-directory "places")
       split-height-threshold 100
-      split-width-threshold 120)
+      split-width-threshold 120
+      uniquify-buffer-name-style 'forward
+      save-interprogram-paste-before-kill t
+      select-enable-primary t
+      select-enable-clipboard t
+      tab-always-indent 'complete)
+
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; smoooth - scrolling?
 ;; (setq scroll-margin 1
@@ -135,16 +152,6 @@
   :ensure
   :config
   (smooth-scrolling-mode t))
-
-(fset 'yes-or-no-p 'y-or-n-p)
-
-(setq save-interprogram-paste-before-kill t
-      select-enable-primary t
-      select-enable-clipboard t)
-
-(setq tab-always-indent 'complete)
-
-(setq tramp-default-method "ssh")
 
 ;; enable built-in modes
 (desktop-save-mode 1)
