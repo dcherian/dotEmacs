@@ -16,26 +16,33 @@
   (define-prefix-command 'dc/toggle-map)
   (define-key ctl-x-map "t" 'dc/toggle-map))
 
-;;use org mode for eml files (useful for thunderbird plugin)
-(add-to-list 'auto-mode-alist '("\\.eml\\'" . org-mode))
-
 (define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
 (define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
 (define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
 (define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
 
 (use-package org
+  :demand
   :bind ((:map dc-bindings-map
 	       ("C-c c" . org-capture)
 	       ("C-c a" . org-agenda)
 	       ("C-c b" . org-iswitchb)
 	       ("s-j" . org-babel-next-src-block)
 	       ("s-k" . org-babel-previous-src-block)
-	       ("s-l" . org-edit-src-code)))
+	       ("s-l" . org-edit-src-code)
+	       ;; :map org-mode-map
+	       ;; ("s-j" . org-babel-next-src-block)
+	       ;; ("s-k" . org-babel-previous-src-block)
+	       ;; ("s-l" . org-edit-src-code)
+	       ;; :map org-src-mode-map
+	       ;; ("s-l" . org-edit-src-exit)
+	       ))
   :config
   (setq org-directory "~/org")
   (require 'ox-ipynb)
 
+  ;;use org mode for eml files (useful for thunderbird plugin)
+  (add-to-list 'auto-mode-alist '("\\.eml\\'" . org-mode))
   (define-key dc/toggle-map "h" #'org-hide-block-all)
 
   (setq org-startup-indented t
@@ -59,7 +66,15 @@
 	org-pretty-entities-include-sub-superscripts t
 	org-export-dispatch-use-expert-ui t
 	org-latex-image-default-width "\\textwidth"
-	fill-column 90)
+	fill-column 90
+	org-src-window-setup 'current-window)
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ipython . t)
+     (matlab . t)
+     (emacs-lisp . t)
+     (latex . t)))
 
   ;; org-faces
   (set-face-attribute 'org-level-1 nil
@@ -173,67 +188,155 @@ Use a prefix arg to get regular RET. "
 	'((auto-mode . emacs)
 	  ("\\.pdf\\'" . "mupdf %s")
 	  ("\\.png\\'" . "gpicview %s")
-	  ("\\.html\\'" . "firefox %s")))
+	  ("\\.html\\'" . "firefox %s"))))
 
-  (use-package org-bullets
-    :ensure t
-    :config
-    (add-hook 'org-mode-hook 'org-bullets-mode)
-    (setq org-bullets-bullet-list '("⊢" "⋮" "⋱" "•")))
+(use-package org-sticky-header
+  :ensure t
+  :defer
+  :config
+  (setq org-sticky-header-full-path 'reversed)
+  (add-hook 'org-mode-hook 'org-sticky-header-mode)
+  (set-face-attribute 'header-line 'nil
+		      :foreground "#586e75"
+		      :background "#eee8d5"
+		      :underline 'unspecified
+		      :height 'unspecified
+		      :box 'unspecified
+		      :inherit 'unspecified))
 
-  (use-package org-edit-latex
-    :ensure t
-    :config
-    (org-edit-latex-mode))
+(use-package org-ref
+  :ensure t
+  :defer
+  :bind (:map dc-bindings-map
+	      ("C-c [" . org-ref-helm-insert-ref-link)
+	      ("C-c ]" . org-ref-helm-insert-cite-link)
+	      ("C-c \\" . org-ref-helm-insert-label-link))
+  :config
+  (set-face-attribute 'org-ref-cite-face nil
+		      :inherit 'org-link
+		      :foreground nil)
+  (set-face-attribute 'org-ref-ref-face nil
+		      :inherit 'org-ref-cite-face
+		      :foreground nil)
 
-  (use-package ox-gfm
-    :ensure t)
+  (setq org-ref-notes-directory "~/Papers/notes/"
+	org-ref-bibliography-notes "~/org/papers.org"
+	org-ref-default-bibliography '("~/Papers/bibtexLibrary.bib")
+	org-ref-pdf-directory "~/Papers/")
 
-  (setq org-src-window-setup 'current-window)
+  (setq org-ref-show-broken-links nil)
 
-  ;; my customized preamble
-  (use-package ox-latex
-    :defer t
-    :config
-    ;; org-latex-pdf-process is for org > 8.0
-    ;; remove blank lines - so that I can use format statement in
-    ;; #+LATEX_HEADER. set jobname so that it opens the pdf. %b command
-    ;; found in ox-latex.el
-    ;; (setq org-latex-pdf-process
-    ;;      '("export BSTINPUTS=/usr/local/texlive/2016/texmf-dist/bibtex/bst/elsarticle/; tail -n +3 %f | sed '/./,$!d' > %f.nolines; mv %f.nolines %f; latexmk %f && (exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf)"))
+  ;; make sure org-ref notes lines up with those from helm-BibTeX
+  (setq org-ref-note-title-format
+	"* %3a (%y): %t
+ :PROPERTIES:
+  :Custom_ID: %k
+  :AUTHOR: %9a
+  :JOURNAL: %j
+  :DOI: %D
+ :END:")
 
-    (defun dc/org-latex-word-count ()
-      (interactive)
-      (org-latex-export-to-latex)
-      (shell-command (concat "texcount "
+  ;; fix org-ref-open-pdf
+  (defun org-ref-get-zotero-filename (key)
+    "Return the pdf filename indicated by mendeley file field.
+Falls back to `org-ref-get-pdf-filename' if file field does not exist.
+Modified from org-ref-get-mendeley-filename.
+Set BetterBiBTeX to omit title and MIME type in file field.
+Argument KEY is the bibtex key."
+    (let* ((results (org-ref-get-bibtex-key-and-file key))
+	   (bibfile (cdr results))
+	   entry)
+      (with-temp-buffer
+	(insert-file-contents bibfile)
+	(bibtex-set-dialect (parsebib-find-bibtex-dialect) t)
+	(bibtex-search-entry key nil 0)
+	(setq entry (bibtex-parse-entry))
+	(let ((e (org-ref-reftex-get-bib-field "file" entry)))
+	  (if (> (length e) 4)
+	      (let ((clean-field (replace-regexp-in-string "{\\|}\\|\\\\" "" e)))
+		(let ((first-file (car (split-string clean-field ";" t))))
+		  (format (concat
+			   (file-name-as-directory org-ref-pdf-directory)
+			   (format "%s" first-file)))))
+	    (format (concat
+		     (file-name-as-directory org-ref-pdf-directory)
+		     "%s.pdf")
+		    key))))))
+
+  (setq org-ref-get-pdf-filename-function 'org-ref-get-zotero-filename)
+  ;; for debugging
+  ;; (message "file: %s" (funcall org-ref-get-pdf-filename-function "Farrar2012"))
+  )
+
+(use-package helm-bibtex
+  :ensure t
+  :after org-ref
+  :bind (:map dc-bindings-map
+	      ("C-c h b" . helm-bibtex))
+  :config
+  (setq bibtex-completion-bibliography "~/Papers/bibtexLibrary.bib"
+	bibtex-completion-library-path "~/Papers/"
+	bibtex-completion-notes-path "~/org/papers.org"
+	bibtex-completion-pdf-field "file"))
+
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook 'org-bullets-mode)
+  (setq org-bullets-bullet-list '("⊢" "⋮" "⋱" "•")))
+
+(use-package org-edit-latex
+  :ensure t
+  :config
+  (org-edit-latex-mode))
+
+(use-package ox-gfm
+  :defer
+  :ensure t)
+
+;; my customized preamble
+(use-package ox-latex
+  :defer
+  :config
+  ;; org-latex-pdf-process is for org > 8.0
+  ;; remove blank lines - so that I can use format statement in
+  ;; #+LATEX_HEADER. set jobname so that it opens the pdf. %b command
+  ;; found in ox-latex.el
+  ;; (setq org-latex-pdf-process
+  ;;      '("export BSTINPUTS=/usr/local/texlive/2016/texmf-dist/bibtex/bst/elsarticle/; tail -n +3 %f | sed '/./,$!d' > %f.nolines; mv %f.nolines %f; latexmk %f && (exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf)"))
+
+  (defun dc/org-latex-word-count ()
+    (interactive)
+    (org-latex-export-to-latex)
+    (shell-command (concat "texcount "
 					; "uncomment then options go here "
-			     (file-name-sans-extension buffer-file-name)
-			     ".tex")))
-    (define-key org-mode-map "\C-cw" 'dc/org-latex-word-count)
+			   (file-name-sans-extension buffer-file-name)
+			   ".tex")))
+  (define-key org-mode-map "\C-cw" 'dc/org-latex-word-count)
 
-    (setq org-latex-hyperref-template nil
-	  org-latex-listings t
-	  org-latex-prefer-user-labels t
-	  org-latex-tables-booktabs t
-	  org-latex-table-scientific-notation nil
-	  org-latex-compiler-file-string nil
-	  org-highlight-latex-and-related '(latex script entities))
+  (setq org-latex-hyperref-template nil
+	org-latex-listings t
+	org-latex-prefer-user-labels t
+	org-latex-tables-booktabs t
+	org-latex-table-scientific-notation nil
+	org-latex-compiler-file-string nil
+	org-highlight-latex-and-related '(latex script entities))
 
-    (add-to-list 'org-latex-listings-langs '(ipython "Python"))
+  (add-to-list 'org-latex-listings-langs '(ipython "Python"))
 
-    (setq org-latex-pdf-process
-	  '("source ~/.bashrc; sed '/./,$!d' %f > %f.nolines; mv %f.nolines %f; latexmk %f; exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf"))
+  (setq org-latex-pdf-process
+	'("source ~/.bashrc; sed '/./,$!d' %f > %f.nolines; mv %f.nolines %f; latexmk %f; exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf"))
 
-    (add-to-list 'org-latex-classes
-		 '("dcbeamer"
-		   "[NO-DEFAULT-PACKAGES]"
-		   ("\\section{%s}" . "\\section*{%s}")
-		   ("\\subsection{%s}" . "\\subsection*{%s}")
-		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+  (add-to-list 'org-latex-classes
+	       '("dcbeamer"
+		 "[NO-DEFAULT-PACKAGES]"
+		 ("\\section{%s}" . "\\section*{%s}")
+		 ("\\subsection{%s}" . "\\subsection*{%s}")
+		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
-    (add-to-list 'org-latex-classes
-		 '("dcnotebook"
-		   "%&~/tools/latex/preamble-memoir
+  (add-to-list 'org-latex-classes
+	       '("dcnotebook"
+		 "%&~/tools/latex/preamble-memoir
 [NO-DEFAULT-PACKAGES]
 [NO-PACKAGES]
 [EXTRA]
@@ -344,101 +447,7 @@ Use a prefix arg to get regular RET. "
 		   ("\\subsection{%s}" . "\\subsection*{%s}")
 		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))))
-
-(use-package org-sticky-header
-  :ensure t
-  :config
-  (setq org-sticky-header-full-path 'reversed)
-  (add-hook 'org-mode-hook 'org-sticky-header-mode)
-  (set-face-attribute 'header-line 'nil
-		      :foreground "#586e75"
-		      :background "#eee8d5"
-		      :underline 'unspecified
-		      :height 'unspecified
-		      :box 'unspecified
-		      :inherit 'unspecified))
-
-(use-package org-ref
-  :ensure t
-  :defer
-  :bind (:map dc-bindings-map
-	      ("C-c [" . org-ref-helm-insert-ref-link)
-	      ("C-c ]" . org-ref-helm-insert-cite-link)
-	      ("C-c \\" . org-ref-helm-insert-label-link))
-  :config
-  (set-face-attribute 'org-ref-cite-face nil
-		      :inherit 'org-link
-		      :foreground nil)
-  (set-face-attribute 'org-ref-ref-face nil
-		      :inherit 'org-ref-cite-face
-		      :foreground nil)
-
-  (setq org-ref-notes-directory "~/Papers/notes/"
-	org-ref-bibliography-notes "~/org/papers.org"
-	org-ref-default-bibliography '("~/Papers/bibtexLibrary.bib")
-	org-ref-pdf-directory "~/Papers/")
-
-  (setq org-ref-show-broken-links nil)
-
-  ;; make sure org-ref notes lines up with those from helm-BibTeX
-  (setq org-ref-note-title-format
-	"* %3a (%y): %t
- :PROPERTIES:
-  :Custom_ID: %k
-  :AUTHOR: %9a
-  :JOURNAL: %j
-  :DOI: %D
- :END:")
-
-  ;; fix org-ref-open-pdf
-  (defun org-ref-get-zotero-filename (key)
-    "Return the pdf filename indicated by mendeley file field.
-Falls back to `org-ref-get-pdf-filename' if file field does not exist.
-Modified from org-ref-get-mendeley-filename.
-Set BetterBiBTeX to omit title and MIME type in file field.
-Argument KEY is the bibtex key."
-    (let* ((results (org-ref-get-bibtex-key-and-file key))
-	   (bibfile (cdr results))
-	   entry)
-      (with-temp-buffer
-	(insert-file-contents bibfile)
-	(bibtex-set-dialect (parsebib-find-bibtex-dialect) t)
-	(bibtex-search-entry key nil 0)
-	(setq entry (bibtex-parse-entry))
-	(let ((e (org-ref-reftex-get-bib-field "file" entry)))
-	  (if (> (length e) 4)
-	      (let ((clean-field (replace-regexp-in-string "{\\|}\\|\\\\" "" e)))
-		(let ((first-file (car (split-string clean-field ";" t))))
-		  (format (concat
-			   (file-name-as-directory org-ref-pdf-directory)
-			   (format "%s" first-file)))))
-	    (format (concat
-		     (file-name-as-directory org-ref-pdf-directory)
-		     "%s.pdf")
-		    key))))))
-
-  (setq org-ref-get-pdf-filename-function 'org-ref-get-zotero-filename)
-  ;; for debugging
-  ;; (message "file: %s" (funcall org-ref-get-pdf-filename-function "Farrar2012"))
-
-  (use-package helm-bibtex
-    :ensure t
-    :defer 5
-    :bind (:map dc-bindings-map
-		("C-c h b" . helm-bibtex))
-    :config
-    (setq bibtex-completion-bibliography "~/Papers/bibtexLibrary.bib"
-	  bibtex-completion-library-path "~/Papers/"
-	  bibtex-completion-notes-path "~/org/papers.org"
-	  bibtex-completion-pdf-field "file")))
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ipython . t)
-   (matlab . t)
-   (emacs-lisp . t)
-   (latex . t)))
+		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 (provide 'dc-org)
 ;;; dc-org ends here
