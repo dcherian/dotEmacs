@@ -58,6 +58,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
+  :demand
   :init
   (exec-path-from-shell-copy-env "PYTHONPATH")
   (exec-path-from-shell-initialize))
@@ -120,6 +121,7 @@
 (setq tramp-auto-save-directory autosave-dir)
 
 ;; recentf
+(require 'recentf)
 (setq recentf-max-saved-items 200)
 (run-at-time (current-time) 300 'recentf-save-list)
 

@@ -26,6 +26,7 @@
 ;; modeline options
 (use-package smart-mode-line
   :ensure t
+  :demand
   :config
   (setq sml/no-confirm-load-theme t
 	sml/theme 'respectful)
