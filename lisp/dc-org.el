@@ -361,7 +361,7 @@ Use a prefix arg to get regular RET. "
 
 (use-package org-ref
   :ensure t
-  :demand t
+  :defer
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-helm-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
