@@ -358,7 +358,13 @@ Argument KEY is the bibtex key."
 
     (add-to-list 'org-latex-classes
 		 '("dcarticle"
-		   "[NO-DEFAULT-PACKAGES]
+		   "%&~/tools/latex/preamble-memoir
+\\usepackage{fontspec}
+\\usepackage{unicode-math}
+\\setromanfont[Ligatures=TeX]{TeX Gyre Pagella}
+\\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Pagella Math}
+\\setmonofont{Inconsolata}
+[NO-DEFAULT-PACKAGES]
 [NO-PACKAGES]
 [EXTRA]
 \\setsecnumdepth{subsubsection}
