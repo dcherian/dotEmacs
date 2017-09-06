@@ -324,6 +324,9 @@
 
   (projectile-global-mode))
 
+(use-package wc-mode
+  :config
+  (setq wc-modeline-format "[%tw/%tc]"))
 
 (use-package helm-projectile
   :ensure t
