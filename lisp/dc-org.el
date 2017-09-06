@@ -93,6 +93,7 @@
 		      :inherit '(font-lock-comment-face org-foreground))
   (set-face-attribute 'org-checkbox nil
 		      :inherit '(font-lock-comment-face)
+		      :background nil
 		      :weight 'light
 		      :box nil)
   (set-face-attribute 'org-todo nil
@@ -206,7 +207,6 @@ Use a prefix arg to get regular RET. "
 
 (use-package org-ref
   :ensure t
-  :defer
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-helm-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)

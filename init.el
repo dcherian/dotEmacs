@@ -199,7 +199,8 @@
 (setq ispell-program-name "aspell")
 (add-hook 'text-mode-hook 'flyspell-mode)
 
-					; (define-key fortran-mode-map (kbd "C-c C-c") 'compile)
+; (define-key fortran-mode-map (kbd "C-c C-c") 'compile)
+
 (use-package auto-dim-other-buffers
   :config
   (set-face-attribute 'auto-dim-other-buffers-face nil
