@@ -207,6 +207,7 @@ Use a prefix arg to get regular RET. "
 
 (use-package org-ref
   :ensure t
+  :demand
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-helm-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
@@ -312,7 +313,15 @@ Argument KEY is the bibtex key."
 					; "uncomment then options go here "
 			   (file-name-sans-extension buffer-file-name)
 			   ".tex")))
+  (defun dc/org-latex-character-count ()
+    (interactive)
+    (org-latex-export-to-latex)
+    (shell-command (concat "texcount -char "
+					; "uncomment then options go here "
+			   (file-name-sans-extension buffer-file-name)
+			   ".tex")))
   (define-key org-mode-map "\C-cw" 'dc/org-latex-word-count)
+  (define-key org-mode-map "\C-cW" 'dc/org-latex-character-count)
 
   (setq org-latex-hyperref-template nil
 	org-latex-listings t
