@@ -45,6 +45,8 @@
 	 :author "Deepak Cherian"
 	 :html-doctype "html5"
 	 :html-html5-fancy t
+	 :section-numbers nil
+	 :with-toc nil
 	 :html-head-include-scripts nil
 	 :html-head-include-default-style nil
 	 :html-container "section"
