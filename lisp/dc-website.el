@@ -2,9 +2,6 @@
 (require 'ox-html)
 (require 'ox-publish)
 
-(setq website-foot
-      "<div align=\"center\"><a rel=\"license\" class=\"cc-logo\" href=\"http://creativecommons.org/licenses/by/4.0/\"><svg class=\"cc-logo\"><use xlink:href='#icon-cc-by'></use></svg></a><br />This work is licensed under a <a rel=\"license\"  href=\"http://creativecommons.org/licenses/by/4.0/\">Creative Commons Attribution 4.0 International License</a>.</div>")
-
 (setq website-head
       (concat
        "<link rel=\"stylesheet\" href=\"./website.css\" type=\"text/css\" />\n"
@@ -15,6 +12,15 @@
   (with-temp-buffer
     (insert-file-contents website-header-file)
     (buffer-string)))
+
+(setq website-footer-file "~/website/org/website-footer.html")
+(defun website-footer (arg)
+  (with-temp-buffer
+    (insert-file-contents website-footer-file)
+    (buffer-string)))
+
+(setq org-html-preamble-format
+      '(("en" "<p class=\"post-subtitle\">%a | %d</p>")))
 
 (setq org-publish-project-alist 'nil)
 (setq org-publish-project-alist
@@ -27,6 +33,8 @@
 	 :html-preamble website-header
 	 :html-postamble nil
 	 :author "Deepak Cherian"
+	 :section-numbers nil
+	 :with-toc nil
 	 :html-doctype "html5"
 	 :html-html5-fancy t
 	 :html-head-include-scripts nil
@@ -40,8 +48,10 @@
 	 :base-extension "org"
 	 :recursive nil
 	 :html-head ,website-head
-	 :html-preamble website-header
-	 :html-postamble ,website-foot
+	 :html-extra-head website-header
+	 :html-preamble t
+	 ;; :html-preamble-format - how do I do this?
+	 :html-postamble website-footer
 	 :author "Deepak Cherian"
 	 :html-doctype "html5"
 	 :html-html5-fancy t
