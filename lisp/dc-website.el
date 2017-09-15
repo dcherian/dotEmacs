@@ -20,7 +20,7 @@
     (buffer-string)))
 
 (setq org-html-preamble-format
-      '(("en" "<p class=\"post-subtitle\">%a | %d</p>")))
+      '(("en" "<p class=\"post-subtitle\"><a class=\"animate-link back\" href=\"../index.html\"> ← Back</a> |  %a | %d</p>")))
 
 (setq org-publish-project-alist 'nil)
 (setq org-publish-project-alist
