@@ -109,6 +109,9 @@
   (set-face-attribute 'org-latex-and-related nil
 		      :foreground "#cb4b16")
 
+  (require 'ox-extra)
+  (ox-extras-activate '(latex-header-blocks ignore-headlines))
+
   (require 'org-inlinetask)
   (defun scimax/org-return (&optional ignore)
     "Add new list item, heading or table row with RET.
