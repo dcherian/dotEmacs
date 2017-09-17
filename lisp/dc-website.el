@@ -24,7 +24,7 @@
 
 (setq org-publish-project-alist 'nil)
 (setq org-publish-project-alist
-      `(("website" :components ("pages" "posts" "blog-static"))
+      `(("website" :components ("pages" "posts" "blog-static" "rss"))
 	("pages"
 	 :base-directory "~/website/org/"
 	 :base-extension "org"
@@ -68,6 +68,22 @@
 	 :base-extension "png\\|jpg\\|gif\\|pdf\\|mp4"
 	 :publishing-directory "~/website/publish/static/"
 	 :recursive t
-	 :publishing-function org-publish-attachment)))
+	 :publishing-function org-publish-attachment)
+
+	("rss"
+	 :base-directory "~/website/org/posts/"
+	 :base-extension "org"
+	 :publishing-directory "~/website/publish/"
+	 :recursive t
+	 :publishing-function org-rss-publish-to-rss
+	 :exclude ".*"
+	 :include ("rss.org")
+
+	 :with-toc nil
+	 :section-numbers nil
+
+	 :html-link-home "http://www.cherian.net/"
+	 :html-link-use-abs-url t
+	 :title "Deepak Cherian")))
 
 (provide 'dc-website)
