@@ -188,6 +188,18 @@ Use a prefix arg to get regular RET. "
 
   (add-hook 'org-mode-hook 'my-org-mode-hook)
 
+  ;; remove comments from org document for use with export hook
+  ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
+  (defun delete-org-comments (backend)
+    (loop for comment in (reverse (org-element-map (org-element-parse-buffer)
+				      'comment 'identity))
+	  do
+	  (setf (buffer-substring (org-element-property :begin comment)
+				  (org-element-property :end comment))
+		"")))
+  ;; add to export hook
+  (add-hook 'org-export-before-processing-hook 'delete-org-comments)
+
   (setq org-file-apps
 	'((auto-mode . emacs)
 	  ("\\.pdf\\'" . "mupdf %s")
