@@ -122,7 +122,7 @@
 
 ;; recentf
 (require 'recentf)
-(setq recentf-max-saved-items 200)
+(setq recentf-max-saved-items 1000)
 (run-at-time (current-time) 300 'recentf-save-list)
 
 (setq inhibit-startup-message t
@@ -231,6 +231,7 @@
 
 (use-package multiple-cursors
   :ensure t
+  :demand
   :bind (:map dc-bindings-map
 	      ("C-c m c" . mc/edit-lines)
 	      ;; Remember `er/expand-region' is bound to M-2!
