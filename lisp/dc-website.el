@@ -5,7 +5,7 @@
 (setq website-head
       (concat
        "<link rel=\"stylesheet\" href=\"./website.css\" type=\"text/css\" />\n"
-       "<link href=\"https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500\" rel=\"stylesheet\">"))
+       "<link href=\"https://fonts.googleapis.com/css?family=Fira+Sans:100,300,400,500\" rel=\"stylesheet\">"))
 
 (setq website-header-file "~/website/org/website-icons.html")
 (defun website-header (arg)
