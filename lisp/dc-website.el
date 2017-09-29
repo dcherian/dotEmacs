@@ -5,7 +5,12 @@
 (setq website-head
       (concat
        "<link rel=\"stylesheet\" href=\"./website.css\" type=\"text/css\" />\n"
-       "<link href=\"https://fonts.googleapis.com/css?family=Fira+Sans:100,300,400,500\" rel=\"stylesheet\">"))
+       "<link href=\"https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500\" rel=\"stylesheet\">"))
+
+(setq research-posts-head
+      (concat
+       "<link rel=\"stylesheet\" href=\"../research-posts.css\" type=\"text/css\" />\n"
+       "<link href=\"https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500\" rel=\"stylesheet\">"))
 
 (setq website-header-file "~/website/org/website-icons.html")
 (defun website-header (arg)
@@ -24,7 +29,7 @@
 
 (setq org-publish-project-alist 'nil)
 (setq org-publish-project-alist
-      `(("website" :components ("pages" "posts" "blog-static" "rss"))
+      `(("website" :components ("pages" "research" "posts" "blog-static" "rss"))
 	("pages"
 	 :base-directory "~/website/org/"
 	 :base-extension "org"
@@ -43,12 +48,30 @@
 	 :publishing-directory "~/website/publish/"
 	 :publishing-function org-html-publish-to-html)
 
+	("research"
+	 :base-directory "~/website/org/research/"
+	 :base-extension "org"
+	 :recursive nil
+	 :html-head ,research-posts-head
+	 :html-preamble t
+	 ;; :html-preamble-format - how do I do this?
+	 :html-postamble website-footer
+	 :author "Deepak Cherian"
+	 :html-doctype "html5"
+	 :html-html5-fancy t
+	 :section-numbers nil
+	 :with-toc nil
+	 :html-head-include-scripts nil
+	 :html-head-include-default-style nil
+	 :html-container "section"
+	 :publishing-directory "~/website/publish/research/"
+	 :publishing-function org-html-publish-to-html)
+
 	("posts"
 	 :base-directory "~/website/org/posts/"
 	 :base-extension "org"
 	 :recursive nil
-	 :html-head ,website-head
-	 :html-extra-head website-header
+	 :html-head ,research-posts-head
 	 :html-preamble t
 	 ;; :html-preamble-format - how do I do this?
 	 :html-postamble website-footer
@@ -84,6 +107,6 @@
 
 	 :html-link-home "http://www.cherian.net/"
 	 :html-link-use-abs-url t
-	 :title "Deepak Cherian")))
+	 :with-title t)))
 
 (provide 'dc-website)
