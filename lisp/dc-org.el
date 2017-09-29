@@ -103,6 +103,9 @@
   (set-face-attribute 'org-block nil
 		      :foreground nil
 		      :background "#f7f0dd")
+  (set-face-attribute 'org-table nil
+		      :foreground "#002b36"
+		      :background nil)
   (set-face-attribute 'org-date nil
 		      :foreground nil
 		      :inherit 'org-link)
