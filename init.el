@@ -169,6 +169,7 @@
 (global-prettify-symbols-mode t)
 (windmove-default-keybindings)
 (which-function-mode t)
+(setq x-stretch-cursor t)
 
 ;; diminsh some built-in modes
 (diminish 'auto-revert-mode)
