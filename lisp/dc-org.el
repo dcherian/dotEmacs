@@ -185,7 +185,10 @@ Use a prefix arg to get regular RET. "
 
        ;; checkboxes too
        ((org-at-item-checkbox-p)
-	(org-insert-todo-heading nil))
+	(if (not (looking-back "^- \\[ \\] " (- (point) (line-beginning-position))))
+	    (org-insert-todo-heading nil)
+	  (setf (buffer-substring (line-beginning-position) (point)) "")
+	  (org-return)))
 
        ;; lists end with two blank lines, so we need to make sure we are also not
        ;; at the beginning of a line to avoid a loop where a new entry gets
@@ -213,7 +216,7 @@ Use a prefix arg to get regular RET. "
 	     (lambda (x) (not (string= "" x)))
 	     (nth
 	      (- (org-table-current-dline) 1)
-	      (org-table-to-lisp)))
+	      (remove 'hline (org-table-to-lisp))))
 	    (org-return)
 	  ;; empty row
 	  (beginning-of-line)
