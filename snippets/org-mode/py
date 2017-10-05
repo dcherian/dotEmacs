@@ -3,6 +3,6 @@
 # key: py
 # --
 
-#+BEGIN_SRC ipython :session :file ${$$(concat "images/temp/" (make-temp-name "py") ".png")}
+#+BEGIN_SRC ipython :session :file ${$$(concat "images/temp/" (make-temp-name "img") ".png")}
 $0
 #+END_SRC
