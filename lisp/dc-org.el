@@ -76,6 +76,50 @@
      (emacs-lisp . t)
      (latex . t)))
 
+  (defun hot-expand (str)
+    "Expand org template."
+    (insert str)
+    (org-try-structure-completion))
+
+  (defun org-insert-env (env)
+    (insert "\\begin{" env "}\n")
+    (save-excursion
+      (insert "\n\\end{" env "}")))
+
+  (defhydra hydra-org-template (:color blue :hint nil)
+    "
+_c_enter  _q_uote    _L_aTeX:
+_l_atex   _e_xample  _i_ndex:
+_a_scii   _v_erse    _I_NCLUDE:
+_s_rc     eq_u_ation _H_TML:
+_h_tml    ali_g_n    _A_SCII:
+"
+    ("s" (hot-expand "<s"))
+    ("e" (hot-expand "<e"))
+    ("q" (hot-expand "<q"))
+    ("v" (hot-expand "<v"))
+    ("c" (hot-expand "<c"))
+    ("l" (hot-expand "<l"))
+    ("h" (hot-expand "<h"))
+    ("a" (hot-expand "<a"))
+    ("L" (hot-expand "<L"))
+    ("i" (hot-expand "<i"))
+    ("I" (hot-expand "<I"))
+    ("H" (hot-expand "<H"))
+    ("A" (hot-expand "<A"))
+    ("t" (hot-expand "<t"))
+    ("u" (org-insert-env "equation"))
+    ("g" (org-insert-env "align"))
+    ("<" self-insert-command "ins")
+    ("o" nil "quit"))
+
+  (define-key org-mode-map "<"
+    (defun org-self-insert-or-less ()
+      (interactive)
+      (if (looking-back "^")
+	  (hydra-org-template/body)
+	(self-insert-command 1))))
+
   ;; org-faces
   (set-face-attribute 'org-level-1 nil
 		      :inherit 'outline-1 :height 1.25)
