@@ -86,6 +86,9 @@
     (save-excursion
       (insert "\n\\end{" env "}")))
 
+  (add-to-list 'org-structure-template-alist
+	       '("F" "#+CAPTION: "))
+
   (defhydra hydra-org-template (:color blue :hint nil)
     "
 _c_enter  _q_uote    _L_aTeX:
@@ -93,6 +96,7 @@ _l_atex   _e_xample  _i_ndex:
 _a_scii   _v_erse    _I_NCLUDE:
 _s_rc     eq_u_ation _H_TML:
 _h_tml    ali_g_n    _A_SCII:
+^ ^       ^ ^        _C_APTION:
 "
     ("s" (hot-expand "<s"))
     ("e" (hot-expand "<e"))
@@ -107,6 +111,8 @@ _h_tml    ali_g_n    _A_SCII:
     ("I" (hot-expand "<I"))
     ("H" (hot-expand "<H"))
     ("A" (hot-expand "<A"))
+    ("C" (hot-expand "<F"))
+    ("t" (hot-expand "<t"))
     ("t" (hot-expand "<t"))
     ("u" (org-insert-env "equation"))
     ("g" (org-insert-env "align"))
