@@ -247,6 +247,7 @@ Use a prefix arg to get regular RET. "
 	  '(org-completion-symbols
 	    ora-cap-filesystem
 	    org-completion-refs))
+    (org-bullets-mode)
     ;; org-faces
     (set-face-attribute 'org-level-1 nil
 			:inherit 'outline-1 :height 1.25)
@@ -398,7 +399,6 @@ Argument KEY is the bibtex key."
 (use-package org-bullets
   :ensure t
   :config
-  (add-hook 'org-mode-hook 'org-bullets-mode)
   (setq org-bullets-bullet-list '("⊢" "⋮" "⋱" "•")))
 
 (use-package org-edit-latex
