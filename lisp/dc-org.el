@@ -154,14 +154,17 @@ _h_tml    ali_g_n    _A_SCII:
   (set-face-attribute 'org-block nil
 		      :foreground nil
 		      :background "#f7f0dd")
+  (set-face-attribute 'org-target nil
+		      :foreground "#586e75"
+		      :background nil)
   (set-face-attribute 'org-table nil
-		      :foreground "#002b36"
+		      :family "Ubuntu Mono"
 		      :background nil)
   (set-face-attribute 'org-date nil
 		      :foreground nil
 		      :inherit 'org-link)
   (set-face-attribute 'org-latex-and-related nil
-		      :foreground "#cb4b16")
+		      :foreground "#268bd2")
 
   (require 'ox-extra)
   (ox-extras-activate '(latex-header-blocks ignore-headlines))

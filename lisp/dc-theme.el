@@ -13,7 +13,7 @@
 		    :bold nil)
 
 (set-face-attribute 'default nil
-		    :foreground "#586e75"
+		    :foreground "#21505a"
 		    :family "mononoki"
 		    :height 130)
 
