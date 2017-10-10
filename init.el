@@ -120,9 +120,14 @@
 (setq tramp-backup-directory-alist backup-directory-alist)
 (setq tramp-auto-save-directory autosave-dir)
 
-;; recentf
-(require 'recentf)
-(setq recentf-max-saved-items 1000)
+(use-package no-littering
+  :ensure t
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
+
+(setq recentf-max-saved-items 3000)
 (run-at-time (current-time) 300 'recentf-save-list)
 
 (setq inhibit-startup-message t
