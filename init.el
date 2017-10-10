@@ -114,6 +114,7 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
+(setq desktop-auto-save-timeout 10)
 
 ;; tramp
 (setq tramp-default-method "ssh")
@@ -133,6 +134,7 @@
 (setq inhibit-startup-message t
       initial-scratch-message ""
       inhibit-splash-screen t
+      indent-tabs-mode nil
       visible-bell nil
       ring-bell-function 'ignore
       sentence-end-double-space nil
