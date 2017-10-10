@@ -76,6 +76,7 @@
      (emacs-lisp . t)
      (latex . t)))
 
+  ;; from abo-abo
   (defun hot-expand (str)
     "Expand org template."
     (insert str)
@@ -237,10 +238,51 @@ Use a prefix arg to get regular RET. "
   (define-key org-mode-map (kbd "RET")
     'scimax/org-return)
 
+  (defun ora-cap-filesystem ()
+    (let (path)
+      (when (setq path (ffap-string-at-point))
+	(let ((compl
+	       (all-completions path #'read-file-name-internal)))
+	  (when compl
+	    (let ((offset (ivy-completion-common-length (car compl))))
+	      (list (- (point) offset) (point) compl)))))))
+
+  (defun org-completion-refs ()
+    (when (looking-back "\\\\\\(?:ref\\|label\\){\\([^\n{}]\\)*")
+      (let (cands beg end)
+	(save-excursion
+	  (goto-char (point-min))
+	  (while (re-search-forward "\\label{\\([^}]+\\)}" nil t)
+	    (push (match-string-no-properties 1) cands)))
+	(save-excursion
+	  (up-list)
+	  (setq end (1- (point)))
+	  (backward-list)
+	  (setq beg (1+ (point))))
+	(list beg end
+	      (delete (buffer-substring-no-properties beg end)
+		      (nreverse cands))))))
+
+  (defun org-completion-symbols ()
+    (when (looking-back "=[a-zA-Z]+")
+      (let (cands)
+	(save-match-data
+	  (save-excursion
+	    (goto-char (point-min))
+	    (while (re-search-forward "=\\([a-zA-Z]+\\)=" nil t)
+	      (cl-pushnew (match-string-no-properties 0) cands :test 'equal))
+	    cands))
+	(when cands
+	  (list (match-beginning 0) (match-end 0) cands)))))
+
   (defun my-org-mode-hook ()
     (visual-fill-column-mode)
     (diminish 'org-indent-mode)
-    (setq line-spacing 4))
+    (setq line-spacing 4)
+    (setq completion-at-point-functions
+	  '(org-completion-symbols
+	    ora-cap-filesystem
+	    org-completion-refs)))
 
   (add-hook 'org-mode-hook 'my-org-mode-hook)
 
