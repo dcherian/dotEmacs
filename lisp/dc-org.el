@@ -127,45 +127,6 @@ _h_tml    ali_g_n    _A_SCII:
 	  (hydra-org-template/body)
 	(self-insert-command 1))))
 
-  ;; org-faces
-  (set-face-attribute 'org-level-1 nil
-		      :inherit 'outline-1 :height 1.25)
-  (set-face-attribute 'org-level-2 nil
-		      :inherit 'outline-2 :height 1.2)
-  (set-face-attribute 'org-level-3 nil
-		      :inherit 'outline-3 :height 1.15)
-  (set-face-attribute 'org-link nil
-		      :inherit 'org-link
-		      :foreground nil) ; links are only underlined
-  ;; footnotes shouldn't be highlighted
-  (set-face-attribute 'org-footnote nil
-		      :foreground nil
-		      :underline nil
-		      :inherit '(font-lock-comment-face org-foreground))
-  (set-face-attribute 'org-checkbox nil
-		      :inherit '(font-lock-comment-face)
-		      :background nil
-		      :weight 'light
-		      :box nil)
-  (set-face-attribute 'org-todo nil
-		      :weight 'normal)
-  (set-face-attribute 'org-done nil
-		      :weight 'normal)
-  (set-face-attribute 'org-block nil
-		      :foreground nil
-		      :background "#f7f0dd")
-  (set-face-attribute 'org-target nil
-		      :foreground "#586e75"
-		      :background nil)
-  (set-face-attribute 'org-table nil
-		      :family "Ubuntu Mono"
-		      :background nil)
-  (set-face-attribute 'org-date nil
-		      :foreground nil
-		      :inherit 'org-link)
-  (set-face-attribute 'org-latex-and-related nil
-		      :foreground "#268bd2")
-
   (require 'ox-extra)
   (ox-extras-activate '(latex-header-blocks ignore-headlines))
 
@@ -285,7 +246,45 @@ Use a prefix arg to get regular RET. "
     (setq completion-at-point-functions
 	  '(org-completion-symbols
 	    ora-cap-filesystem
-	    org-completion-refs)))
+	    org-completion-refs))
+    ;; org-faces
+    (set-face-attribute 'org-level-1 nil
+			:inherit 'outline-1 :height 1.25)
+    (set-face-attribute 'org-level-2 nil
+			:inherit 'outline-2 :height 1.2)
+    (set-face-attribute 'org-level-3 nil
+			:inherit 'outline-3 :height 1.15)
+    (set-face-attribute 'org-link nil
+			:inherit 'org-link
+			:foreground nil) ; links are only underlined
+    ;; footnotes shouldn't be highlighted
+    (set-face-attribute 'org-footnote nil
+			:foreground nil
+			:underline nil
+			:inherit '(font-lock-comment-face org-foreground))
+    (set-face-attribute 'org-checkbox nil
+			:inherit '(font-lock-comment-face)
+			:background nil
+			:weight 'light
+			:box nil)
+    (set-face-attribute 'org-todo nil
+			:weight 'normal)
+    (set-face-attribute 'org-done nil
+			:weight 'normal)
+    (set-face-attribute 'org-block nil
+			:foreground nil
+			:background "#f7f0dd")
+    (set-face-attribute 'org-target nil
+			:foreground "#586e75"
+			:background nil)
+    (set-face-attribute 'org-table nil
+			:family "Ubuntu Mono"
+			:background nil)
+    (set-face-attribute 'org-date nil
+			:foreground nil
+			:inherit 'org-link)
+    (set-face-attribute 'org-latex-and-related nil
+			:foreground "#268bd2"))
 
   (add-hook 'org-mode-hook 'my-org-mode-hook)
 
