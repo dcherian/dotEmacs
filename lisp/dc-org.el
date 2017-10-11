@@ -131,11 +131,33 @@ _h_tml    ali_g_n    _A_SCII:
   (require 'ox-extra)
   (ox-extras-activate '(latex-header-blocks ignore-headlines))
 
+
+  (use-package cdlatex
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+    ;; from https://github.com/jkitchin/scimax/issues/117#issuecomment-321137702
+    (setq cdlatex-command-alist
+	  '(("ang"         "Insert \\ang{}"
+	     "\\ang{?}" cdlatex-position-cursor nil t t)
+	    ("si"          "Insert \\SI{}{}"
+	     "\\SI{?}{}" cdlatex-position-cursor nil t t)
+	    ("sl"          "Insert \\SIlist{}{}"
+	     "\\SIlist{?}{}" cdlatex-position-cursor nil t t)
+	    ("sr"          "Insert \\SIrange{}{}{}"
+	     "\\SIrange{?}{}{}" cdlatex-position-cursor nil t t)
+	    ("num"         "Insert \\num{}"
+	     "\\num{?}" cdlatex-position-cursor nil t t)
+	    ("nl"          "Insert \\numlist{}"
+	     "\\numlist{?}" cdlatex-position-cursor nil t t)
+	    ("nr"          "Insert \\numrange{}{}"
+	     "\\numrange{?}{}" cdlatex-position-cursor nil t t))))
+
   (require 'org-inlinetask)
   (defun scimax/org-return (&optional ignore)
     "Add new list item, heading or table row with RET.
-A double return on an empty element deletes it.
-Use a prefix arg to get regular RET. "
+    A double return on an empty element deletes it.
+    Use a prefix arg to get regular RET. "
     (interactive "P")
     (if ignore
 	(org-return)
