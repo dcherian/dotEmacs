@@ -67,7 +67,8 @@
 	org-export-dispatch-use-expert-ui t
 	org-latex-image-default-width "\\textwidth"
 	fill-column 90
-	org-src-window-setup 'current-window)
+	org-src-window-setup 'current-window
+	org-export-time-stamp-file nil)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
