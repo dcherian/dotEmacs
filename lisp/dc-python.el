@@ -63,7 +63,9 @@
 	      ("C-c p" . python-shell-run-region-or-line)
 	      ("s-i" . ob-ipython-inspect)
 	      ("C-c t" . dc-switch-to-python-shell)
-	      ("C-<tab>" . org-hide-block-toggle-maybe)))
+	      ("C-<tab>" . org-hide-block-toggle-maybe))
+  :config
+  (add-to-list 'company-backends 'company-ob-ipython))
 
 (setq org-babel-default-header-args:ipython
       '(;;(:results . "output replace")
