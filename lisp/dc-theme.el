@@ -17,21 +17,22 @@
 		    :family "mononoki"
 		    :height 130)
 
-(use-package auto-dim-other-buffers
-  :config
-  (set-face-attribute 'auto-dim-other-buffers-face nil
-		      :background "#eee8d5")
-  (setq auto-dim-other-buffers-dim-on-switch-to-minibuffer nil)
-
-  (add-hook 'after-init-hook (lambda ()
-			       (auto-dim-other-buffers-mode t))))
-
 (setq-default line-spacing 6)
 (setq x-underline-at-descent-line nil)
 (set-face-attribute 'tooltip nil
 		    :inherit 'default
 		    :foreground "#586e75"
 		    :background "#eee8d5")
+
+(use-package auto-dim-other-buffers
+  :config
+  (set-face-attribute 'auto-dim-other-buffers-face nil
+		      :background "#eee8d5")
+  ;;  prevents helm from getting screwed up
+  (setq auto-dim-other-buffers-dim-on-switch-to-minibuffer nil)
+
+  (add-hook 'after-init-hook (lambda ()
+			       (auto-dim-other-buffers-mode t))))
 
 ;; modeline options
 (use-package smart-mode-line

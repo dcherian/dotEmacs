@@ -374,7 +374,7 @@
   :ensure t
   :demand t
   :bind (:map dc/toggle-map
-	      ("f" . visual-fill-column-mode))
+	      ("v" . visual-fill-column-mode))
   :init
   (setq visual-fill-column-center-text t
 	visual-fill-column-width 100)
