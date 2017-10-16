@@ -243,6 +243,39 @@ _h_tml    ali_g_n    _A_SCII:
 	(when cands
 	  (list (match-beginning 0) (match-end 0) cands)))))
 
+
+  ;; make prettify-symbols-mode work for latex in org files
+  ;; from https://emacs.stackexchange.com/questions/33797/use-literal-greek-characters-in-latex-fragments-in-org-mode
+  (defun prettify-symbols-org-latex-compose-p (start end _match)
+    "Return true iff the symbol MATCH should be composed.
+The symbol starts at position START and ends at position END.
+This is based on prettify-symbols-default-compose-p, to be used for
+applying latex prettifycations in org mode buffers."
+    ;; Check that the chars should really be composed into a symbol.
+    (let* ((syntaxes-beg (if (memq (char-syntax (char-after start)) '(?w ?_))
+			     '(?w ?_) '(?. ?\\)))
+	   (syntaxes-end (if (memq (char-syntax (char-before end)) '(?w ?_))
+			     '(?w ?_) '(?. ?\\))))
+      (not (or
+	    (and
+	     ;; we don't want a $ before to stop prettification
+	     ;; or is for the case the char before does not exist (beginning of buffer)
+	     (/= (or (char-before start) ?$) ?$)
+	     (memq (char-syntax (or (char-before start) ?\s)) syntaxes-beg))
+	    (and
+	     ;; we don't want a $ after to stop prettification
+	     ;; or is for the case the char after does not exist (end of buffer)
+	     (/= (or (char-after end) ?$) ?$)
+	     (memq (char-syntax (or (char-after end) ?\s)) syntaxes-end))
+	    (nth 8 (syntax-ppss))))))
+
+  (defun dc/set-latex-pretty-org-mode ()
+    (interactive)
+    (require 'tex-mode)
+    (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
+    (setq prettify-symbols-compose-predicate #'prettify-symbols-org-latex-compose-p)
+    (prettify-symbols-mode t))
+
   (defun my-org-mode-hook ()
     (visual-fill-column-mode)
     (diminish 'org-indent-mode)
@@ -289,9 +322,10 @@ _h_tml    ali_g_n    _A_SCII:
 			:foreground nil
 			:inherit 'org-link)
     (set-face-attribute 'org-latex-and-related nil
-			:foreground "#268bd2"))
+			:foreground "#268bd2")
 
-  (add-hook 'org-mode-hook 'my-org-mode-hook)
+    (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
+    (dc/set-latex-pretty-org-mode))
 
   ;; remove comments from org document for use with export hook
   ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
