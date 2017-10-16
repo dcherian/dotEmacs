@@ -30,6 +30,7 @@
 	       ("s-j" . org-babel-next-src-block)
 	       ("s-k" . org-babel-previous-src-block)
 	       ("s-l" . org-edit-src-code)
+	       ("C-c l" . org-lint)
 	       ;; :map org-mode-map
 	       ;; ("s-j" . org-babel-next-src-block)
 	       ;; ("s-k" . org-babel-previous-src-block)
