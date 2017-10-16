@@ -69,7 +69,26 @@
   	      (single-quote . "'")
   	      (double-quote . "\"")
   	      (back-quote . "`")
-  	      (tilde . "~")))
+  	      (tilde . "~")
+	      (dollar . "\$")))
+
+  (sp-with-modes '(tex-mode
+		   plain-tex-mode
+		   latex-mode
+		   org-mode
+		   )
+    ;; math modes, yay. The :actions are provided automatically if
+					; these pairs do not have global definition.
+    (sp-local-pair "$" "$")
+    (sp-local-pair "\[" "\]")
+    (sp-local-pair "\{" "\}")
+    (sp-local-pair "‘" "’")
+    (sp-local-pair "“" "”")
+    (sp-local-pair "\\begin" "\\end")
+  ;;; tex-mode latex-mode
+    (sp-local-tag "i" "\"<" "\">")
+    (sp-local-pair "\\[" nil :unless '(sp-point-before-word-p))
+    (sp-local-pair "$" nil :unless '(sp-point-before-word-p)))
 
   (require 'smartparens-python)
   (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
