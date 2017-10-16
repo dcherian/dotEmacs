@@ -53,7 +53,7 @@
 	org-footnote-define-inline t
 	org-special-ctrl-a/e t
 	org-special-ctrl-k t
-	org-ellipsis "⤵"
+	org-ellipsis "↓"
 	org-log-done t
 	org-catch-invisible-edits 'show
 	org-list-allow-alphabetical t
