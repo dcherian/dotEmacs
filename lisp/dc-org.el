@@ -284,7 +284,7 @@ applying latex prettifycations in org mode buffers."
 	  '(org-completion-symbols
 	    ora-cap-filesystem
 	    org-completion-refs))
-    (org-bullets-mode)
+    (org-bullets-mode t)
     ;; org-faces
     (set-face-attribute 'org-level-1 nil
 			:inherit 'outline-1 :height 1.25)
@@ -326,6 +326,8 @@ applying latex prettifycations in org mode buffers."
 
     (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
     (dc/set-latex-pretty-org-mode))
+
+  (add-hook 'org-mode-hook 'my-org-mode-hook)
 
   ;; remove comments from org document for use with export hook
   ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
