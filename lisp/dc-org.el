@@ -134,6 +134,7 @@ _h_tml    ali_g_n    _A_SCII:
 
 
   (use-package cdlatex
+    :disabled t
     :ensure t
     :config
     (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
@@ -152,7 +153,9 @@ _h_tml    ali_g_n    _A_SCII:
 	    ("nl"          "Insert \\numlist{}"
 	     "\\numlist{?}" cdlatex-position-cursor nil t t)
 	    ("nr"          "Insert \\numrange{}{}"
-	     "\\numrange{?}{}" cdlatex-position-cursor nil t t))))
+	     "\\numrange{?}{}" cdlatex-position-cursor nil t t)))
+
+    (unbind-key "`" org-cdlatex-mode-map))
 
   (require 'org-inlinetask)
   (defun scimax/org-return (&optional ignore)
