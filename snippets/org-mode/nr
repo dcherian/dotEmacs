@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: numrange (siunitx)
+# key: nr
+# --
+\numrange{$1}{$2}
