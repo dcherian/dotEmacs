@@ -53,7 +53,7 @@
 	org-footnote-define-inline t
 	org-special-ctrl-a/e t
 	org-special-ctrl-k t
-	org-ellipsis "↓"
+	org-ellipsis "…"
 	org-log-done t
 	org-catch-invisible-edits 'show
 	org-list-allow-alphabetical t
@@ -76,7 +76,8 @@
    '((ipython . t)
      (matlab . t)
      (emacs-lisp . t)
-     (latex . t)))
+     (latex . t)
+     (shell . t)))
 
   ;; from abo-abo
   (defun hot-expand (str)
@@ -271,63 +272,7 @@ applying latex prettifycations in org mode buffers."
 
   (defun dc/set-latex-pretty-org-mode ()
     (interactive)
-    (require 'tex-mode)
-    (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
-    (setq prettify-symbols-compose-predicate #'prettify-symbols-org-latex-compose-p)
     (prettify-symbols-mode t))
-
-  (defun my-org-mode-hook ()
-    (visual-fill-column-mode)
-    (diminish 'org-indent-mode)
-    (setq line-spacing 4)
-    (setq completion-at-point-functions
-	  '(org-completion-symbols
-	    ora-cap-filesystem
-	    org-completion-refs))
-    (org-bullets-mode t)
-    ;; org-faces
-    (set-face-attribute 'org-level-1 nil
-			:inherit 'outline-1 :height 1.25)
-    (set-face-attribute 'org-level-2 nil
-			:inherit 'outline-2 :height 1.2)
-    (set-face-attribute 'org-level-3 nil
-			:inherit 'outline-3 :height 1.15)
-    (set-face-attribute 'org-link nil
-			:inherit 'org-link
-			:foreground nil) ; links are only underlined
-    ;; footnotes shouldn't be highlighted
-    (set-face-attribute 'org-footnote nil
-			:foreground nil
-			:underline nil
-			:inherit '(font-lock-comment-face org-foreground))
-    (set-face-attribute 'org-checkbox nil
-			:inherit '(font-lock-comment-face)
-			:background nil
-			:weight 'light
-			:box nil)
-    (set-face-attribute 'org-todo nil
-			:weight 'normal)
-    (set-face-attribute 'org-done nil
-			:weight 'normal)
-    (set-face-attribute 'org-block nil
-			:foreground nil
-			:background "#f7f0dd")
-    (set-face-attribute 'org-target nil
-			:foreground "#586e75"
-			:background nil)
-    (set-face-attribute 'org-table nil
-			:family "Ubuntu Mono"
-			:background nil)
-    (set-face-attribute 'org-date nil
-			:foreground nil
-			:inherit 'org-link)
-    (set-face-attribute 'org-latex-and-related nil
-			:foreground "#268bd2")
-
-    (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
-    (dc/set-latex-pretty-org-mode))
-
-  (add-hook 'org-mode-hook 'my-org-mode-hook)
 
   ;; remove comments from org document for use with export hook
   ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
@@ -369,12 +314,6 @@ applying latex prettifycations in org mode buffers."
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
   :config
-  (set-face-attribute 'org-ref-cite-face nil
-		      :inherit 'org-link
-		      :foreground nil)
-  (set-face-attribute 'org-ref-ref-face nil
-		      :inherit 'org-ref-cite-face
-		      :foreground nil)
 
   (setq org-ref-notes-directory "~/Papers/notes/"
 	org-ref-bibliography-notes "~/org/papers.org"
@@ -618,6 +557,73 @@ Argument KEY is the bibtex key."
 		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+(defun my-org-mode-hook ()
+  (visual-fill-column-mode)
+  (diminish 'org-indent-mode)
+  (setq line-spacing 4)
+  (setq completion-at-point-functions
+	'(org-completion-symbols
+	  ora-cap-filesystem
+	  org-completion-refs))
+  (org-bullets-mode t)
+  ;; org-faces
+  (set-face-attribute 'org-level-1 nil
+		      :inherit 'outline-1 :height 1.25)
+  (set-face-attribute 'org-level-2 nil
+		      :inherit 'outline-2 :height 1.2)
+  (set-face-attribute 'org-level-3 nil
+		      :inherit 'outline-3 :height 1.15)
+  (set-face-attribute 'org-link nil
+		      :inherit 'org-link
+		      :foreground nil) ; links are only underlined
+  ;; footnotes shouldn't be highlighted
+  (set-face-attribute 'org-footnote nil
+		      :foreground nil
+		      :underline nil
+		      :inherit '(font-lock-comment-face org-foreground))
+  (set-face-attribute 'org-checkbox nil
+		      :inherit '(font-lock-comment-face)
+		      :background nil
+		      :weight 'light
+		      :box nil)
+  (set-face-attribute 'org-todo nil
+		      :weight 'normal)
+  (set-face-attribute 'org-done nil
+		      :weight 'normal)
+  (set-face-attribute 'org-block nil
+		      :foreground nil
+		      :background "#f7f0dd")
+  (set-face-attribute 'org-target nil
+		      :foreground "#586e75"
+		      :background nil)
+  (set-face-attribute 'org-table nil
+		      :family "Ubuntu Mono"
+		      :background nil)
+  (set-face-attribute 'org-date nil
+		      :foreground nil
+		      :inherit 'org-link)
+  (set-face-attribute 'org-latex-and-related nil
+		      :foreground "#268bd2")
+  (set-face-attribute 'org-tag nil
+		      :height 0.7
+		      :inherit '(font-lock-comment-face org-foreground))
+  (set-face-attribute 'org-ref-cite-face nil
+		      :inherit 'org-link
+		      :foreground nil)
+  (set-face-attribute 'org-ref-ref-face nil
+		      :inherit 'org-ref-cite-face
+		      :foreground nil)
+  (set-face-attribute 'org-meta-line nil
+		      :height 0.85)
+
+
+  (require 'tex-mode)
+  (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
+  (setq prettify-symbols-compose-predicate #'prettify-symbols-org-latex-compose-p)
+  (dc/set-latex-pretty-org-mode))
+
+  (add-hook 'org-mode-hook 'my-org-mode-hook)
 
 (provide 'dc-org)
 ;;; dc-org ends here
