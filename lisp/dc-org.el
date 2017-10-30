@@ -292,20 +292,6 @@ applying latex prettifycations in org mode buffers."
 	  ("\\.png\\'" . "gpicview %s")
 	  ("\\.html\\'" . "firefox %s"))))
 
-(use-package org-sticky-header
-  :ensure t
-  :defer
-  :config
-  (setq org-sticky-header-full-path 'reversed)
-  (add-hook 'org-mode-hook 'org-sticky-header-mode)
-  (set-face-attribute 'header-line 'nil
-		      :foreground "#586e75"
-		      :background "#eee8d5"
-		      :underline 'unspecified
-		      :height 'unspecified
-		      :box 'unspecified
-		      :inherit 'unspecified))
-
 (use-package org-ref
   :ensure t
   :demand
