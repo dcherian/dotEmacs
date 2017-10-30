@@ -154,17 +154,20 @@
   :bind (:map dc-bindings-map
 	      ("C-," . helm-dash-at-point))
   :config
+
+  (setq helm-dash-docsets-path "/home/deepak/docs/docsets/")
   (defun python-doc ()
     (interactive)
-    (setq-local helm-dash-docsets '("Python 3"
+    (setq-local helm-dash-docsets '("Python_3"
 				    "NumPy" "SciPy" "Matplotlib"
-				    "Pandas")))
+				    "Pandas" "xray-stable" "dask-stable")))
 
   (defun org-doc ()
     (interactive)
-    (setq-local helm-dash-docsets '("Org_Mode" "Python 3" "HTML"
+    (setq-local helm-dash-docsets '("Org_Mode" "Python_3" "HTML"
 				    "NumPy" "SciPy" "Matplotlib"
-				    "CSS" "LaTeX" "Pandas")))
+				    "CSS" "LaTeX" "Pandas" "xray-stable"
+				    "dask-stable")))
 
   (add-hook 'python-shell-first-prompt-hook 'python-doc)
   (add-hook 'python-mode-hook 'python-doc)
