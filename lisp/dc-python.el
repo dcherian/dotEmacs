@@ -1,5 +1,4 @@
-(require 'ob-ipython)
-
+;; elpy & jedi
 (require 'package)
 (add-to-list 'package-archives
              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
@@ -7,27 +6,45 @@
 (elpy-enable)
 (setq elpy-rpc-backend "jedi")
 
-(use-package pydoc
-  :ensure t
-  :disabled t)
-
 (use-package company-jedi
   :ensure t
-  :disabled t
   :config
-  (defun dc/use-company-jedi ()
-    (add-to-list 'company-backends 'company-jedi))
-
   (setq jedi:complete-on-dot t)
   (add-hook 'python-mode-hook 'dc/use-company-jedi))
 
+;; ob-ipython and org-mode stuff
+(require 'ob-ipython)
+(use-package ob-ipython
+  :ensure t
+  :bind (:map dc-bindings-map
+	      ("C-c p" . python-shell-run-region-or-line)
+	      ("s-i" . ob-ipython-inspect)
+	      ("C-c t" . dc-switch-to-python-shell)
+	      ("C-<tab>" . org-hide-block-toggle-maybe))
+  :config
+  ;; (add-to-list 'company-backends 'company-ob-ipython)
+  )
+
+(setq org-babel-default-header-args:ipython
+      '(;;(:results . "raw drawer")
+	;;(:session . "none")
+	(:exports . "results")
+	(:cache .   "no")
+	(:noweb . "no")
+	(:hlines . "no")
+	(:tangle . "yes")
+	(:eval . "never-export")))
+
 ;; don’t prompt me to confirm everytime I want to evaluate a block
 (setq org-confirm-babel-evaluate nil)
+;; display/update images in the buffer after I evaluate
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 (setq-default python-indent-offset 4)
 (setq python-shell-prompt-detect-failure-warning nil)
 
-;; display/update images in the buffer after I evaluate
-(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+(use-package pydoc
+  :ensure t
+  :disabled t)
 
 (defun darya-setup ()
   (message "Setting python paths for darya.")
@@ -56,26 +73,6 @@
 
 (bind-key (kbd "C-c C-c") 'python-shell-run-region-or-line python-mode-map)
 (bind-key (kbd "C-c C-b") 'python-shell-send-buffer python-mode-map)
-
-(use-package ob-ipython
-  :ensure t
-  :bind (:map dc-bindings-map
-	      ("C-c p" . python-shell-run-region-or-line)
-	      ("s-i" . ob-ipython-inspect)
-	      ("C-c t" . dc-switch-to-python-shell)
-	      ("C-<tab>" . org-hide-block-toggle-maybe))
-  :config
-  (add-to-list 'company-backends 'company-ob-ipython))
-
-(setq org-babel-default-header-args:ipython
-      '(;;(:results . "output replace")
-	;;(:session . "none")
-	(:exports . "results")
-	(:cache .   "no")
-	(:noweb . "no")
-	(:hlines . "no")
-	(:tangle . "yes")
-	(:eval . "never-export")))
 
 ;; from https://ekaschalk.github.io/post/prettify-mode/
 (add-hook
