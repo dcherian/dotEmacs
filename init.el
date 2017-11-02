@@ -456,16 +456,22 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+(use-package outshine
+  :config
+  (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+
+  (setq-default outline-regexp "[*]+"))
+
 (require 'dc-org)
 (require 'dc-helm)
-(require 'dc-company)
 (require 'dc-comint)
-(require 'dc-latex) ; (require 'dc-comint)
+(require 'dc-latex)
 (require 'dc-editing)
 (require 'dc-parens)
 (require 'dc-website)
 (require 'dc-python)
 (require 'dc-matlab)
+(require 'dc-company)
 (require 'ox-ipynb)
 ;; (require 'dc-ibuffer)
 
