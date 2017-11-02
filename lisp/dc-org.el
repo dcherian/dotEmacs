@@ -19,6 +19,8 @@
 (define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
 (define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
 (define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
+(define-key org-mode-map (kbd "C-c a") #'org-babel-execute-to-point)
+(define-key org-mode-map (kbd "s-h") #'org-babel-split-src-block)
 (define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
 
 (use-package org
@@ -244,6 +246,30 @@ _h_tml    ali_g_n    _A_SCII:
 	(when cands
 	  (list (match-beginning 0) (match-end 0) cands)))))
 
+  ;; some jupyter notebook-like commands from jkitchin
+  (defun org-babel-split-src-block (&optional below)
+    "Split the current src block.
+With a prefix BELOW move point to lower block."
+    (interactive "P")
+    (let* ((el (org-element-context))
+	   (language (org-element-property :language el))
+	   (parameters (org-element-property :parameters el)))
+
+      (beginning-of-line)
+      (insert (format "#+END_SRC
+#+BEGIN_SRC %s %s\n" language (or parameters "")))
+      (beginning-of-line)
+      (when (not below)
+	(org-babel-previous-src-block))))
+
+  (defun org-babel-execute-to-point ()
+    "Execute all the blocks up to and including the one point is on."
+    (interactive)
+    (let ((p (point)))
+      (save-excursion
+	(goto-char (point-min))
+	(while (and (org-babel-next-src-block) (< (point) p))
+	  (org-babel-execute-src-block)))))
 
   ;; make prettify-symbols-mode work for latex in org files
   ;; from https://emacs.stackexchange.com/questions/33797/use-literal-greek-characters-in-latex-fragments-in-org-mode
