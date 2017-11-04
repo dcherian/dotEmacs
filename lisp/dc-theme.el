@@ -5,7 +5,6 @@
 (load-theme 'solarized-light)
 
 (set-face-attribute 'font-lock-constant-face nil
-		    :inherit 'font-lock-constant-face
 		    :bold nil)
 
 (set-face-attribute 'font-lock-builtin-face nil
