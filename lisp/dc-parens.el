@@ -1,5 +1,6 @@
 (use-package smartparens-config
   :ensure smartparens
+  :demand
   :bind (:map smartparens-mode-map
 	      ("C-S-a" . sp-beginning-of-sexp)
 	      ("C-S-e" . sp-end-of-sexp)
@@ -48,7 +49,8 @@
 	      ("C-x \"" . wrap-with-double-quotes)
 	      ("C-x _"  . wrap-with-underscores)
 	      ("C-x `"  . wrap-with-back-quotes)
-	      ("C-x ~" . wrap-with-tilde))
+	      ("C-x ~" . wrap-with-tildes)
+	      ("C-x $" . wrap-with-dollars))
   :config
   ;; from http://ebzzry.io/en/emacs-pairs/
   (defmacro def-pairs (pairs)
@@ -91,6 +93,9 @@
     (sp-local-pair "$" nil :unless '(sp-point-before-word-p)))
 
   (require 'smartparens-python)
+  (require 'smartparens-latex)
+  (require 'smartparens-html)
+  (require 'smartparens-org)
   (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
   (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
   :init
