@@ -88,7 +88,7 @@
 
 	("blog-static"
 	 :base-directory "~/website/org/static/"
-	 :base-extension "png\\|jpg\\|gif\\|pdf\\|mp4"
+	 :base-extension "png\\|jpg\\|gif\\|pdf\\|mp4\\|js\\|html"
 	 :publishing-directory "~/website/publish/static/"
 	 :recursive t
 	 :publishing-function org-publish-attachment)
