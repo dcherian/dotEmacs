@@ -131,6 +131,12 @@
 (setq recentf-max-saved-items 3000)
 (run-at-time (current-time) 300 'recentf-save-list)
 
+
+(use-package swiper
+  :ensure t
+  :config
+  (bind-key "s-s" #'swiper-all dc-bindings-map))
+
 (setq inhibit-startup-message t
       initial-scratch-message ""
       inhibit-splash-screen t
