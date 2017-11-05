@@ -213,15 +213,7 @@
 (setq ispell-program-name "aspell")
 (add-hook 'text-mode-hook 'flyspell-mode)
 
-; (define-key fortran-mode-map (kbd "C-c C-c") 'compile)
-
-(use-package auto-dim-other-buffers
-  :config
-  (set-face-attribute 'auto-dim-other-buffers-face nil
-		      :background "#eee8d5")
-
-  (add-hook 'after-init-hook (lambda ()
-			       (auto-dim-other-buffers-mode t))))
+;; (define-key fortran-mode-map (kbd "C-c C-c") 'compile)
 
 (use-package paredit
   :disabled t
