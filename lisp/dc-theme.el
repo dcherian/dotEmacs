@@ -4,6 +4,14 @@
       solarized-use-variable-pitch nil)
 (load-theme 'solarized-light)
 
+(use-package circadian
+  :ensure t
+  :demand
+  :config
+  (setq circadian-themes '(("8:00" . solarized-light)
+                           ("19:30" . solarized-dark)))
+  (circadian-setup))
+
 (set-face-attribute 'font-lock-constant-face nil
 		    :bold nil)
 
