@@ -337,6 +337,11 @@
   :config
   (setq wc-modeline-format "[%tw/%tc]"))
 
+(use-package sdcv-mode
+  :demand
+  :bind (:map dc-bindings-map
+	      ("C-c C-d" . sdcv-search)))
+
 (use-package helm-projectile
   :ensure t
   :demand
