@@ -605,7 +605,7 @@ Argument KEY is the bibtex key."
 		      :weight 'normal)
   (set-face-attribute 'org-block nil
 		      :foreground nil
-		      :background "#f7f0dd")
+		      :background nil)
   (set-face-attribute 'org-target nil
 		      :foreground "#586e75"
 		      :background nil)
