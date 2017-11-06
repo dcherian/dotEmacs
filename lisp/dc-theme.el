@@ -51,32 +51,4 @@
   (sml/setup)
   (smart-mode-line-enable))
 
-;; powerline
-(use-package powerline
-  :ensure t
-  :disabled t
-  :config
-  (powerline-default-theme))
-
-;; spaceline
-(use-package spaceline-config
-  :ensure spaceline
-  :disabled t
-  :config
-
-  (spaceline-helm-mode)
-  (use-package spaceline-all-the-icons
-    :after spaceline
-    :ensure t
-    :config
-
-    (use-package all-the-icons
-      :ensure t)
-
-    (spaceline-all-the-icons-theme)
-    (setq spaceline-all-the-icons-separator-type 'arrow))
-
-  (set-face-attribute 'spaceline-highlight-face nil
-		      :background "#93a1a1"))
-
 (provide 'dc-theme)
