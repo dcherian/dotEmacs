@@ -235,15 +235,21 @@
 	 :map isearch-mode-map
 	 ("C-'" . avy-isearch)))
 
+(use-package expand-region
+  :ensure t
+  :bind (:map dc-bindings-map
+	      ("M-2" . er/expand-region)
+	      ("M-1" . er/contract-region)))
+
 (use-package multiple-cursors
   :ensure t
   :demand
   :bind (:map dc-bindings-map
 	      ("C-c m c" . mc/edit-lines)
 	      ;; Remember `er/expand-region' is bound to M-2!
-	      ("M-3" . mc/mark-next-like-this)
-	      ("M-4" . mc/mark-previous-like-this)
-	      ("M-1" . mc/mark-all-like-this-dwim)
+	      ("M-4" . mc/mark-next-like-this)
+	      ("M-5" . mc/mark-previous-like-this)
+	      ("M-3" . mc/mark-all-like-this-dwim)
 	      ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
 (use-package adaptive-wrap
@@ -288,11 +294,6 @@
 	      ("M-u" . undo-tree-visualize))
   :config
   (global-undo-tree-mode t))
-
-(use-package expand-region
-  :ensure t
-  :bind (:map dc-bindings-map
-	      ("M-2" . er/expand-region)))
 
 (use-package yasnippet
   :ensure t
