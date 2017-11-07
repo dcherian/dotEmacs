@@ -45,4 +45,13 @@
     (define-key company-mode-map (kbd "C-'") 'helm-company)
     (define-key company-active-map (kbd "C-'") 'helm-company)))
 
+
+;; rank completion candidates by statistics of use
+(use-package company-statistics
+  :ensure t
+  :demand
+  :after company
+  :config
+  (company-statistics-mode))
+
 (provide 'dc-company)
