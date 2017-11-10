@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sz
+# key: sz
+# --
+plt.gcf().set_size_inches(($0,$1))

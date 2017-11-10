@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: bkh
+# key: bkh
+# --
+#+BEGIN_SRC ipython :session :results output drawer :exports both :var fname="${1:`(make-temp-name "img")`}"
+from bokeh.plotting import figure
+from bokeh.layouts import gridplot
+from bokeh.models import ColumnDataSource, HoverTool, WheelZoomTool
+
+tools='box_select, reset'
+
+# create "subplots"
+hf = figure(tools=tools)
+hf.background_fill_alpha = 0.0
+hf.border_fill_alpha = 0.0
+
+hf.$0
+
+export_bokeh(hf, 'images/'+fname+'.png', 'images/js/'+fname+'.js', 'images/html/'+fname+'.html', bkjs='inline')
+#+END_SRC
