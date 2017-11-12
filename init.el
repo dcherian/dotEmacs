@@ -128,9 +128,15 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(require 'recentf)
 (setq recentf-max-saved-items 3000)
 (run-at-time (current-time) 300 'recentf-save-list)
 
+(use-package counsel
+  :ensure
+  :config
+  (unbind-key "C-c C-l" shell-mode-map)
+  (bind-key "C-c C-l" #'counsel-shell-history shell-mode-map))
 
 (use-package swiper
   :ensure t
@@ -225,9 +231,6 @@
   :diminish beginend-global-mode
   :config
   (beginend-global-mode))
-
-(use-package wc-mode
-  :ensure t)
 
 (use-package avy
   :ensure t
@@ -333,6 +336,7 @@
   (projectile-global-mode))
 
 (use-package wc-mode
+  :demand
   :config
   (setq wc-modeline-format "[%tw/%tc]"))
 
