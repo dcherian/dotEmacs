@@ -340,6 +340,12 @@
   :config
   (setq wc-modeline-format "[%tw/%tc]"))
 
+(use-package ace-window
+  :demand
+  :ensure t
+  :bind (:map dc-bindings-map
+              ("C-x o" . ace-window)))
+
 (use-package sdcv-mode
   :demand
   :bind (:map dc-bindings-map
