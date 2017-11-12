@@ -129,6 +129,7 @@
 
 (use-package helm-describe-modes
   :ensure t
+  :demand
   :config
   (global-set-key [remap describe-mode] #'helm-describe-modes))
 
