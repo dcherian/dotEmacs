@@ -537,6 +537,7 @@ Argument KEY is the bibtex key."
 		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
     (add-to-list 'org-latex-classes
 		 '("JMR-review"
 		   "[NO-DEFAULT-PACKAGES]
@@ -569,6 +570,62 @@ Argument KEY is the bibtex key."
 		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+    (setq org-format-latex-header
+"%&~/tools/latex/preamble-memoir
+\\usepackage{fontspec}
+\\usepackage{unicode-math}
+\\setromanfont[Ligatures=TeX]{TeX Gyre Pagella}
+\\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Pagella Math}
+\\setmonofont{Inconsolata}
+[NO-DEFAULT-PACKAGES]
+[NO-PACKAGES]
+[NO-EXTRA]
+\\pagenumbering{gobble}
+% do not remove\n% The settings below are copied from fullpage.sty\n\\setlength{\\textwidth}{\\paperwidth}\n\\addtolength{\\textwidth}{-3cm}\n\\setlength{\\oddsidemargin}{1.5cm}\n\\addtolength{\\oddsidemargin}{-2.54cm}\n\\setlength{\\evensidemargin}{\\oddsidemargin}\n\\setlength{\\textheight}{\\paperheight}\n\\addtolength{\\textheight}{-\\headheight}\n\\addtolength{\\textheight}{-\\headsep}\n\\addtolength{\\textheight}{-\\footskip}\n\\addtolength{\\textheight}{-3cm}\n\\setlength{\\topmargin}{1.5cm}\n\\addtolength{\\topmargin}{-2.54cm}")
+
+;; from https://emacs.stackexchange.com/questions/30341/how-do-i-customize-the-process-that-gets-triggered-in-org-preview-latex-fragment/33172
+(setq org-preview-latex-process-alist
+      (quote
+       ((dvipng :programs
+		("lualatex" "dvipng")
+		:description "dvi > png"
+		:message "you need to install the programs: latex and dvipng."
+		:image-input-type "dvi"
+		:image-output-type "png"
+		:image-size-adjust (1.0 . 1.0)
+		:latex-compiler
+		("lualatex -output-format dvi -interaction nonstopmode -output-directory %o %f")
+		:image-converter
+		("dvipng -fg %F -bg %B -D %D -T tight -o %O %f"))
+
+	(dvisvgm :programs ("latex" "dvisvgm")
+		 :description "dvi > svg"
+		 :message
+		 "you need to install the programs: latex and dvisvgm."
+		 :use-xcolor t
+		 :image-input-type "xdv"
+		 :image-output-type "svg"
+		 :image-size-adjust (1.7 . 1.5)
+		 :latex-compiler
+		 ("xelatex -no-pdf -interaction nonstopmode -output-directory %o %f")
+		 :image-converter
+		 ("dvisvgm %f -n -b min -c %S -o %O"))
+
+	(imagemagick
+	 :programs ("latex" "convert")
+	 :description "pdf > png"
+	 :message "you need to install the programs: latex and imagemagick."
+	 :use-xcolor t
+	 :image-input-type "pdf"
+	 :image-output-type "png"
+	 :image-size-adjust (1.5 1.5)
+	 :latex-compiler
+	 ("xelatex -pdf -interaction nonstopmode -output-directory %o %f")
+	 :image-converter
+	 ("convert -density 180 -trim -antialias %f -quality 100 %O")))))
+
+(setq org-preview-latex-default-process 'imagemagick)
 
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
