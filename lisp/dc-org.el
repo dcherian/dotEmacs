@@ -677,7 +677,7 @@ Argument KEY is the bibtex key."
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
   (diminish 'org-indent-mode)
-  (setq line-spacing 4)
+  (setq ispell-parser 'tex)
   (setq completion-at-point-functions
 	'(org-completion-symbols
 	  ora-cap-filesystem
