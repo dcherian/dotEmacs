@@ -15,10 +15,18 @@
 (setq-default line-spacing 6)
 (setq x-underline-at-descent-line nil)
 
+;; modeline options
+(use-package smart-mode-line
+  :ensure t
+  :demand
+  :config
+  (setq sml/no-confirm-load-theme t
+	sml/theme 'respectful)
+  (sml/setup)
+  (smart-mode-line-enable))
+
 (use-package auto-dim-other-buffers
   :config
-  (set-face-attribute 'auto-dim-other-buffers-face nil
-		      :background "#eee8d5")
   ;;  prevents helm from getting screwed up
   (setq auto-dim-other-buffers-dim-on-switch-to-minibuffer nil)
 
@@ -103,15 +111,5 @@
 		      :background "#eee8d5"))
 
 (dc/theme-changes)
-
-;; modeline options
-(use-package smart-mode-line
-  :ensure t
-  :demand
-  :config
-  (setq sml/no-confirm-load-theme t
-	sml/theme 'respectful)
-  (sml/setup)
-  (smart-mode-line-enable))
 
 (provide 'dc-theme)
