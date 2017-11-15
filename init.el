@@ -349,7 +349,11 @@
 (use-package sdcv-mode
   :demand
   :bind (:map dc-bindings-map
-	      ("C-c C-d" . sdcv-search)))
+	      ("C-c C-d" . sdcv-search))
+  :config
+  (setq sdcv-hit-face 'font-lock-constant-face)
+  (setq sdcv-failed-face 'font-lock-warning-face)
+  (setq sdcv-heading-face 'font-lock-keyword-face))
 
 (use-package helm-projectile
   :ensure t
