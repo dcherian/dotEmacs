@@ -487,6 +487,9 @@
 (require 'dc-matlab)
 (require 'dc-company)
 (require 'ox-ipynb)
+
+(dc/theme-changes)
+
 ;; (require 'dc-ibuffer)
 
 ;; do my keybindings

@@ -627,6 +627,53 @@ Argument KEY is the bibtex key."
 
 (setq org-preview-latex-default-process 'imagemagick)
 
+
+(defun dc/org-theme ()
+  (interactive)
+  ;; org-faces
+  (set-face-attribute 'org-level-1 nil
+		      :inherit 'outline-1 :height 1.25)
+  (set-face-attribute 'org-level-2 nil
+		      :inherit 'outline-2 :height 1.2)
+  (set-face-attribute 'org-level-3 nil
+		      :inherit 'outline-3 :height 1.15)
+  (set-face-attribute 'org-link nil
+		      :inherit 'org-link
+		      :foreground nil) ; links are only underlined
+  ;; footnotes shouldn't be highlighted
+  (set-face-attribute 'org-footnote nil
+		      :foreground nil
+		      :underline nil
+		      :inherit '(font-lock-comment-face org-foreground))
+  (set-face-attribute 'org-checkbox nil
+		      :inherit '(font-lock-comment-face)
+		      :background nil
+		      :weight 'light
+		      :box nil)
+  (set-face-attribute 'org-todo nil
+		      :weight 'normal)
+  (set-face-attribute 'org-done nil
+		      :weight 'normal)
+  (set-face-attribute 'org-block nil
+		      :foreground nil
+		      :background nil)
+  (set-face-attribute 'org-target nil
+		      :foreground "#586e75"
+		      :background nil)
+  (set-face-attribute 'org-table nil
+		      :family "Ubuntu Mono"
+		      :background nil)
+  (set-face-attribute 'org-date nil
+		      :foreground nil
+		      :inherit 'org-link)
+  (set-face-attribute 'org-latex-and-related nil
+		      :foreground "#268bd2")
+  (set-face-attribute 'org-tag nil
+		      :height 0.7
+		      :inherit '(font-lock-comment-face org-foreground))
+  (set-face-attribute 'org-meta-line nil
+		      :height 0.85))
+
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
   (diminish 'org-indent-mode)
