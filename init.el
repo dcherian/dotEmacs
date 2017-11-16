@@ -234,9 +234,10 @@
 
 (use-package avy
   :ensure t
-  :bind (("C-'" . avy-goto-char-timer)
-	 :map isearch-mode-map
-	 ("C-'" . avy-isearch)))
+  :bind (:map dc-bindings-map
+	      ("C-'" . avy-goto-char-timer)
+	      :map isearch-mode-map
+	      ("C-'" . avy-isearch)))
 
 (use-package expand-region
   :ensure t
