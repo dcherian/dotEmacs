@@ -121,6 +121,8 @@
 (setq tramp-backup-directory-alist backup-directory-alist)
 (setq tramp-auto-save-directory autosave-dir)
 
+(setq-default bidi-display-reordering nil)
+
 (use-package no-littering
   :ensure t
   :config
