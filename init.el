@@ -145,6 +145,8 @@
 (use-package swiper
   :ensure t
   :config
+  (setq ivy-re-builders-alist
+	'((t . ivy--regex-ignore-order)))
   (bind-key "s-s" #'swiper-all dc-bindings-map))
 
 (setq inhibit-startup-message t
@@ -232,6 +234,12 @@
   :config
   (beginend-global-mode))
 
+(use-package auto-highlight-symbol
+  :ensure
+  :config
+  (setq ahs-idle-interval 0.25)
+  (global-auto-highlight-symbol-mode t))
+
 (use-package avy
   :ensure
   :bind (:map dc-bindings-map
@@ -305,6 +313,7 @@
 	      ("M-0 s" . yas-insert-snippet)
 	      ("M-0 v" . yas-visit-snippet-file))
   :config
+  (add-to-list 'yas-snippet-dirs "/home/deepak/.emacs.d/snippets")
   (yas-global-mode))
 
 (use-package crux
@@ -332,7 +341,7 @@
   (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name)))
 	projectile-sort-order 'access-time)
 
-  (projectile-global-mode))
+  (projectile-mode))
 
 (use-package wc-mode
   :config
