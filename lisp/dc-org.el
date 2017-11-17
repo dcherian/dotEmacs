@@ -320,12 +320,13 @@ applying latex prettifycations in org mode buffers."
 
 (use-package org-ref
   :ensure t
-  :demand
+  :after org
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-helm-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
   :config
+  (require 'org-ref-citeproc)
 
   (setq org-ref-notes-directory "~/Papers/notes/"
 	org-ref-bibliography-notes "~/org/papers.org"
@@ -394,7 +395,7 @@ Argument KEY is the bibtex key."
 
 (use-package org-edit-latex
   :ensure t
-  :config
+  :after org
   (org-edit-latex-mode))
 
 (use-package ox-gfm

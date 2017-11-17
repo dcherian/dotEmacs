@@ -77,6 +77,7 @@
 
 (use-package helm-swoop
   :ensure t
+  :after helm
   :bind (:map dc-bindings-map
 	      ("C-s" . helm-swoop)
 	      ("M-I" . helm-swoop-back-to-last-point)
@@ -92,8 +93,6 @@
 	      ;; When doing isearch, hand the word over to helm-swoop
 	      ("M-i" . helm-swoop-from-isearch))
   :config
-  (require 'helm)
-
   ;; Save buffer when helm-multi-swoop-edit complete
   (setq helm-multi-swoop-edit-save t
 	helm-swoop-use-fuzzy-match t
@@ -129,7 +128,6 @@
 
 (use-package helm-describe-modes
   :ensure t
-  :demand
   :config
   (global-set-key [remap describe-mode] #'helm-describe-modes))
 
@@ -145,13 +143,14 @@
 
 (use-package helm-org-rifle
   :ensure t
+  :after helm
   :bind (:map dc-bindings-map
 	      ("C-x C-r" . helm-org-rifle)
 	      ("C-x C-o" . helm-org-rifle-org-directory)))
 
 (use-package helm-dash
   :ensure t
-  :demand
+  :after helm
   :bind (:map dc-bindings-map
 	      ("C-," . helm-dash-at-point))
   :config

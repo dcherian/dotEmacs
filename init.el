@@ -1,23 +1,34 @@
 (package-initialize)
 (setq package-enable-at-startup t)
 
+(setq use-package-enable-imenu-support t)
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)                ;; if you use :diminish
+(require 'bind-key)                ;; if you use any :bind variant
+
 (setq load-prefer-newer t)
 (setq use-package-verbose t)
-(setq use-package-always-defer t)
-;; (setq use-package-always-ensure t)
+;; (setq use-package-always-defer t)
+;; (setq use-package-always-ensure t) ;; forces package refresh!
 (setq use-package-minimum-reported-time 0.05)
-(require 'use-package)
+
 (require 'auto-compile)
 (auto-compile-on-load-mode)
 (auto-compile-on-save-mode)
 
-;; (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0 t)
-
-;; from https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 (set-variable 'package-archives
 	      `(("gnu" . "https://elpa.gnu.org/packages/")
 		("melpa" . "https://melpa.org/packages/")
 		("org" . "http://orgmode.org/elpa/")))
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0 t)
+
+;; from https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 
 (setq tls-checktrust t)
 
@@ -67,18 +78,10 @@
 (setq shell-command-switch "-ic")
 
 ;; mac-specific
-(when (memq window-system '(mac ns))
-  (setq ns-command-modifier 'meta)
-  ;; (mac-auto-operator-composition-mode)
-  )
-
-(eval-when-compile
-  (require 'use-package))
-(require 'diminish)                ;; if you use :diminish
-(require 'bind-key)                ;; if you use any :bind variant
-
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+;; (when (memq window-system '(mac ns))
+;;   ;; (setq ns-command-modifier 'meta)
+;;   ;; (mac-auto-operator-composition-mode)
+;;   )
 
 (defvar dc-bindings-map (make-keymap) "A keymap for custom bindings.")
 
@@ -94,7 +97,6 @@
 
 (use-package transpose-frame
   :ensure t
-  :demand
   :bind (:map dc/toggle-map
 	      ("f" . transpose-frame)))
 
@@ -173,6 +175,7 @@
 
 (use-package smooth-scrolling
   :ensure
+  :disabled
   :config
   (smooth-scrolling-mode t))
 
@@ -223,11 +226,6 @@
 
 ;; (define-key fortran-mode-map (kbd "C-c C-c") 'compile)
 
-(use-package paredit
-  :disabled t
-  :config
-  (paredit-mode))
-
 (use-package beginend
   :ensure
   :diminish beginend-global-mode
@@ -235,21 +233,20 @@
   (beginend-global-mode))
 
 (use-package avy
-  :ensure t
+  :ensure
   :bind (:map dc-bindings-map
 	      ("C-'" . avy-goto-char-timer)
 	      :map isearch-mode-map
 	      ("C-'" . avy-isearch)))
 
 (use-package expand-region
-  :ensure t
+  :ensure
   :bind (:map dc-bindings-map
 	      ("M-2" . er/expand-region)
 	      ("M-1" . er/contract-region)))
 
 (use-package multiple-cursors
-  :ensure t
-  :demand
+  :ensure
   :bind (:map dc-bindings-map
 	      ("C-c m c" . mc/edit-lines)
 	      ;; Remember `er/expand-region' is bound to M-2!
@@ -259,7 +256,7 @@
 	      ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
 (use-package adaptive-wrap
-  :ensure t
+  :ensure
   :config
   (adaptive-wrap-prefix-mode 1))
 
@@ -291,8 +288,8 @@
 		      :background "#d33682"))
 
 (use-package undo-tree
-  :demand t
   :ensure t
+  :demand t
   :diminish undo-tree-mode
   :bind (:map dc-bindings-map
 	      ("M--" . undo-tree-undo)
@@ -323,13 +320,12 @@
 
 (use-package comment-dwim-2
   :ensure t
-  :demand
   :bind (:map dc-bindings-map
 	      ("C-;" . comment-dwim-2)))
 
 (use-package projectile
   :ensure t
-  :demand
+  :demand t
   :diminish projectile-mode
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
@@ -339,18 +335,15 @@
   (projectile-global-mode))
 
 (use-package wc-mode
-  :demand
   :config
   (setq wc-modeline-format "[%tw/%tc]"))
 
 (use-package ace-window
-  :demand
   :ensure t
   :bind (:map dc-bindings-map
               ("C-x o" . ace-window)))
 
 (use-package sdcv-mode
-  :demand
   :bind (:map dc-bindings-map
 	      ("C-c C-d" . sdcv-search))
   :config
@@ -360,7 +353,6 @@
 
 (use-package helm-projectile
   :ensure t
-  :demand
   :after projectile
   :bind (:map dc-bindings-map
 	      ("C-c C-f" . helm-projectile-find-file-dwim)
@@ -393,7 +385,6 @@
 
 (use-package visual-fill-column
   :ensure t
-  :demand t
   :bind (:map dc/toggle-map
 	      ("v" . visual-fill-column-mode))
   :init
@@ -404,7 +395,6 @@
 
 (use-package magit
   :ensure t
-  :demand
   :diminish (magit-auto-revert-mode magit-wip-after-save-mode magit-wip-after-apply-mode magit-wip-after-change)
   :bind (:map dc-bindings-map
 	      ("C-x g" . magit-status)
@@ -461,7 +451,6 @@
 
 (use-package which-key
   :ensure t
-  :demand
   :diminish which-key-mode
   :init
   (setq which-key-sort-order 'which-key-local-then-key-order)
@@ -517,23 +506,26 @@
 
 ;; Garbage collector - decrease threshold to 15 MB
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold (* 15 1024 1024))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(auto-dim-other-buffers-mode nil)
+ '(debug-on-error nil)
+ '(debug-on-quit nil)
  '(electric-indent-mode t)
  '(global-aggressive-indent-mode t)
+ '(global-undo-tree-mode t)
+ '(helm-flx-mode t)
+ '(helm-mode t)
+ '(ivy-mode t)
  '(package-selected-packages
    (quote
-    (company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext company helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+    (auto-highlight-symbol ace-window company-statistics circadian cdlatex counsel outshine yaml-mode auto-dim-other-buffers matlab-mode-elpa org-plus-contrib ox-latex beginend smooth-scrolling helm-dash dumb-jump org-sticky-header spaceline-all-the-icons spaceline all-the-icons major-mode-icons pydoc kaomoji elpy helm-pydoc origami transpose-frame w3 org-edit-latex smartparens rainbow-mode markdown-mode company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext company helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
  '(safe-local-variable-values
    (quote
     ((org-publish-use-timestamps-flag)
@@ -548,3 +540,9 @@
      (org-image-actual-width . 600)
      (org-latex-remove-logfiles))))
  '(yas-global-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

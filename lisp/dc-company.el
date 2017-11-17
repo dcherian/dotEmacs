@@ -37,19 +37,26 @@
 
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
-  (add-hook 'after-init-hook 'global-company-mode)
+  (add-hook 'after-init-hook 'global-company-mode))
 
-  (use-package helm-company
-    :disabled t
-    :config
-    (define-key company-mode-map (kbd "C-'") 'helm-company)
-    (define-key company-active-map (kbd "C-'") 'helm-company)))
+(use-package helm-company
+  :disabled t
+  :config
+  (define-key company-mode-map (kbd "C-'") 'helm-company)
+  (define-key company-active-map (kbd "C-'") 'helm-company))
 
+(use-package company-math
+  :after company
+  :config
+  (add-to-list 'company-backends 'company-math-symbols-latex)
+  ;; (add-to-list 'company-backends 'company-math-symbols-unicode)
+  (setq company-math-allow-latex-symbols-in-faces t)
+  ;; (add-to-list 'company-backends 'company-math-symbols-unicode)
+  )
 
 ;; rank completion candidates by statistics of use
 (use-package company-statistics
   :ensure t
-  :demand
   :after company
   :config
   (company-statistics-mode))

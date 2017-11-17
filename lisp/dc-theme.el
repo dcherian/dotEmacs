@@ -18,7 +18,6 @@
 ;; modeline options
 (use-package smart-mode-line
   :ensure t
-  :demand
   :config
   (setq sml/no-confirm-load-theme t
 	sml/theme 'respectful)
@@ -26,6 +25,7 @@
   (smart-mode-line-enable))
 
 (use-package auto-dim-other-buffers
+  :disabled
   :config
   ;;  prevents helm from getting screwed up
   (setq auto-dim-other-buffers-dim-on-switch-to-minibuffer nil)
