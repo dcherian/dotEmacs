@@ -492,6 +492,7 @@
 (require 'dc-matlab)
 (require 'dc-company)
 (require 'ox-ipynb)
+(require 'dc-projects)
 
 (dc/theme-changes)
 
