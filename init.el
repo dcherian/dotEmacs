@@ -1,3 +1,4 @@
+;; time emacs -l init.elc -batch --eval '(message "Hello, world!")'
 (package-initialize)
 (setq package-enable-at-startup t)
 
