@@ -396,7 +396,8 @@ Argument KEY is the bibtex key."
 (use-package org-edit-latex
   :ensure t
   :after org
-  (org-edit-latex-mode))
+  :config
+  (org-edit-latex-mode t))
 
 (use-package ox-gfm
   :defer
