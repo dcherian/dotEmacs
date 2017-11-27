@@ -497,6 +497,13 @@
 
 (dc/theme-changes)
 
+;; easy switching to todo
+(defun dc/switch-to-todo ()
+  "Easy switching to todo.org file"
+  (interactive)
+  (switch-to-buffer "todo.org"))
+(bind-key "C-x j" #'dc/switch-to-todo dc-bindings-map)
+
 ;; (require 'dc-ibuffer)
 
 ;; do my keybindings
