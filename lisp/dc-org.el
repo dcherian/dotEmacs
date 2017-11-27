@@ -678,6 +678,7 @@ Argument KEY is the bibtex key."
 
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
+  (visual-line-mode)
   (diminish 'org-indent-mode)
   (setq ispell-parser 'tex)
   (undo-tree-mode)
