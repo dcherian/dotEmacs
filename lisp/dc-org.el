@@ -713,7 +713,13 @@ line are justified."
 		      :height 0.7
 		      :inherit '(font-lock-comment-face org-foreground))
   (set-face-attribute 'org-meta-line nil
-		      :height 0.85))
+		      :height 0.85)
+  (set-face-attribute 'org-ref-cite-face nil
+		      :inherit 'org-link
+		      :foreground nil)
+  (set-face-attribute 'org-ref-ref-face nil
+		      :inherit 'org-ref-cite-face
+		      :foreground nil))
 
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
