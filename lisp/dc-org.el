@@ -16,30 +16,22 @@
   (define-prefix-command 'dc/toggle-map)
   (define-key ctl-x-map "t" 'dc/toggle-map))
 
-(define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
-(define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
-(define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
-(define-key org-mode-map (kbd "C-c a") #'org-babel-execute-to-point)
-(define-key org-mode-map (kbd "s-h") #'org-babel-split-src-block)
-(define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
-
 (use-package org
   :demand
-  :bind ((:map dc-bindings-map
-	       ("C-c c" . org-capture)
-	       ("C-c a" . org-agenda)
-	       ("C-c b" . org-iswitchb)
-	       ("s-j" . org-babel-next-src-block)
-	       ("s-k" . org-babel-previous-src-block)
-	       ("s-l" . org-edit-src-code)
-	       ("C-c l" . org-lint)
-	       ;; :map org-mode-map
-	       ;; ("s-j" . org-babel-next-src-block)
-	       ;; ("s-k" . org-babel-previous-src-block)
-	       ;; ("s-l" . org-edit-src-code)
-	       ;; :map org-src-mode-map
-	       ;; ("s-l" . org-edit-src-exit)
-	       ))
+  :bind (:map dc-bindings-map
+	      ("C-c c" . org-capture)
+	      ("C-c b" . org-iswitchb)
+	      ("C-c l" . org-lint)
+	      :map org-mode-map
+	      ("C-c C-x l" . org-preview-latex-fragment)
+	      ("C-c C-x C-l" . org-preview-latex-fragment)
+	      ("C-c a" . org-babel-execute-to-point)
+	      ("s-j" . org-babel-next-src-block)
+	      ("s-k" . org-babel-previous-src-block)
+	      ("s-l" . org-edit-src-code)
+	      ("s-h" . org-babel-split-src-block)
+	      :map org-src-mode-map
+	      ("s-l" . org-edit-src-exit))
   :config
   (setq org-directory "~/org")
   (require 'ox-ipynb)
