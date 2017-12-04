@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ipdb
+# key: ipdb
+# --
+import IPython; IPython.core.debugger.set_trace()
