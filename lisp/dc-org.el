@@ -23,8 +23,8 @@
 	      ("C-c b" . org-iswitchb)
 	      ("C-c l" . org-lint)
 	      :map org-mode-map
-	      ("C-c C-x l" . org-preview-latex-fragment)
-	      ("C-c C-x C-l" . org-preview-latex-fragment)
+	      ("C-c C-x l" . org-toggle-latex-fragment)
+	      ("C-c C-x C-l" . org-toggle-latex-fragment)
 	      ("C-c a" . org-babel-execute-to-point)
 	      ("s-j" . org-babel-next-src-block)
 	      ("s-k" . org-babel-previous-src-block)
