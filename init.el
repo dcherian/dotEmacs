@@ -76,7 +76,7 @@
   (exec-path-from-shell-initialize))
 
 (setq shell-file-name "bash")
-(setq shell-command-switch "-ic")
+(setq shell-command-switch "-lc")
 
 ;; mac-specific
 ;; (when (memq window-system '(mac ns))
