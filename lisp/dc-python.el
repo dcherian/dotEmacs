@@ -9,8 +9,7 @@
 (use-package company-jedi
   :ensure t
   :config
-  (setq jedi:complete-on-dot t)
-  (add-hook 'python-mode-hook 'dc/use-company-jedi))
+  (setq jedi:complete-on-dot t))
 
 ;; ob-ipython and org-mode stuff
 (require 'ob-ipython)
@@ -22,11 +21,10 @@
 	      ("C-c t" . dc-switch-to-python-shell)
 	      ("C-<tab>" . org-hide-block-toggle-maybe))
   :config
-  ;; (add-to-list 'company-backends 'company-ob-ipython)
-  )
+  (add-to-list 'company-backends 'company-ob-ipython))
 
 (setq org-babel-default-header-args:ipython
-      '(;;(:results . "raw drawer")
+      '((:results . "raw drawer")
 	;;(:session . "none")
 	(:exports . "results")
 	(:cache .   "no")
