@@ -22,6 +22,7 @@
 (set-variable 'package-archives
 	      `(("gnu" . "https://elpa.gnu.org/packages/")
 		("melpa" . "https://melpa.org/packages/")
+		("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
 		("org" . "http://orgmode.org/elpa/")))
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -228,6 +229,14 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 
 ;; (define-key fortran-mode-map (kbd "C-c C-c") 'compile)
+
+(use-package helpful
+  :ensure
+  :bind (:map dc-bindings-map
+              ("C-h f" . helpful-callable)
+              ("C-h v" . helpful-variable)
+              ("C-h k" . helpful-key)
+              ("C-c C-." . helpful-at-point)))
 
 (use-package beginend
   :ensure
