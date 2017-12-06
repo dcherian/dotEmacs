@@ -160,14 +160,14 @@
     (interactive)
     (setq-local helm-dash-docsets '("Python_3"
 				    "NumPy" "SciPy" "Matplotlib"
-				    "Pandas" "xray-stable" "dask-stable")))
+				    "Pandas" "xarray" "Seaborn")))
 
   (defun org-doc ()
     (interactive)
     (setq-local helm-dash-docsets '("Org_Mode" "Python_3" "HTML"
 				    "NumPy" "SciPy" "Matplotlib"
-				    "CSS" "LaTeX" "Pandas" "xray-stable"
-				    "dask-stable")))
+				    "CSS" "LaTeX" "Pandas" "xarray"
+				    "Seaborn")))
 
   (add-hook 'python-shell-first-prompt-hook 'python-doc)
   (add-hook 'python-mode-hook 'python-doc)
