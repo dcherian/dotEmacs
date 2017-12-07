@@ -24,11 +24,11 @@
   (add-to-list 'company-backends 'company-ob-ipython))
 
 (setq org-babel-default-header-args:ipython
-      '((:results . "raw drawer")
+      '((:results . "raw")
 	;;(:session . "none")
 	(:exports . "results")
 	(:cache .   "no")
-	(:noweb . "no")
+	(:noweb . "yes")
 	(:hlines . "no")
 	(:tangle . "yes")
 	(:eval . "never-export")))
