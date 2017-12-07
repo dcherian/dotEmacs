@@ -177,12 +177,6 @@
 ;;       scroll-up-aggressively 0.1
 ;;       scroll-down-aggressively 0.1)
 
-(use-package smooth-scrolling
-  :ensure
-  :disabled
-  :config
-  (smooth-scrolling-mode t))
-
 ;; enable built-in modes
 (desktop-save-mode 1)
 (delete-selection-mode 1)
