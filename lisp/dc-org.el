@@ -127,8 +127,6 @@ _h_tml    ali_g_n    _A_SCII:
   (require 'ox-extra)
   (ox-extras-activate '(latex-header-blocks ignore-headlines))
 
-
-
   (require 'org-inlinetask)
   (defun scimax/org-return (&optional ignore)
     "Add new list item, heading or table row with RET.
@@ -395,17 +393,9 @@ Argument KEY is the bibtex key."
   :defer
   :ensure t)
 
-;; my customized preamble
 (use-package ox-latex
   :defer
   :config
-  ;; org-latex-pdf-process is for org > 8.0
-  ;; remove blank lines - so that I can use format statement in
-  ;; #+LATEX_HEADER. set jobname so that it opens the pdf. %b command
-  ;; found in ox-latex.el
-  ;; (setq org-latex-pdf-process
-  ;;      '("export BSTINPUTS=/usr/local/texlive/2016/texmf-dist/bibtex/bst/elsarticle/; tail -n +3 %f | sed '/./,$!d' > %f.nolines; mv %f.nolines %f; latexmk %f && (exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf)"))
-
   (defun dc/org-latex-word-count ()
     (interactive)
     (org-latex-export-to-latex)
@@ -435,138 +425,10 @@ Argument KEY is the bibtex key."
 
   (setq org-latex-pdf-process
 	'("source ~/.bashrc; sed '/./,$!d' %f > %f.nolines; mv %f.nolines %f; latexmk %f; exiftool -overwrite_original -Producer=`git rev-parse HEAD` %b.pdf"))
+  (require 'dc-ox-latex-classes))
 
-  (add-to-list 'org-latex-classes
-	       '("dcbeamer"
-		 "[NO-DEFAULT-PACKAGES]"
-		 ("\\section{%s}" . "\\section*{%s}")
-		 ("\\subsection{%s}" . "\\subsection*{%s}")
-		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-
-  (add-to-list 'org-latex-classes
-	       '("dcnotebook"
-		 "%&~/tools/latex/preamble-memoir
-[NO-DEFAULT-PACKAGES]
-[NO-PACKAGES]
-[EXTRA]
-\\usepackage{listings}
-\\usepackage{fontspec}
-\\usepackage{unicode-math}
-\\setromanfont[Ligatures=TeX]{TeX Gyre Pagella}
-\\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Pagella Math}
-\\setmonofont{Inconsolata}
-\\setsecnumdepth{subsubsection}
-\\counterwithout{section}{chapter}
-\\counterwithout{figure}{chapter}
-\\counterwithout{table}{chapter}"
-		   ("\\section{%s}" . "\\section*{%s}")
-		   ("\\subsection{%s}" . "\\subsection*{%s}")
-		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (add-to-list 'org-latex-classes
-		 '("dcarticle"
-		   "%&~/tools/latex/preamble-memoir
-\\usepackage{fontspec}
-\\usepackage{unicode-math}
-\\setromanfont[Ligatures=TeX]{TeX Gyre Pagella}
-\\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Pagella Math}
-\\setmonofont{Inconsolata}
-[NO-DEFAULT-PACKAGES]
-[NO-PACKAGES]
-[EXTRA]
-\\setsecnumdepth{subsubsection}
-\\counterwithout{section}{chapter}
-\\counterwithout{figure}{chapter}
-\\counterwithout{table}{chapter}
-"
-		   ("\\section{%s}" . "\\section*{%s}")
-		   ("\\subsection{%s}" . "\\subsection*{%s}")
-		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (add-to-list 'org-latex-classes
-		 '("dcthesis"
-		   "[NO-DEFAULT-PACKAGES]
-[NO-PACKAGES]"
-		   ("\\chapter{%s}" . "\\chapter*{%s}")
-		   ("\\section{%s}" . "\\section*{%s}")
-		   ("\\subsection{%s}" . "\\subsection*{%s}")
-		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (add-to-list 'org-latex-classes
-		 '("ametsoc"
-		   "[NO-DEFAULT-PACKAGES]
-[NO-PACKAGES]
-\\documentclass{ametsoc}
-\\usepackage[english]{babel}
-\\usepackage{fixltx2e}
-\\usepackage[mathletters]{ucs}
-\\usepackage[utf8x]{inputenx}
-\\usepackage[T1]{fontenc}
-\\usepackage{array}
-\\usepackage{booktabs}
-\\usepackage{multirow}
-\\usepackage{longtable}
-\\usepackage{subfig}
-\\usepackage{float}
-\\usepackage[normalem]{ulem}
-\\usepackage{etoolbox}
-\\usepackage{parskip}
-\\usepackage{paralist}
-\\usepackage{mathtools}
-\\usepackage{siunitx}
-\\usepackage{xfrac}
-\\usepackage{bigints}
-\\usepackage[protrusion=true]{microtype}
-\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = --, per-mode=reciprocal, retain-unity-mantissa=false }
-\\bibpunct{(}{)}{;}{a}{}{,}
-[EXTRA]"
-		   ("\\section{%s}" . "\\section*{%s}")
-		   ("\\subsection{%s}" . "\\subsection*{%s}")
-		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (add-to-list 'org-latex-classes
-		 '("JMR-review"
-		   "[NO-DEFAULT-PACKAGES]
-[NO-PACKAGES]
-\\documentclass[12pt,titlepage]{article}
-\\usepackage{endfloat}
-\\usepackage{rotating}
-\\usepackage{fixltx2e}
-\\usepackage{array}
-\\usepackage{booktabs}
-\\usepackage{multirow}
-\\usepackage{longtable}
-\\usepackage{subfig}
-\\usepackage{float}
-\\usepackage[normalem]{ulem}
-\\usepackage{etoolbox}
-\\usepackage{parskip}
-\\usepackage{paralist}
-\\usepackage{mathtools}
-\\usepackage{amssymb}
-\\usepackage{siunitx}
-\\usepackage{xfrac}
-\\usepackage{bigints}
-\\usepackage[protrusion=true]{microtype}
-\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = --, per-mode=reciprocal, retain-unity-mantissa=false }\
-\\usepackage{JMR}
-[EXTRA]"
-		   ("\\section{%s}" . "\\section*{%s}")
-		   ("\\subsection{%s}" . "\\subsection*{%s}")
-		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-
-    (setq org-format-latex-header
-"%&~/tools/latex/preamble-memoir
+(setq org-format-latex-header
+      "%&~/tools/latex/preamble-memoir
 \\usepackage{fontspec}
 \\usepackage{unicode-math}
 \\setromanfont[Ligatures=TeX]{TeX Gyre Pagella}
@@ -667,7 +529,6 @@ line are justified."
 ;; That is it. If you get tired of the advice, remove it like this:
 ;; (advice-remove 'org--format-latex-make-overlay 'org-justify-fragment-overlay)
 ;; (advice-remove 'org--format-latex-make-overlay 'org-latex-fragment-tooltip)
-
 
 (defun dc/org-theme ()
   (interactive)
