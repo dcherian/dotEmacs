@@ -153,8 +153,11 @@ _h_tml    ali_g_n    _A_SCII:
 
        ;; checkboxes too
        ((org-at-item-checkbox-p)
-	(if (not (looking-back "^- \\[ \\] " (- (point) (line-beginning-position))))
+	(if (org-element-property :contents-begin
+				  (org-element-context))
+	    ;; we have content so add a new checkbox
 	    (org-insert-todo-heading nil)
+	  ;; no content so delete it
 	  (setf (buffer-substring (line-beginning-position) (point)) "")
 	  (org-return)))
 
@@ -162,8 +165,9 @@ _h_tml    ali_g_n    _A_SCII:
        ;; at the beginning of a line to avoid a loop where a new entry gets
        ;; created with only one blank line.
        ((org-in-item-p)
-	(if (save-excursion (beginning-of-line) (org-element-property :contents-begin (org-element-context)))
-	    (org-insert-heading)
+	(if (save-excursion
+	      (beginning-of-line) (org-element-property :contents-begin (org-element-context)))
+	    (org-insert-item)
 	  (beginning-of-line)
 	  (delete-region (line-beginning-position) (line-end-position))
 	  (org-return)))
@@ -171,9 +175,12 @@ _h_tml    ali_g_n    _A_SCII:
        ;; org-heading
        ((org-at-heading-p)
 	(if (not (string= "" (org-element-property :title (org-element-context))))
-	    (progn (org-end-of-meta-data)
-		   (org-insert-heading-respect-content)
-		   (outline-show-entry))
+	    (progn
+	      ;; Go to end of subtree suggested by Pablo GG on Disqus post.
+	      (org-end-of-subtree)
+	      (org-insert-heading-respect-content)
+	      (outline-show-entry))
+	  ;; The heading was empty, so we delete it
 	  (beginning-of-line)
 	  (setf (buffer-substring
 		 (line-beginning-position) (line-end-position)) "")))
@@ -196,8 +203,7 @@ _h_tml    ali_g_n    _A_SCII:
        (t
 	(org-return)))))
 
-  (define-key org-mode-map (kbd "RET")
-    'scimax/org-return)
+  (define-key org-mode-map (kbd "RET") 'scimax/org-return)
 
   (defun ora-cap-filesystem ()
     (let (path)
