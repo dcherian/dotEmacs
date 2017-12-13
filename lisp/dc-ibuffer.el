@@ -1,5 +1,4 @@
 (use-package ibuffer
-  :bind (("C-x C-b" . ibuffer))
   :config
   (setq ibuffer-saved-filter-groups
 	(quote (("default"
@@ -46,3 +45,5 @@
 
   ;; Don't show filter groups if there are no buffers in that group
   (setq ibuffer-show-empty-filter-groups nil))
+
+(provide 'dc-ibuffer)

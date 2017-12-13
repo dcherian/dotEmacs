@@ -489,6 +489,7 @@
 (require 'dc-python)
 (require 'dc-matlab)
 (require 'dc-company)
+(require 'dc-ibuffer)
 (require 'ox-ipynb)
 (require 'dc-projects)
 
