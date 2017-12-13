@@ -1,3 +1,7 @@
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+
 (setq custom-safe-themes t)
 (setq solarized-use-less-bold t
       solarized-use-more-italic nil
@@ -56,6 +60,10 @@
   (set-face-attribute 'tooltip nil
 		      :inherit 'default
 		      :foreground "#586e75"
-		      :background "#eee8d5"))
+		      :background "#eee8d5")
+
+  (set-face-attribute 'vhl/default-face nil
+		      :foreground "#fdf6e3"
+		      :background "#d33682"))
 
 (provide 'dc-theme)

@@ -104,10 +104,6 @@
 
 (require 'dc-theme)
 
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
-
 ;; from https://ogbe.net/emacsconfig.html
 (defvar backup-dir (expand-file-name "~/.emacs.d/backups/"))
 (defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
@@ -294,10 +290,7 @@
   :ensure t
   :diminish volatile-highlights-mode
   :config
-  (volatile-highlights-mode t)
-  (set-face-attribute 'vhl/default-face nil
-		      :foreground "#fdf6e3"
-		      :background "#d33682"))
+  (volatile-highlights-mode t))
 
 (use-package undo-tree
   :ensure t
