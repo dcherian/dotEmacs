@@ -77,7 +77,7 @@
 
 (use-package helm-swoop
   :ensure t
-  :after helm
+  :after (helm)
   :bind (:map dc-bindings-map
 	      ("C-s" . helm-swoop)
 	      ("M-I" . helm-swoop-back-to-last-point)
@@ -143,14 +143,14 @@
 
 (use-package helm-org-rifle
   :ensure t
-  :after helm
+  :after (helm)
   :bind (:map dc-bindings-map
 	      ("C-x C-r" . helm-org-rifle)
 	      ("C-x C-o" . helm-org-rifle-org-directory)))
 
 (use-package helm-dash
   :ensure t
-  :after helm
+  :after (helm)
   :bind (:map dc-bindings-map
 	      ("C-," . helm-dash-at-point))
   :config

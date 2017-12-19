@@ -316,7 +316,7 @@ applying latex prettifycations in org mode buffers."
 
 (use-package org-ref
   :ensure t
-  :after org
+  :after (org)
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-helm-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
@@ -375,7 +375,7 @@ Argument KEY is the bibtex key."
 
 (use-package helm-bibtex
   :ensure t
-  :after org-ref
+  :after (org-ref)
   :bind (:map dc-bindings-map
 	      ("C-c h b" . helm-bibtex))
   :config
@@ -391,7 +391,7 @@ Argument KEY is the bibtex key."
 
 (use-package org-edit-latex
   :ensure t
-  :after org
+  :after (org)
   :config
   (org-edit-latex-mode t))
 

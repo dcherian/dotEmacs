@@ -46,7 +46,7 @@
   (define-key company-active-map (kbd "C-'") 'helm-company))
 
 (use-package company-math
-  :after company
+  :after (company)
   :config
   (add-to-list 'company-backends 'company-math-symbols-latex)
   ;; (add-to-list 'company-backends 'company-math-symbols-unicode)
@@ -57,7 +57,7 @@
 ;; rank completion candidates by statistics of use
 (use-package company-statistics
   :ensure t
-  :after company
+  :after (company)
   :config
   (company-statistics-mode))
 
