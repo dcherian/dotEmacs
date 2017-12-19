@@ -160,7 +160,8 @@
     (interactive)
     (setq-local helm-dash-docsets '("Python_3"
 				    "NumPy" "SciPy" "Matplotlib"
-				    "Pandas" "xarray" "Seaborn")))
+				    "Pandas" "xarray" "Seaborn"
+				    "pytest")))
 
   (defun org-doc ()
     (interactive)
