@@ -237,7 +237,7 @@
 (use-package auto-highlight-symbol
   :ensure
   :config
-  (setq ahs-idle-interval 0.25)
+  (setq ahs-idle-interval 0.4)
   (global-auto-highlight-symbol-mode t))
 
 (use-package avy
