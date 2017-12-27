@@ -174,4 +174,9 @@
   (add-hook 'python-mode-hook 'python-doc)
   (add-hook 'org-mode-hook 'org-doc))
 
+(use-package imenu-anywhere
+  :ensure t
+  :bind (:map dc-bindings-map
+	      ("C-M-s" . helm-imenu-anywhere)))
+
 (provide 'dc-helm)
