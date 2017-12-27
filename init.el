@@ -315,14 +315,21 @@
 
 (use-package crux
   :ensure t
+  :demand
   :bind (:map dc-bindings-map
 	      ("C-a" . crux-move-beginning-of-line)
 	      ("C-c s" . crux-transpose-windows)
-	      ("C-c d" . crux-delete-file-and-buffer)
+	      ("C-c d" . crux-duplicate-current-line-or-region)
+	      ("C-c D" . crux-delete-file-and-buffer)
 	      ("C-c r" . crux-rename-file-and-buffer)
+	      ("C-c I" . crux-find-user-init-file)
 	      ("C-S-RET" . crux-smart-open-line-above)
 	      ("S-RET" . crux-smart-open-line)
-	      ("C-^" . crux-top-join-lines)))
+	      ("C-^" . crux-top-join-lines)
+	      ("C-x C-i" . crux-ispell-word-then-abbrev))
+  :config
+  (setq save-abbrevs 'silently)
+  (setq-default abbrev-mode t))
 
 (use-package comment-dwim-2
   :ensure t
