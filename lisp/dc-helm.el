@@ -44,7 +44,7 @@
 	 ("C-h a" . helm-apropos)
 	 ("C-h t" . helm-world-time)
 	 ("M-9" . helm-semantic-or-imenu)
-	 ("C-h C-i" . helm-imenu-in-all-buffers))
+	 ("C-M-s" . helm-imenu-in-all-buffers))
   :config
   (helm-mode 1)
   (helm-autoresize-mode nil)
@@ -173,10 +173,5 @@
   (add-hook 'python-shell-first-prompt-hook 'python-doc)
   (add-hook 'python-mode-hook 'python-doc)
   (add-hook 'org-mode-hook 'org-doc))
-
-(use-package imenu-anywhere
-  :ensure t
-  :bind (:map dc-bindings-map
-	      ("C-M-s" . helm-imenu-anywhere)))
 
 (provide 'dc-helm)
