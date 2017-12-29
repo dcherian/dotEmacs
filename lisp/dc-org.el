@@ -30,11 +30,13 @@
 	      ("s-k" . org-babel-previous-src-block)
 	      ("s-l" . org-edit-src-code)
 	      ("s-h" . org-babel-split-src-block)
+	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map org-src-mode-map
 	      ("s-l" . org-edit-src-exit))
   :config
   (setq org-directory "~/org")
   (require 'ox-ipynb)
+  (org-babel-lob-ingest (expand-file-name "~/org/library-of-babel.org"))
 
   ;;use org mode for eml files (useful for thunderbird plugin)
   (add-to-list 'auto-mode-alist '("\\.eml\\'" . org-mode))
@@ -266,6 +268,21 @@ With a prefix BELOW move point to lower block."
 	(goto-char (point-min))
 	(while (and (org-babel-next-src-block) (< (point) p))
 	  (org-babel-execute-src-block)))))
+
+  (defun dc/org-babel-execute-named-block ()
+    (interactive)
+    (setq name (completing-read "Code Block: "
+				(append org-babel-library-of-babel
+					(org-babel-src-block-names))))
+    (setq src (org-babel-find-named-block name))
+    (if src
+	(save-excursion
+	  (goto-char src)
+	  (org-babel-execute-src-block-maybe))
+      (progn
+	(setq info (org-babel-lob--src-info name))
+	(when info
+	  (org-babel-execute-src-block nil info)))))
 
   ;; make prettify-symbols-mode work for latex in org files
   ;; from https://emacs.stackexchange.com/questions/33797/use-literal-greek-characters-in-latex-fragments-in-org-mode
