@@ -31,6 +31,12 @@
 	      ("s-l" . org-edit-src-code)
 	      ("s-h" . org-babel-split-src-block)
 	      ("s-g" . dc/org-babel-execute-named-block)
+	      ("C-c C-v g" . dc/org-babel-execute-named-block)
+	      ("C-c C-v C-g" . dc/org-babel-execute-named-block)
+	      :map inferior-python-mode-map
+	      ("s-g" . dc/org-babel-execute-named-block)
+	      :map python-mode-map
+	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map org-src-mode-map
 	      ("s-l" . org-edit-src-exit))
   :config
