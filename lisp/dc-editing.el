@@ -81,6 +81,23 @@ is already narrowed."
 (defun endless/simple-get-word ()
   (car-safe (save-excursion (ispell-get-word nil))))
 
+;; from https://github.com/jabranham/emacs/blob/master/emacs.org
+(defun dc/vsplit-last-buffer (prefix)
+  "Split the window vertically and display the previous buffer."
+  (interactive "p")
+  (split-window-vertically)
+  (other-window 1 nil)
+  (if (= prefix 1)
+      (switch-to-next-buffer)))
+(defun dc/hsplit-last-buffer (prefix)
+  "Split the window horizontally and display the previous buffer."
+  (interactive "p")
+  (split-window-horizontally)
+  (other-window 1 nil)
+  (if (= prefix 1) (switch-to-next-buffer)))
+(bind-keys ("C-x 2" . dc/vsplit-last-buffer)
+           ("C-x 3" . dc/hsplit-last-buffer))
+
 ;; An attempt at this Emacs SX question:
 ;; https://emacs.stackexchange.com/questions/10359/delete-portion-of-isearch-string-that-does-not-match-or-last-char-if-complete-m
 (defun isearch-delete-something ()

@@ -39,7 +39,6 @@
 
 (defun dc/theme-changes ()
   (interactive)
-  (auto-dim-other-buffers-mode)
   (sml/setup)
   (smart-mode-line-enable)
   (dc/org-theme)
@@ -54,8 +53,8 @@
 
   (set-face-attribute 'default nil
 		      :foreground "#21505a"
-		      :family "mononoki"
-		      :height 130)
+		      :family "ubuntu mono"
+		      :height 140)
 
   (set-face-attribute 'tooltip nil
 		      :inherit 'default

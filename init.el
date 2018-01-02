@@ -147,6 +147,8 @@
 	'((t . ivy--regex-ignore-order)))
   (bind-key "s-s" #'swiper-all dc-bindings-map))
 
+(unbind-key "C-x C-z")  ;; I never suspend-frame
+
 (setq inhibit-startup-message t
       initial-scratch-message ""
       inhibit-splash-screen t
@@ -157,13 +159,17 @@
       scroll-margin 3
       ediff-window-setup-function 'ediff-setup-windows-plain
       save-place-file (concat user-emacs-directory "places")
-      split-height-threshold 100
+      split-height-threshold nil ; Don't split windows vertically
       split-width-threshold 120
       uniquify-buffer-name-style 'forward
       save-interprogram-paste-before-kill t
       select-enable-primary t
       select-enable-clipboard t
-      tab-always-indent 'complete)
+      confirm-nonexistent-file-or-buffer nil
+      tab-always-indent 'complete
+      read-file-name-completion-ignore-case t)
+
+(setq-default fill-column 80)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -344,7 +350,7 @@
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
   (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name)))
 	projectile-sort-order 'access-time)
-
+  (setq projectile-enable-caching t)
   (projectile-mode))
 
 (use-package wc-mode
@@ -551,7 +557,8 @@
     (auto-highlight-symbol ace-window company-statistics circadian cdlatex counsel outshine yaml-mode auto-dim-other-buffers matlab-mode-elpa org-plus-contrib ox-latex beginend smooth-scrolling helm-dash dumb-jump org-sticky-header spaceline-all-the-icons spaceline all-the-icons major-mode-icons pydoc kaomoji elpy helm-pydoc origami transpose-frame w3 org-edit-latex smartparens rainbow-mode markdown-mode company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext company helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
  '(safe-local-variable-values
    (quote
-    ((org-publish-use-timestamps-flag)
+    ((org-image-actual-width . 300)
+     (org-publish-use-timestamps-flag)
      (eval when
 	   (fboundp
 	    (quote rainbow-mode))
