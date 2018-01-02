@@ -2,10 +2,9 @@
 (package-initialize)
 (setq package-enable-at-startup t)
 
-(setq use-package-enable-imenu-support t)
-
-(eval-when-compile
-  (require 'use-package))
+(require 'use-package)
+(setq use-package-enable-imenu-support t
+      use-package-compute-statistics t)
 (require 'diminish)                ;; if you use :diminish
 (require 'bind-key)                ;; if you use any :bind variant
 
