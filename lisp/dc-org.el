@@ -26,6 +26,7 @@
 	      ("C-c C-x l" . org-toggle-latex-fragment)
 	      ("C-c C-x C-l" . org-toggle-latex-fragment)
 	      ("C-c a" . org-babel-execute-to-point)
+	      ("RET" . scimax/org-return)
 	      ("s-j" . org-babel-next-src-block)
 	      ("s-k" . org-babel-previous-src-block)
 	      ("s-l" . org-edit-src-code)
@@ -38,7 +39,9 @@
 	      :map python-mode-map
 	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map org-src-mode-map
-	      ("s-l" . org-edit-src-exit))
+	      ("s-l" . org-edit-src-exit)
+	      :map orgstruct-mode-map
+	      ("RET" . scimax/org-return))
   :config
   (setq org-directory "~/org")
   (require 'ox-ipynb)
@@ -210,8 +213,6 @@ _h_tml    ali_g_n    _A_SCII:
        ;; fall-through case
        (t
 	(org-return)))))
-
-  (define-key org-mode-map (kbd "RET") 'scimax/org-return)
 
   (defun ora-cap-filesystem ()
     (let (path)

@@ -452,7 +452,7 @@
   	    'local-magit-initially-hide-stashes)
   (magit-auto-revert-mode)
   (setq vc-handled-backends '(SVN Hg))
-  (add-hook 'git-commit-setup-hook 'org-mode))
+  (add-hook 'git-commit-setup-hook 'orgstruct++-mode))
 
 (use-package discover-my-major
   :ensure t
