@@ -22,7 +22,7 @@
 	      `(("gnu" . "https://elpa.gnu.org/packages/")
 		("melpa" . "https://melpa.org/packages/")
 		("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
-		("org" . "http://orgmode.org/elpa/")))
+		("org" . "https://orgmode.org/elpa/")))
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
