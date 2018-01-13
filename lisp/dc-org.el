@@ -298,9 +298,12 @@ With a prefix BELOW move point to lower block."
 
   (defun dc/org-babel-execute-named-block ()
     (interactive)
-    (setq name (completing-read "Code Block: "
-				(append org-babel-library-of-babel
-					(org-babel-src-block-names))))
+    (setq name (ivy-read "Choose code block: "
+			 (append org-babel-library-of-babel
+				 (org-babel-src-block-names))
+			 :history 'dc/org-named-block-history
+			 :require-match t
+			 :sort t))
     (setq src (org-babel-find-named-block name))
     (if src
 	(save-excursion
