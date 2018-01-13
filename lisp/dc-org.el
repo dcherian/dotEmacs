@@ -32,6 +32,8 @@
 	      ("s-l" . org-edit-src-code)
 	      ("s-h" . org-babel-split-src-block)
 	      ("s-g" . dc/org-babel-execute-named-block)
+	      ("C-c C-q" . dc/org-babel-execute-current-block-qt)
+	      ("C-c C-i" . dc/org-babel-execute-current-block-inline)
 	      ("C-c C-v g" . dc/org-babel-execute-named-block)
 	      ("C-c C-v C-g" . dc/org-babel-execute-named-block)
 	      :map inferior-python-mode-map
@@ -275,6 +277,24 @@ With a prefix BELOW move point to lower block."
 	(goto-char (point-min))
 	(while (and (org-babel-next-src-block) (< (point) p))
 	  (org-babel-execute-src-block)))))
+
+  (defun dc/org-babel-execute-current-block-qt ()
+    (interactive)
+    (setq info (org-babel-lob--src-info "mpl-qt"))
+    (when info
+      (org-babel-execute-src-block nil info))
+
+    (org-babel-mark-block)
+    (elpy-shell-send-region-or-buffer))
+
+  (defun dc/org-babel-execute-current-block-inline ()
+    (interactive)
+    (setq info (org-babel-lob--src-info "mpl-inline"))
+    (when info
+      (org-babel-execute-src-block nil info))
+
+    (org-babel-mark-block)
+    (elpy-shell-send-region-or-buffer))
 
   (defun dc/org-babel-execute-named-block ()
     (interactive)
