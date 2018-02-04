@@ -240,10 +240,11 @@
   (beginend-global-mode))
 
 (use-package auto-highlight-symbol
+  :disable
   :ensure
   :config
-  (setq ahs-idle-interval 0.4)
-  (global-auto-highlight-symbol-mode t))
+  (setq ahs-idle-interval 3)
+  (global-auto-highlight-symbol-mode nil))
 
 (use-package avy
   :ensure
