@@ -235,7 +235,7 @@
 
 (use-package beginend
   :ensure
-  :diminish beginend-global-mode
+  :diminish beginend-prog-mode
   :config
   (beginend-global-mode))
 
@@ -310,6 +310,7 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :bind (:map dc-bindings-map
 	      ("M-0 n" . yas-new-snippet)
 	      ("M-0 s" . yas-insert-snippet)
@@ -385,6 +386,7 @@
 (use-package ws-butler
   :ensure t
   :demand t
+  :diminish
   :config
   (ws-butler-global-mode t))
 
@@ -534,6 +536,9 @@
 
 ;; Garbage collector - decrease threshold to 15 MB
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold (* 15 1024 1024))))
+
+(diminish 'dc-bindings-mode)
+(diminish 'auto-revert-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
