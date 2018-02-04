@@ -3,13 +3,22 @@
 (add-to-list 'package-archives
              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
+(setq elpy-modules '(;; elpy-module-highlight-indentation
+		     elpy-module-sane-defaults
+		     elpy-module-company elpy-module-eldoc
+		     elpy-module-flymake
+		     ;; elpy-module-pyvenv
+		     ;; elpy-module-yasnippet
+		     ;; elpy-module-django
+		     ))
+;; (add-to-list 'elpy-modules 'elpy-module-highlight-indentation)
 (elpy-enable)
 (setq elpy-rpc-backend "jedi")
 
 (use-package company-jedi
   :ensure t
   :config
-  (setq jedi:complete-on-dot t))
+  (setq jedi:complete-on-dot nil))
 
 ;; ob-ipython and org-mode stuff
 (require 'ob-ipython)
@@ -19,12 +28,20 @@
 	      ("C-c p" . python-shell-run-region-or-line)
 	      ("s-i" . ob-ipython-inspect)
 	      ("C-c t" . dc-switch-to-python-shell)
-	      ("C-<tab>" . org-hide-block-toggle-maybe))
+	      ("C-<tab>" . org-hide-block-toggle-maybe)
+	      :map org-mode-map
+	      ("C-c C-v C-k" . ob-ipython-kill-kernel)
+	      ("C-c C-v C-i" . ob-ipython-interrupt-kernel)
+	      :map inferior-python-mode-map
+	      ("C-c C-v C-k" . ob-ipython-kill-kernel)
+	      ("C-c C-v C-i" . ob-ipython-interrupt-kernel))
   :config
-  (add-to-list 'company-backends 'company-ob-ipython))
+  ;; unusuably slow
+  ;; (add-to-list 'company-backends 'company-ob-ipython)
+  )
 
 (setq org-babel-default-header-args:ipython
-      '((:results . "raw")
+      '((:results . "drawer")
 	;;(:session . "none")
 	(:exports . "results")
 	(:cache .   "no")
