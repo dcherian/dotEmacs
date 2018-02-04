@@ -1,5 +1,6 @@
 (use-package smartparens-config
   :ensure smartparens
+  :diminish smartparens-mode
   :demand
   :bind (:map smartparens-mode-map
 	      ("C-S-a" . sp-beginning-of-sexp)
@@ -74,30 +75,32 @@
   	      (tilde . "~")
 	      (dollar . "\$")))
 
-  (sp-with-modes '(tex-mode
-		   plain-tex-mode
-		   latex-mode
-		   org-mode
-		   )
-    ;; math modes, yay. The :actions are provided automatically if
+  ;; (sp-with-modes '(tex-mode
+  ;; 		   plain-tex-mode
+  ;; 		   latex-mode
+  ;; 		   org-mode
+  ;; 		   )
+  ;; math modes, yay. The :actions are provided automatically if
 					; these pairs do not have global definition.
-    (sp-local-pair "$" "$")
-    (sp-local-pair "\[" "\]")
-    (sp-local-pair "\{" "\}")
-    (sp-local-pair "‘" "’")
-    (sp-local-pair "“" "”")
-    (sp-local-pair "\\begin" "\\end")
-  ;;; tex-mode latex-mode
-    (sp-local-tag "i" "\"<" "\">")
-    (sp-local-pair "\\[" nil :unless '(sp-point-before-word-p))
-    (sp-local-pair "$" nil :unless '(sp-point-before-word-p)))
+  ;;   (sp-local-pair "$" "$")
+  ;;   (sp-local-pair "\[" "\]")
+  ;;   (sp-local-pair "\{" "\}")
+  ;;   (sp-local-pair "‘" "’")
+  ;;   (sp-local-pair "“" "”")
+  ;;   (sp-local-pair "\\begin" "\\end")
+  ;; ;;; tex-mode latex-mode
+  ;;   (sp-local-tag "i" "\"<" "\">")
+  ;; (sp-local-pair "\\\[" "\\\]" :unless '(sp-point-before-word-p))
+  ;; (sp-local-pair 'LaTeX-mode "$" "$" :unless '(sp-point-before-word-p)))
 
   (require 'smartparens-python)
   (require 'smartparens-latex)
   (require 'smartparens-html)
   (require 'smartparens-org)
-  (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-  (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
+  (setq sp-show-pair-from-inside t)
+  :hook
+  (prog-mode . turn-on-smartparens-strict-mode)
+  (markdown-mode . turn-on-smartparens-strict-mode)
   :init
   (smartparens-global-mode)
   (show-smartparens-global-mode))
