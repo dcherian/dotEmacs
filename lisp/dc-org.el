@@ -36,6 +36,7 @@
 	      ("C-c C-i" . dc/org-babel-execute-current-block-inline)
 	      ("C-c C-v g" . dc/org-babel-execute-named-block)
 	      ("C-c C-v C-g" . dc/org-babel-execute-named-block)
+	      ("C-c C-p" . dc/org-babel-execute-current-block-in-shell)
 	      :map inferior-python-mode-map
 	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map python-mode-map
@@ -284,6 +285,11 @@ With a prefix BELOW move point to lower block."
     (when info
       (org-babel-execute-src-block nil info))
 
+    (org-babel-mark-block)
+    (elpy-shell-send-region-or-buffer))
+
+  (defun dc/org-babel-execute-current-block-in-shell ()
+    (interactive)
     (org-babel-mark-block)
     (elpy-shell-send-region-or-buffer))
 
@@ -586,12 +592,12 @@ line are justified."
 (defun dc/org-theme ()
   (interactive)
   ;; org-faces
-  (set-face-attribute 'org-level-1 nil
-		      :inherit 'outline-1 :height 1.25)
-  (set-face-attribute 'org-level-2 nil
-		      :inherit 'outline-2 :height 1.2)
-  (set-face-attribute 'org-level-3 nil
-		      :inherit 'outline-3 :height 1.15)
+  ;; (set-face-attribute 'org-level-1 nil
+  ;; 		      :inherit 'outline-1 :height 1.25)
+  ;; (set-face-attribute 'org-level-2 nil
+  ;; 		      :inherit 'outline-2 :height 1.2)
+  ;; (set-face-attribute 'org-level-3 nil
+  ;; 		      :inherit 'outline-3 :height 1.15)
   (set-face-attribute 'org-link nil
 		      :inherit 'org-link
 		      :foreground nil) ; links are only underlined
@@ -628,12 +634,16 @@ line are justified."
 		      :inherit '(font-lock-comment-face org-foreground))
   (set-face-attribute 'org-meta-line nil
 		      :height 0.85)
+  (set-face-attribute 'org-document-title nil
+		      :foreground nil
+		      :weight 'normal)
   (set-face-attribute 'org-ref-cite-face nil
-		      :inherit 'org-link
-		      :foreground nil)
+  		      :inherit 'org-link
+  		      :foreground nil)
   (set-face-attribute 'org-ref-ref-face nil
-		      :inherit 'org-ref-cite-face
-		      :foreground nil))
+  		      :inherit 'org-ref-cite-face
+  		      :foreground nil)
+  )
 
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
