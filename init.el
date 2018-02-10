@@ -1,4 +1,5 @@
 ;; time emacs -l init.elc -batch --eval '(message "Hello, world!")'
+(setq load-prefer-newer t)
 (package-initialize)
 (setq package-enable-at-startup t)
 
@@ -8,15 +9,23 @@
 (require 'diminish)                ;; if you use :diminish
 (require 'bind-key)                ;; if you use any :bind variant
 
-(setq load-prefer-newer t)
 (setq use-package-verbose t)
 ;; (setq use-package-always-defer t)
 ;; (setq use-package-always-ensure t) ;; forces package refresh!
 (setq use-package-minimum-reported-time 0.05)
 
+(use-package no-littering
+  :ensure t
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
+
 (require 'auto-compile)
 (auto-compile-on-load-mode)
 (auto-compile-on-save-mode)
+(setq auto-compile-display-buffer nil)
+(setq auto-compile-mode-line-counter t)
 
 (set-variable 'package-archives
 	      `(("gnu" . "https://elpa.gnu.org/packages/")
@@ -121,13 +130,6 @@
 (setq tramp-auto-save-directory autosave-dir)
 
 (setq-default bidi-display-reordering nil)
-
-(use-package no-littering
-  :ensure t
-  :config
-  (require 'recentf)
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory))
 
 (require 'recentf)
 (setq recentf-max-saved-items 3000)
