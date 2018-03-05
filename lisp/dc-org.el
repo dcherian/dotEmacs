@@ -6,9 +6,7 @@
 ;; org-mode class for my latex style
 
 ;; for orgmk
-;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org/")
-
-;; for orgmk
+(add-to-list 'load-path "/home/deepak/.emacs.d/lisp/")
 (unless (boundp 'dc-bindings-map)
   (defvar dc-bindings-map (make-keymap) "A keymap for custom bindings."))
 
@@ -369,7 +367,7 @@ applying latex prettifycations in org mode buffers."
 
 (use-package org-ref
   :ensure t
-  :after (org)
+  :demand
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-helm-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
