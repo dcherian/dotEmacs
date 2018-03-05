@@ -168,7 +168,8 @@
       select-enable-clipboard t
       confirm-nonexistent-file-or-buffer nil
       tab-always-indent 'complete
-      read-file-name-completion-ignore-case t)
+      read-file-name-completion-ignore-case t
+      auto-window-vscroll nil)
 
 (setq-default fill-column 80)
 
