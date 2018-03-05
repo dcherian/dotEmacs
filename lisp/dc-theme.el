@@ -28,6 +28,11 @@
   (sml/setup)
   (smart-mode-line-enable))
 
+(use-package minions
+  :ensure t
+  :config
+  (minions-mode))
+
 (use-package auto-dim-other-buffers
   :disabled
   :config
