@@ -1,7 +1,5 @@
 ;; elpy & jedi
 (require 'package)
-(add-to-list 'package-archives
-             '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
 (setq elpy-modules '(;; elpy-module-highlight-indentation
 		     elpy-module-sane-defaults
