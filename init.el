@@ -238,7 +238,7 @@
 
 (use-package beginend
   :ensure
-  :diminish beginend-prog-mode
+  :diminish beginend-prog-mode beginend-global-mode
   :config
   (beginend-global-mode))
 
