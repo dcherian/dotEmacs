@@ -682,5 +682,10 @@ line are justified."
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
 
+(use-package ox-reveal
+  :ensure
+  :config
+  (setq org-reveal-root "file:///home/deepak/gits/reveal.js"))
+
 (provide 'dc-org)
 ;;; dc-org ends here
