@@ -22,6 +22,7 @@
 ;; modeline options
 (use-package smart-mode-line
   :ensure t
+  :disabled
   :config
   (setq sml/no-confirm-load-theme t
 	sml/theme 'respectful)
@@ -32,6 +33,14 @@
   :ensure t
   :config
   (minions-mode))
+
+(use-package moody
+  :ensure t
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  ;; (moody-replace-vc-mode)
+  )
 
 (use-package auto-dim-other-buffers
   :disabled
