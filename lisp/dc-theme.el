@@ -63,8 +63,6 @@
 
 (defun dc/theme-changes ()
   (interactive)
-  (sml/setup)
-  (smart-mode-line-enable)
   (dc/org-theme)
 
   ;; font changes
