@@ -3,10 +3,20 @@
 (scroll-bar-mode 0)
 
 (setq custom-safe-themes t)
-(setq solarized-use-less-bold t
+
+(use-package solarized-theme
+  :config
+  (load-theme 'solarized-light t)
+  (setq solarized-use-less-bold t
       solarized-use-more-italic nil
       solarized-use-variable-pitch nil)
-(load-theme 'solarized-light)
+  (let ((line (face-attribute 'mode-line :underline)))
+    (set-face-attribute 'mode-line          nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :underline  line)
+    (set-face-attribute 'mode-line          nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :background "#f9f2d9")))
 
 (use-package circadian
   :ensure t
