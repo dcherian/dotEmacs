@@ -27,6 +27,7 @@
   (circadian-setup))
 
 (setq-default line-spacing 6)
+(setq x-stretch-cursor t)
 (setq x-underline-at-descent-line nil)
 
 ;; modeline options

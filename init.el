@@ -1,7 +1,7 @@
 ;; time emacs -l init.elc -batch --eval '(message "Hello, world!")'
-(setq load-prefer-newer t)
 (package-initialize)
 (setq package-enable-at-startup t)
+(setq load-prefer-newer t)
 
 (require 'use-package)
 (setq use-package-enable-imenu-support t
@@ -187,7 +187,6 @@
 
 (save-place-mode 1)
 (blink-cursor-mode 0)
-(display-time-mode t)
 (electric-pair-mode nil)
 (global-visual-line-mode t)
 (global-hl-line-mode 1)
@@ -195,7 +194,9 @@
 (global-prettify-symbols-mode t)
 (windmove-default-keybindings)
 (which-function-mode t)
-(setq x-stretch-cursor t)
+
+(display-time-mode t)
+(setq display-time-24hr-format t)
 
 ;; diminsh some built-in modes
 (diminish 'auto-revert-mode)
