@@ -393,7 +393,7 @@ applying latex prettifycations in org mode buffers."
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
   :config
-  (require 'org-ref-citeproc)
+  ;; (require 'org-ref-citeproc)
 
   (setq org-ref-notes-directory "~/Papers/notes/"
 	org-ref-bibliography-notes "~/org/papers.org"
@@ -690,6 +690,10 @@ line are justified."
   :ensure
   :config
   (setq org-reveal-root "file:///home/deepak/gits/reveal.js"))
+
+(use-package citeproc-orgref
+  :config
+  (citeproc-orgref-setup))
 
 (provide 'dc-org)
 ;;; dc-org ends here
