@@ -466,6 +466,10 @@ Argument KEY is the bibtex key."
   :config
   (org-edit-latex-mode t))
 
+(use-package orgalist
+  :config
+  (add-hook 'git-commit-setup-hook 'orgalist-mode))
+
 (use-package ox-gfm
   :defer
   :ensure t)
