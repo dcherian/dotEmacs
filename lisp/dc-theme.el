@@ -49,8 +49,8 @@
   :config
   (setq x-underline-at-descent-line t)
   (moody-replace-mode-line-buffer-identification)
-  ;; (moody-replace-vc-mode)
-  )
+  (moody-replace-vc-mode)
+  (setq moody-mode-line-height 34))
 
 (use-package auto-dim-other-buffers
   :disabled
@@ -76,7 +76,7 @@
   (set-face-attribute 'default nil
 		      :foreground "#21505a"
 		      :family "ubuntu mono"
-		      :height 140)
+		      :height 145)
 
   (set-face-attribute 'tooltip nil
 		      :inherit 'default
