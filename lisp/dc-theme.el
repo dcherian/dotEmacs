@@ -51,7 +51,7 @@
   (setq x-underline-at-descent-line t)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode)
-  (setq moody-mode-line-height 34))
+  (setq moody-mode-line-height 28))
 
 (use-package auto-dim-other-buffers
   :disabled
