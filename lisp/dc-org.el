@@ -695,5 +695,7 @@ line are justified."
   :config
   (citeproc-orgref-setup))
 
+(use-package ox-clip)
+
 (provide 'dc-org)
 ;;; dc-org ends here
