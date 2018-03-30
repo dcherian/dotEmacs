@@ -187,7 +187,6 @@
 
 (save-place-mode 1)
 (blink-cursor-mode 0)
-(electric-pair-mode nil)
 (global-visual-line-mode t)
 (global-hl-line-mode 1)
 (global-subword-mode 1)
