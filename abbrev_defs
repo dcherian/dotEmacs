@@ -1,1 +1,0 @@
-/home/deepak/dotfiles/abbrev_defs
