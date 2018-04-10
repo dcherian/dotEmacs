@@ -633,6 +633,9 @@ line are justified."
 		      :background nil
 		      :weight 'light
 		      :box nil)
+  (set-face-attribute 'org-code nil
+		      :foreground "#286db2"
+		      :background nil)
   (set-face-attribute 'org-todo nil
 		      :weight 'normal)
   (set-face-attribute 'org-done nil
