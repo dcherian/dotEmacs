@@ -27,8 +27,8 @@
   (circadian-setup))
 
 (setq-default line-spacing 6)
-(setq x-stretch-cursor t)
-(setq x-underline-at-descent-line nil)
+(setq x-stretch-cursor nil)
+(setq x-underline-at-descent-line t)
 
 ;; modeline options
 (use-package smart-mode-line
@@ -48,7 +48,6 @@
 (use-package moody
   :ensure t
   :config
-  (setq x-underline-at-descent-line t)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode)
   (setq moody-mode-line-height 28))
