@@ -500,7 +500,6 @@
 (require 'dc-matlab)
 (require 'dc-company)
 (require 'dc-ibuffer)
-(require 'ox-ipynb)
 (require 'dc-projects)
 
 (dc/theme-changes)
