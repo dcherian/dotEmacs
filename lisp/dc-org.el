@@ -469,7 +469,8 @@ Argument KEY is the bibtex key."
 (use-package orgalist
   :ensure
   :config
-  (add-hook 'git-commit-setup-hook 'orgalist-mode))
+  (add-hook 'git-commit-setup-hook 'orgalist-mode)
+  (add-hook 'message-mode-hook 'orgalist-mode))
 
 (use-package ox-gfm
   :defer
