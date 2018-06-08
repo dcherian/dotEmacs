@@ -26,16 +26,14 @@
   (setq company-transformers '(company-sort-by-occurrence))
 
   (setq company-backends
-	'((company-capf
-	   company-elisp
-	   company-semantic
-	   company-dabbrev-code
-	   company-gtags
-	   company-etags
-	   company-keywords
-	   company-files
-	   company-yasnippet
-	   company-dabbrev))))
+	'(company-jedi
+	  company-semantic
+	  company-keywords
+	  company-files
+	  company-capf
+	  company-yasnippet
+	  company-dabbrev-code
+	  company-dabbrev)))
 
 (use-package company-math
   :after (company)
