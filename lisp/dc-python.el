@@ -11,13 +11,15 @@
 		     ;; elpy-module-django
 		     ))
 ;; (add-to-list 'elpy-modules 'elpy-module-highlight-indentation)
-(elpy-enable)
+;; (elpy-enable)
 (setq elpy-rpc-backend "jedi")
+
+(setq eldoc-idle-delay 1)
 
 (use-package company-jedi
   :ensure t
   :config
-  (setq jedi:complete-on-dot nil))
+  (setq jedi:complete-on-dot t))
 
 ;; ob-ipython and org-mode stuff
 (require 'ob-ipython)
@@ -64,7 +66,7 @@
   (message "Setting python paths for darya.")
   (setq python-shell-interpreter "/home/deepak/anaconda3/bin/ipython")
   (setq python-shell-interpreter-args "--simple-prompt --pylab")
-  (setq-default org-babel-python-command "/home/deepak/anaconda3/bin/ipython")
+  (setq-default org-babel-python-command "/home/deepak/anaconda3/bin/jupyter")
   (setq-default ob-ipython-command "/home/deepak/anaconda3/bin/jupyter")
   (setq-default ob-ipython-kernel-extra-args 'nil)
   (setq exec-path (append exec-path '("/home/deepak/anaconda3/bin/"))))
@@ -116,7 +118,52 @@
 	   ("Any" .      #x2754)
 	   ("Union" .    #x22c3)))))
 
-(define-key elpy-mode-map (kbd "C-<up>") 'nil)
-(define-key elpy-mode-map (kbd "C-<down>") 'nil)
+;; (define-key elpy-mode-map (kbd "C-<up>") 'nil)
+;; (define-key elpy-mode-map (kbd "C-<down>") 'nil)
+
+(use-package lsp-mode
+  :ensure t
+  :config
+
+  ;; make sure we have lsp-imenu everywhere we have LSP
+  (require 'lsp-imenu)
+  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
+  ;; get lsp-python-enable defined
+  ;; NB: use either projectile-project-root or ffip-get-project-root-directory
+  ;;     or any other function that can be used to find the root directory of a project
+  (lsp-define-stdio-client lsp-python "python"
+                           #'projectile-project-root
+                           '("pyls"))
+
+  ;; make sure this is activated when python-mode is activated
+  ;; lsp-python-enable is created by macro above
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (lsp-python-enable)))
+
+  ;; lsp extras
+  (use-package lsp-ui
+    :ensure t
+    :config
+    (setq lsp-ui-sideline-ignore-duplicate t)
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+  (use-package company-lsp
+    :ensure t
+    :config
+    (push 'company-lsp company-backends))
+
+  ;; NB: only required if you prefer flake8 instead of the default
+  ;; send pyls config via lsp-after-initialize-hook -- harmless for
+  ;; other servers due to pyls key, but would prefer only sending this
+  ;; when pyls gets initialised (:initialize function in
+  ;; lsp-define-stdio-client is invoked too early (before server
+  ;; start)) -- cpbotha
+  (defun lsp-set-cfg ()
+    (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
+      ;; TODO: check lsp--cur-workspace here to decide per server / project
+      (lsp--set-configuration lsp-cfg)))
+
+  (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg))
 
 (provide 'dc-python)

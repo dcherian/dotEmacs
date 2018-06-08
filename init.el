@@ -496,9 +496,9 @@
 (require 'dc-editing)
 (require 'dc-parens)
 (require 'dc-website)
-(require 'dc-python)
 (require 'dc-matlab)
 (require 'dc-company)
+(require 'dc-python)
 (require 'dc-ibuffer)
 (require 'dc-projects)
 
