@@ -13,9 +13,7 @@
 
 (define-abbrev-table 'apropos-mode-abbrev-table '())
 
-(define-abbrev-table 'awk-mode-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'awk-mode-abbrev-table '())
 
 (define-abbrev-table 'biblio-selection-mode-abbrev-table '())
 
@@ -25,13 +23,9 @@
 
 (define-abbrev-table 'bookmark-edit-annotation-mode-abbrev-table '())
 
-(define-abbrev-table 'c++-mode-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'c++-mode-abbrev-table '())
 
-(define-abbrev-table 'c-mode-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'c-mode-abbrev-table '())
 
 (define-abbrev-table 'calc-trail-mode-abbrev-table '())
 
@@ -196,6 +190,7 @@
     ("amke" "make" nil :count 0)
     ("amkes" "makes" nil :count 0)
     ("amtching" "matching" nil :count 0)
+    ("analysinig" "analyzing" nil :count 0)
     ("analzing" "analyzing" nil :count 0)
     ("anbd" "and" nil :count 0)
     ("andone" "and one" nil :count 0)
@@ -286,7 +281,7 @@
     ("benifit" "benefit" nil :count 0)
     ("benifits" "benefits" nil :count 0)
     ("betweent" "between" nil :count 1)
-    ("betwen" "between" nil :count 0)
+    ("betwen" "between" nil :count 1)
     ("beutiful" "beautiful" nil :count 0)
     ("blase" "blase" nil :count 0)
     ("boxs" "boxes" nil :count 0)
@@ -322,7 +317,7 @@
     ("checkk" "check" nil :count 0)
     ("cheif" "chief" nil :count 0)
     ("chekc" "check" nil :count 0)
-    ("cherian" "cherian" nil :count 41)
+    ("cherian" "cherian" nil :count 42)
     ("chnage" "change" nil :count 0)
     ("chunkn" "chunk" nil :count 0)
     ("cieling" "ceiling" nil :count 0)
@@ -336,6 +331,7 @@
     ("cnnected" "connected" nil :count 0)
     ("cocnvective" "convective" nil :count 0)
     ("colection" "collection" nil :count 0)
+    ("colelcted" "collected" nil :count 0)
     ("collabrations" "collaborations" nil :count 0)
     ("comanies" "companies" nil :count 0)
     ("comany" "company" nil :count 0)
@@ -411,6 +407,7 @@
     ("cpoy" "copy" nil :count 0)
     ("creme" "creme" nil :count 0)
     ("ctaegory" "category" nil :count 0)
+    ("currenltly" "currently" nil :count 0)
     ("cusotmer" "customer" nil :count 0)
     ("cusotmers" "customers" nil :count 0)
     ("cutsomer" "customer" nil :count 0)
@@ -606,6 +603,7 @@
     ("gonig" "going" nil :count 0)
     ("govenment" "government" nil :count 0)
     ("goverment" "government" nil :count 0)
+    ("grdaients" "gradients" nil :count 0)
     ("gruop" "group" nil :count 0)
     ("gruops" "groups" nil :count 0)
     ("grwo" "grow" nil :count 0)
@@ -624,7 +622,7 @@
     ("haveing" "having" nil :count 0)
     ("haven;t" "haven't" nil :count 0)
     ("hda" "had" nil :count 0)
-    ("he" "the" nil :count 38)
+    ("he" "the" nil :count 42)
     ("hearign" "hearing" nil :count 0)
     ("hecause" "because" nil :count 0)
     ("heire" "he-ire" nil :count 0)
@@ -665,7 +663,7 @@
     ("identifiy" "identify" nil :count 0)
     ("identofy" "identify" nil :count 0)
     ("idffusiviry" "diffusivity" nil :count 0)
-    ("igure" "figure" nil :count 6)
+    ("igure" "figure" nil :count 8)
     ("ihs" "his" nil :count 0)
     ("imediate" "immediate" nil :count 0)
     ("imediatly" "immediately" nil :count 0)
@@ -736,6 +734,7 @@
     ("labratory" "laboratory" nil :count 0)
     ("languange" "language" nil :count 0)
     ("lastyear" "last year" nil :count 0)
+    ("lcoated" "located" nil :count 0)
     ("learnign" "learning" nil :count 0)
     ("lenght" "length" nil :count 0)
     ("levle" "level" nil :count 0)
@@ -798,6 +797,8 @@
     ("negotiaing" "negotiating" nil :count 0)
     ("ni" "in" nil :count 3)
     ("nkow" "know" nil :count 0)
+    ("noe" "one" nil :count 0)
+    ("noly" "only" nil :count 0)
     ("nothign" "nothing" nil :count 0)
     ("nothward" "northward" nil :count 0)
     ("nver" "never" nil :count 0)
@@ -943,7 +944,7 @@
     ("recomended" "recommended" nil :count 0)
     ("recomending" "recommending" nil :count 0)
     ("reconize" "recognize" nil :count 0)
-    ("recrod" "record" nil :count 0)
+    ("recrod" "record" nil :count 1)
     ("recrods" "records" nil :count 0)
     ("redirector" "re-director" nil :count 0)
     ("refridgerate" "refrigerate" nil :count 0)
@@ -951,6 +952,7 @@
     ("regession" "regression" nil :count 0)
     ("regresion" "regression" nil :count 0)
     ("reivews" "reviews" nil :count 0)
+    ("relatinig" "relating" nil :count 0)
     ("releated" "related" nil :count 0)
     ("religous" "religious" nil :count 0)
     ("relize" "realize" nil :count 0)
@@ -992,6 +994,7 @@
     ("saidthe" "said the" nil :count 0)
     ("salonity" "salinity" nil :count 0)
     ("salvagable" "salvageable" nil :count 0)
+    ("sammple" "sample" nil :count 0)
     ("scedule" "schedule" nil :count 0)
     ("sceduled" "scheduled" nil :count 0)
     ("scen" "scene" nil :count 0)
@@ -1063,6 +1066,7 @@
     ("stroy" "story" nil :count 0)
     ("struggel" "struggle" nil :count 0)
     ("strugle" "struggle" nil :count 0)
+    ("stsirring" "stirring" nil :count 0)
     ("studnet" "student" nil :count 0)
     ("styming" "stymieing" nil :count 0)
     ("subdcution" "subduction" nil :count 0)
@@ -1100,7 +1104,7 @@
     ("tghis" "this" nil :count 0)
     ("thansk" "thanks" nil :count 0)
     ("thatthe" "that the" nil :count 0)
-    ("the" "the" nil :count 965)
+    ("the" "the" nil :count 1101)
     ("thecompany" "the company" nil :count 0)
     ("thefirst" "the first" nil :count 0)
     ("thegovernment" "the government" nil :count 0)
@@ -1125,6 +1129,7 @@
     ("thnig" "thing" nil :count 0)
     ("thnigs" "things" nil :count 0)
     ("threatend" "threatened" nil :count 0)
+    ("throughtout" "throughout" nil :count 0)
     ("thsi" "this" nil :count 0)
     ("thsoe" "those" nil :count 0)
     ("thta" "that" nil :count 0)
@@ -1181,13 +1186,14 @@
     ("varations" "variations" nil :count 0)
     ("velcoity" "velocity" nil :count 0)
     ("veyr" "very" nil :count 0)
+    ("vigourous" "vigorous" nil :count 0)
     ("virtualyl" "virtually" nil :count 0)
-    ("vlume" "volume" nil :count 0)
+    ("vlume" "volume" nil :count 1)
     ("volumve" "volume" nil :count 0)
     ("vrey" "very" nil :count 0)
     ("vulnerible" "vulnerable" nil :count 0)
     ("waening" "warning" nil :count 0)
-    ("waht" "what" nil :count 1)
+    ("waht" "what" nil :count 2)
     ("warrent" "warrant" nil :count 0)
     ("wasnt" "wasn't" nil :count 0)
     ("watn" "want" nil :count 0)
@@ -1199,13 +1205,13 @@
     ("wherre" "where" nil :count 0)
     ("whic" "which" nil :count 0)
     ("whihc" "which" nil :count 1)
-    ("whos" "who's" nil :count 3)
+    ("whos" "who's" nil :count 4)
     ("whove" "who've" nil :count 0)
     ("whta" "what" nil :count 0)
     ("wief" "wife" nil :count 0)
     ("wierd" "weird" nil :count 0)
     ("wihch" "which" nil :count 0)
-    ("wiht" "with" nil :count 0)
+    ("wiht" "with" nil :count 1)
     ("willbe" "will be" nil :count 0)
     ("windoes" "windows" nil :count 0)
     ("witha" "with a" nil :count 0)
@@ -1284,9 +1290,7 @@
 
 (define-abbrev-table 'ivy-occur-mode-abbrev-table '())
 
-(define-abbrev-table 'java-mode-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'java-mode-abbrev-table '())
 
 (define-abbrev-table 'js-jsx-mode-abbrev-table '())
 
@@ -1350,9 +1354,7 @@
 
 (define-abbrev-table 'nxml-mode-abbrev-table '())
 
-(define-abbrev-table 'objc-mode-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'objc-mode-abbrev-table '())
 
 (define-abbrev-table 'occur-edit-mode-abbrev-table '())
 
@@ -1368,9 +1370,7 @@
 
 (define-abbrev-table 'package-menu-mode-abbrev-table '())
 
-(define-abbrev-table 'pike-mode-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'pike-mode-abbrev-table '())
 
 (define-abbrev-table 'plain-tex-mode-abbrev-table '())
 
