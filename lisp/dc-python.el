@@ -100,7 +100,7 @@
 	   ("not" .      #x2757)
 	   ("in" .       #x2208)
 	   ("not in" .   #x2209)
-	   ("return" .   #x27fc)
+	   ;; ("return" .   #x27fc)
 	   ("yield" .    #x27fb)
 	   ;; ("for" .      #x2200)
 	   ;; Base Types
