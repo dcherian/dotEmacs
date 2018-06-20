@@ -75,6 +75,13 @@
   	      (tilde . "~")
 	      (dollar . "\$")))
 
+  ;; don't make punctuation move?
+  ;; https://github.com/Fuco1/smartparens/issues/702
+  ;; and smartparents-python.el
+  (add-to-list 'sp-sexp-suffix (list 'latex-mode 'regexp ""))
+  (add-to-list 'sp-sexp-suffix (list 'matlab-mode 'regexp ""))
+  (add-to-list 'sp-sexp-suffix (list 'org-mode 'regexp ""))
+
   ;; (sp-with-modes '(tex-mode
   ;; 		   plain-tex-mode
   ;; 		   latex-mode
