@@ -26,7 +26,7 @@
                            ("19:30" . solarized-dark)))
   (circadian-setup))
 
-(setq-default line-spacing 6)
+(setq-default line-spacing 5)
 (setq x-stretch-cursor nil)
 (setq x-underline-at-descent-line t)
 
@@ -75,8 +75,8 @@
 
   (set-face-attribute 'default nil
 		      :foreground "#21505a"
-		      :family "ubuntu mono"
-		      :height 145)
+		      :family "fira mono"
+		      :height 120)
 
   (set-face-attribute 'tooltip nil
 		      :inherit 'default
