@@ -131,8 +131,7 @@
 
 (setq-default bidi-display-reordering nil)
 
-(require 'recentf)
-(setq recentf-max-saved-items 3000)
+(setq recentf-max-saved-items nil)
 (run-at-time (current-time) 300 'recentf-save-list)
 
 (use-package counsel
