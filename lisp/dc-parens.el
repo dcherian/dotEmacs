@@ -80,6 +80,7 @@
   ;; and smartparents-python.el
   (add-to-list 'sp-sexp-suffix (list 'latex-mode 'regexp ""))
   (add-to-list 'sp-sexp-suffix (list 'matlab-mode 'regexp ""))
+  (add-to-list 'sp-sexp-suffix (list 'matlab-shell-mode 'regexp ""))
   (add-to-list 'sp-sexp-suffix (list 'org-mode 'regexp ""))
 
   ;; (sp-with-modes '(tex-mode
