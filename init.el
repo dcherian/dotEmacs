@@ -484,6 +484,10 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+(use-package poporg
+  :bind (:map dc-bindings-map
+              ("s-l" . 'poporg-dwim)))
+
 (use-package outshine
   :config
   (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
