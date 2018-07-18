@@ -13,7 +13,9 @@
 
 (define-abbrev-table 'apropos-mode-abbrev-table '())
 
-(define-abbrev-table 'awk-mode-abbrev-table '())
+(define-abbrev-table 'awk-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'biblio-selection-mode-abbrev-table '())
 
@@ -23,9 +25,13 @@
 
 (define-abbrev-table 'bookmark-edit-annotation-mode-abbrev-table '())
 
-(define-abbrev-table 'c++-mode-abbrev-table '())
+(define-abbrev-table 'c++-mode-abbrev-table
+  '(
+   ))
 
-(define-abbrev-table 'c-mode-abbrev-table '())
+(define-abbrev-table 'c-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'calc-trail-mode-abbrev-table '())
 
@@ -138,6 +144,7 @@
     ("accesories" "accessories" nil :count 0)
     ("accidant" "accident" nil :count 0)
     ("accomodate" "accommodate" nil :count 0)
+    ("accomodation" "accommodation" nil :count 1)
     ("accordingto" "according to" nil :count 0)
     ("accross" "across" nil :count 0)
     ("acheive" "achieve" nil :count 0)
@@ -317,7 +324,7 @@
     ("checkk" "check" nil :count 0)
     ("cheif" "chief" nil :count 0)
     ("chekc" "check" nil :count 0)
-    ("cherian" "cherian" nil :count 42)
+    ("cherian" "cherian" nil :count 43)
     ("chnage" "change" nil :count 0)
     ("chunkn" "chunk" nil :count 0)
     ("cieling" "ceiling" nil :count 0)
@@ -560,6 +567,7 @@
     ("firends" "friends" nil :count 0)
     ("firts" "first" nil :count 0)
     ("fixit" "fix it" nil :count 0)
+    ("flattenning" "flattening" nil :count 0)
     ("flfow" "flow" nil :count 1)
     ("flider" "glider" nil :count 0)
     ("flutuations" "fluctuations" nil :count 0)
@@ -622,7 +630,7 @@
     ("haveing" "having" nil :count 0)
     ("haven;t" "haven't" nil :count 0)
     ("hda" "had" nil :count 0)
-    ("he" "the" nil :count 42)
+    ("he" "the" nil :count 45)
     ("hearign" "hearing" nil :count 0)
     ("hecause" "because" nil :count 0)
     ("heire" "he-ire" nil :count 0)
@@ -826,7 +834,7 @@
     ("omre" "more" nil :count 0)
     ("oneof" "one of" nil :count 0)
     ("onepoint" "one point" nil :count 0)
-    ("online" "on-line" nil :count 0)
+    ("online" "on-line" nil :count 1)
     ("ont he" "on the" nil :count 0)
     ("onthe" "on the" nil :count 0)
     ("onyl" "only" nil :count 1)
@@ -1053,6 +1061,7 @@
     ("speach" "speech" nil :count 0)
     ("specificaly" "specifically" nil :count 0)
     ("specificalyl" "specifically" nil :count 0)
+    ("spectrym" "spectrum" nil :count 0)
     ("spicinies" "spiciness" nil :count 0)
     ("statment" "statement" nil :count 0)
     ("statments" "statements" nil :count 0)
@@ -1104,7 +1113,7 @@
     ("tghis" "this" nil :count 0)
     ("thansk" "thanks" nil :count 0)
     ("thatthe" "that the" nil :count 0)
-    ("the" "the" nil :count 1101)
+    ("the" "the" nil :count 1115)
     ("thecompany" "the company" nil :count 0)
     ("thefirst" "the first" nil :count 0)
     ("thegovernment" "the government" nil :count 0)
@@ -1193,7 +1202,7 @@
     ("vrey" "very" nil :count 0)
     ("vulnerible" "vulnerable" nil :count 0)
     ("waening" "warning" nil :count 0)
-    ("waht" "what" nil :count 2)
+    ("waht" "what" nil :count 3)
     ("warrent" "warrant" nil :count 0)
     ("wasnt" "wasn't" nil :count 0)
     ("watn" "want" nil :count 0)
@@ -1290,7 +1299,9 @@
 
 (define-abbrev-table 'ivy-occur-mode-abbrev-table '())
 
-(define-abbrev-table 'java-mode-abbrev-table '())
+(define-abbrev-table 'java-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'js-jsx-mode-abbrev-table '())
 
@@ -1354,7 +1365,9 @@
 
 (define-abbrev-table 'nxml-mode-abbrev-table '())
 
-(define-abbrev-table 'objc-mode-abbrev-table '())
+(define-abbrev-table 'objc-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'occur-edit-mode-abbrev-table '())
 
@@ -1370,7 +1383,9 @@
 
 (define-abbrev-table 'package-menu-mode-abbrev-table '())
 
-(define-abbrev-table 'pike-mode-abbrev-table '())
+(define-abbrev-table 'pike-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'plain-tex-mode-abbrev-table '())
 
@@ -1445,6 +1460,8 @@
 (define-abbrev-table 'vc-git-log-view-mode-abbrev-table '())
 
 (define-abbrev-table 'vc-git-region-history-mode-abbrev-table '())
+
+(define-abbrev-table 'vc-hg-log-view-mode-abbrev-table '())
 
 (define-abbrev-table 'woman-mode-abbrev-table '())
 
