@@ -136,9 +136,10 @@
 
 (use-package counsel
   :ensure
-  :config
-  (unbind-key "C-c C-l" shell-mode-map)
-  (bind-key "C-c C-l" #'counsel-shell-history shell-mode-map))
+  ;; :config
+  ;; (unbind-key "C-c C-l" shell-mode-map)
+  ;; (bind-key "C-c C-l" #'counsel-shell-history shell-mode-map)
+  )
 
 (use-package swiper
   :ensure t
@@ -366,18 +367,19 @@
   (setq sdcv-failed-face 'font-lock-warning-face)
   (setq sdcv-heading-face 'font-lock-keyword-face))
 
-(use-package helm-projectile
+(use-package counsel-projectile
   :ensure t
   :after projectile
   :bind (:map dc-bindings-map
-	      ("C-c C-f" . helm-projectile-find-file-dwim)
+	      ("C-c C-f" . counsel-projectile-find-file)
 	      :map projectile-command-map
-	      ("s" . helm-projectile-ag))
+	      ("s" . counsel-projectile-ag))
   :config
-  (helm-projectile-on)
-  (setq projectile-completion-system 'helm
-	projectile-switch-project-action 'helm-projectile-find-file
-	projectile-switch-project-action 'helm-projectile))
+  ;; (helm-projectile-on)
+  (counsel-projectile-mode)
+  (setq projectile-completion-system 'counsel
+	projectile-switch-project-action 'counsel-projectile-find-file
+	projectile-switch-project-action 'counsel-projectile))
 
 (use-package ws-butler
   :ensure t
