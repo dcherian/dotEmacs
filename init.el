@@ -3,9 +3,9 @@
 (setq package-enable-at-startup t)
 (setq load-prefer-newer t)
 
-(require 'use-package)
 (setq use-package-enable-imenu-support t
       use-package-compute-statistics t)
+(require 'use-package)
 (require 'diminish)                ;; if you use :diminish
 (require 'bind-key)                ;; if you use any :bind variant
 
