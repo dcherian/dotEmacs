@@ -61,6 +61,22 @@
   (add-hook 'after-init-hook (lambda ()
 			       (auto-dim-other-buffers-mode t))))
 
+(defun dc/light-theme-changes ()
+  (interactive)
+  (set-face-attribute 'default nil
+		      :foreground "#21505a"
+		      :family "fira mono"
+		      :height 120)
+  (dc/theme-changes))
+
+(defun dc/dark-theme-changes ()
+  (interactive)
+  (set-face-attribute 'default nil
+		      :foreground "#839496"
+		      :family "fira mono"
+		      :height 120)
+  (dc/theme-changes))
+
 (defun dc/theme-changes ()
   (interactive)
   (dc/org-theme)
@@ -72,11 +88,6 @@
   (set-face-attribute 'font-lock-builtin-face nil
 		      :foreground "#b58900"
 		      :bold nil)
-
-  (set-face-attribute 'default nil
-		      :foreground "#21505a"
-		      :family "fira mono"
-		      :height 120)
 
   (set-face-attribute 'tooltip nil
 		      :inherit 'default
