@@ -427,7 +427,8 @@
   :diminish (magit-auto-revert-mode magit-wip-after-save-mode magit-wip-after-apply-mode magit-wip-after-change)
   :bind (:map dc-bindings-map
 	      ("C-x g" . magit-status)
-	      ("C-x l" . magit-log-buffer-file))
+	      ("C-x l" . magit-log-buffer-file)
+              ("C-x d" . magit-log-trace-definition))
   :config
 
   ;; from https://stackoverflow.com/questions/21931883/how-to-change-repo-with-magit-emacs#21932488
@@ -438,11 +439,12 @@
   ;; it also sets magit-repo-dirs-depth to 1 so magit looks for git
   ;; repos only in the top directories.
   (eval-after-load "projectile"
-    '(progn (setq magit-repository-directories (mapcar (lambda (dir)
-							 (substring dir 0 -1))
-						       (cl-remove-if-not (lambda (project)
-									   (file-directory-p (concat project "/.git/")))
-									 (projectile-relevant-known-projects))))
+    '(progn (setq magit-repository-directories
+                  (mapcar (lambda (dir)
+			    (substring dir 0 -1))
+			  (cl-remove-if-not (lambda (project)
+					      (file-directory-p (concat project "/.git/")))
+					    (projectile-relevant-known-projects))))
 	    (setq magit-repository-directories-depth 1)))
 
   ;; set untracked files to not be visible by default
