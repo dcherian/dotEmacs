@@ -26,11 +26,10 @@
   (setq company-transformers '(company-sort-by-occurrence))
 
   (setq company-backends
-	'(company-jedi
+	'(company-capf
 	  company-semantic
 	  company-keywords
 	  company-files
-	  company-capf
 	  company-yasnippet
 	  company-dabbrev-code
 	  company-dabbrev)))
