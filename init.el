@@ -124,6 +124,12 @@
       version-control t)
 (setq desktop-auto-save-timeout 10)
 
+(use-package super-save
+  :ensure t
+  :config
+  (super-save-mode +1)
+  (setq super-save-auto-save-when-idle t))
+
 ;; tramp
 (setq tramp-default-method "ssh")
 (setq tramp-backup-directory-alist backup-directory-alist)
