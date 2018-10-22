@@ -141,99 +141,99 @@ _h_tml    ali_g_n    _A_SCII:
 
   (require 'org-inlinetask)
   (defun scimax/org-return (&optional ignore)
-  "Add new list item, heading or table row with RET.
+    "Add new list item, heading or table row with RET.
 A double return on an empty element deletes it.
 Use a prefix arg to get regular RET. "
-  (interactive "P")
-  (if ignore
-      (org-return)
-    (cond
-
-     ((eq 'line-break (car (org-element-context)))
-      (org-return-indent))
-
-     ;; Open links like usual, unless point is at the end of a line.
-     ;; and if at beginning of line, just press enter.
-     ((or (and (eq 'link (car (org-element-context))) (not (eolp)))
-	  (bolp))
-      (org-return))
-
-     ;; It doesn't make sense to add headings in inline tasks. Thanks Anders
-     ;; Johansson!
-     ((org-inlinetask-in-task-p)
-      (org-return))
-
-     ;; checkboxes - add new or delete empty
-     ((org-at-item-checkbox-p)
+    (interactive "P")
+    (if ignore
+	(org-return)
       (cond
-       ;; at the end of a line.
-       ((and (eolp)
-	     (not (eq 'item (car (org-element-context)))))
-	(org-insert-todo-heading nil))
-       ;; no content, delete
-       ((and (eolp) (eq 'item (car (org-element-context))))
-	(setf (buffer-substring (line-beginning-position) (point)) ""))
-       ((eq 'paragraph (car (org-element-context)))
-	(goto-char (org-element-property :end (org-element-context)))
-	(org-insert-todo-heading nil))
+
+       ((eq 'line-break (car (org-element-context)))
+	(org-return-indent))
+
+       ;; Open links like usual, unless point is at the end of a line.
+       ;; and if at beginning of line, just press enter.
+       ((or (and (eq 'link (car (org-element-context))) (not (eolp)))
+	    (bolp))
+	(org-return))
+
+       ;; It doesn't make sense to add headings in inline tasks. Thanks Anders
+       ;; Johansson!
+       ((org-inlinetask-in-task-p)
+	(org-return))
+
+       ;; checkboxes - add new or delete empty
+       ((org-at-item-checkbox-p)
+	(cond
+	 ;; at the end of a line.
+	 ((and (eolp)
+	       (not (eq 'item (car (org-element-context)))))
+	  (org-insert-todo-heading nil))
+	 ;; no content, delete
+	 ((and (eolp) (eq 'item (car (org-element-context))))
+	  (setf (buffer-substring (line-beginning-position) (point)) ""))
+	 ((eq 'paragraph (car (org-element-context)))
+	  (goto-char (org-element-property :end (org-element-context)))
+	  (org-insert-todo-heading nil))
+	 (t
+	  (org-return))))
+
+       ;; lists end with two blank lines, so we need to make sure we are also not
+       ;; at the beginning of a line to avoid a loop where a new entry gets
+       ;; created with only one blank line.
+       ((org-in-item-p)
+	(cond
+	 ;; empty definition list
+	 ((and (looking-at " ::")
+	       (looking-back "- " 3))
+	  (beginning-of-line)
+	  (delete-region (line-beginning-position) (line-end-position)))
+	 ;; empty item
+	 ((and (looking-at "$")
+	       (looking-back "- " 3))
+	  (beginning-of-line)
+	  (delete-region (line-beginning-position) (line-end-position)))
+	 ;; numbered list
+	 ((and (looking-at "$")
+	       (looking-back "[0-9]+. " (line-beginning-position)))
+	  (beginning-of-line)
+	  (delete-region (line-beginning-position) (line-end-position)))
+	 ;; insert new item
+	 (t
+	  (end-of-line)
+	  (org-insert-item))))
+
+       ;; org-heading
+       ((org-at-heading-p)
+	(if (not (string= "" (org-element-property :title (org-element-context))))
+	    (progn
+	      ;; Go to end of subtree suggested by Pablo GG on Disqus post.
+	      (org-end-of-subtree)
+	      (org-insert-heading-respect-content)
+	      (outline-show-entry))
+	  ;; The heading was empty, so we delete it
+	  (beginning-of-line)
+	  (setf (buffer-substring
+		 (line-beginning-position) (line-end-position)) "")))
+
+       ;; tables
+       ((org-at-table-p)
+	(if (-any?
+	     (lambda (x) (not (string= "" x)))
+	     (nth
+	      (- (org-table-current-dline) 1)
+	      (remove 'hline (org-table-to-lisp))))
+	    (org-return)
+	  ;; empty row
+	  (beginning-of-line)
+	  (setf (buffer-substring
+		 (line-beginning-position) (line-end-position)) "")
+	  (org-return)))
+
+       ;; fall-through case
        (t
-	(org-return))))
-
-     ;; lists end with two blank lines, so we need to make sure we are also not
-     ;; at the beginning of a line to avoid a loop where a new entry gets
-     ;; created with only one blank line.
-     ((org-in-item-p)
-      (cond
-       ;; empty definition list
-       ((and (looking-at " ::")
-	     (looking-back "- " 3))
-	(beginning-of-line)
-	(delete-region (line-beginning-position) (line-end-position)))
-       ;; empty item
-       ((and (looking-at "$")
-	     (looking-back "- " 3))
-	(beginning-of-line)
-	(delete-region (line-beginning-position) (line-end-position)))
-       ;; numbered list
-       ((and (looking-at "$")
-	     (looking-back "[0-9]*. " (line-beginning-position)))
-	(beginning-of-line)
-	(delete-region (line-beginning-position) (line-end-position)))
-       ;; insert new item
-       (t
-	(end-of-line)
-	(org-insert-item))))
-
-     ;; org-heading
-     ((org-at-heading-p)
-      (if (not (string= "" (org-element-property :title (org-element-context))))
-	  (progn
-	    ;; Go to end of subtree suggested by Pablo GG on Disqus post.
-	    (org-end-of-subtree)
-	    (org-insert-heading-respect-content)
-	    (outline-show-entry))
-	;; The heading was empty, so we delete it
-	(beginning-of-line)
-	(setf (buffer-substring
-	       (line-beginning-position) (line-end-position)) "")))
-
-     ;; tables
-     ((org-at-table-p)
-      (if (-any?
-	   (lambda (x) (not (string= "" x)))
-	   (nth
-	    (- (org-table-current-dline) 1)
-	    (remove 'hline (org-table-to-lisp))))
-	  (org-return)
-	;; empty row
-	(beginning-of-line)
-	(setf (buffer-substring
-	       (line-beginning-position) (line-end-position)) "")
-	(org-return)))
-
-     ;; fall-through case
-     (t
-      (org-return)))))
+	(org-return)))))
 
   (defun ora-cap-filesystem ()
     (let (path)
@@ -477,6 +477,8 @@ Argument KEY is the bibtex key."
   :defer
   :ensure t)
 
+(use-package org-pretty-table)
+
 (use-package ox-latex
   :defer
   :config
@@ -620,7 +622,7 @@ line are justified."
 		      :inherit 'variable-pitch
 		      :foreground nil
 		      :weight 'semibold
-		      :height 1.35)
+		      :height 1.3)
   (set-face-attribute 'org-level-2 nil
   		      :inherit 'variable-pitch
 		      :foreground nil
@@ -652,7 +654,7 @@ line are justified."
 		      :weight 'bold
 		      :height 1.05)
   (set-face-attribute 'org-link nil
-		      :inherit 'org-link
+		      :inherit 'fixed-pitch
 		      :foreground nil) ; links are only underlined
   ;; footnotes shouldn't be highlighted
   (set-face-attribute 'org-footnote nil
@@ -721,6 +723,7 @@ line are justified."
 	  org-completion-refs))
   (org-bullets-mode t)
   (dc/org-theme)
+  (variable-pitch-mode)
   (require 'tex-mode)
   (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
   (setq prettify-symbols-compose-predicate #'prettify-symbols-org-latex-compose-p)
