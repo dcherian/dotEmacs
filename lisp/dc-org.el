@@ -616,13 +616,41 @@ line are justified."
 
 (defun dc/org-theme ()
   (interactive)
-  ;; org-faces
-  ;; (set-face-attribute 'org-level-1 nil
-  ;; 		      :inherit 'outline-1 :height 1.25)
-  ;; (set-face-attribute 'org-level-2 nil
-  ;; 		      :inherit 'outline-2 :height 1.2)
-  ;; (set-face-attribute 'org-level-3 nil
-  ;; 		      :inherit 'outline-3 :height 1.15)
+  (set-face-attribute 'org-level-1 nil
+		      :inherit 'variable-pitch
+		      :foreground nil
+		      :weight 'semibold
+		      :height 1.35)
+  (set-face-attribute 'org-level-2 nil
+  		      :inherit 'variable-pitch
+		      :foreground nil
+		      :slant 'italic
+		      :height 1.2)
+  (set-face-attribute 'org-level-3 nil
+  		      :inherit 'variable-pitch
+		      :foreground nil
+		      :weight 'bold
+		      :height 1.1)
+  (set-face-attribute 'org-level-4 nil
+  		      :inherit 'variable-pitch
+		      :foreground nil
+		      :weight 'bold
+		      :height 1.05)
+  (set-face-attribute 'org-level-5 nil
+  		      :inherit 'variable-pitch
+		      :foreground nil
+		      :weight 'bold
+		      :height 1.05)
+  (set-face-attribute 'org-level-6 nil
+  		      :inherit 'variable-pitch
+		      :foreground nil
+		      :weight 'bold
+		      :height 1.05)
+  (set-face-attribute 'org-level-7 nil
+  		      :inherit 'variable-pitch
+		      :foreground nil
+		      :weight 'bold
+		      :height 1.05)
   (set-face-attribute 'org-link nil
 		      :inherit 'org-link
 		      :foreground nil) ; links are only underlined
@@ -637,6 +665,7 @@ line are justified."
 		      :weight 'light
 		      :box nil)
   (set-face-attribute 'org-code nil
+		      :inherit 'fixed-pitch
 		      :foreground "#286db2"
 		      :background nil)
   (set-face-attribute 'org-todo nil
@@ -644,9 +673,11 @@ line are justified."
   (set-face-attribute 'org-done nil
 		      :weight 'normal)
   (set-face-attribute 'org-block nil
+		      :inherit 'fixed-pitch
 		      :foreground nil
 		      :background nil)
   (set-face-attribute 'org-target nil
+		      :inherit 'fixed-pitch
 		      :foreground "#586e75"
 		      :background nil)
   (set-face-attribute 'org-table nil
@@ -656,11 +687,16 @@ line are justified."
 		      :foreground nil
 		      :inherit 'org-link)
   (set-face-attribute 'org-latex-and-related nil
-		      :foreground "#268bd2")
+		      :foreground "#268bd2"
+		      :family "TeX Gyre Pagella"
+		      :slant 'italic)
   (set-face-attribute 'org-tag nil
-		      :height 0.7
-		      :inherit '(font-lock-comment-face org-foreground))
+		      :height 0.8
+		      :inherit '(font-lock-comment-face
+				 org-foreground
+				 fixed-pitch))
   (set-face-attribute 'org-meta-line nil
+		      :inherit 'fixed-pitch
 		      :height 0.85)
   (set-face-attribute 'org-document-title nil
 		      :foreground nil

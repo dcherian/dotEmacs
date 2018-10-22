@@ -9,7 +9,7 @@
   (load-theme 'solarized-light t)
   (setq solarized-use-less-bold t
       solarized-use-more-italic nil
-      solarized-use-variable-pitch nil)
+      solarized-use-variable-pitch t)
   (let ((line (face-attribute 'mode-line :underline)))
     (set-face-attribute 'mode-line          nil :overline   line)
     (set-face-attribute 'mode-line-inactive nil :overline   line)
@@ -26,7 +26,7 @@
                            ("19:30" . solarized-dark)))
   (circadian-setup))
 
-(setq-default line-spacing 5)
+(setq-default line-spacing 0.14)
 (setq x-stretch-cursor nil)
 (setq x-underline-at-descent-line t)
 
@@ -64,24 +64,34 @@
 (defun dc/light-theme-changes ()
   (interactive)
   (set-face-attribute 'default nil
-		      :foreground "#21505a"
-		      :family "fira mono"
-		      :height 120)
+		      :inherit 'fixed-pitch
+		      :foreground "#21505a")
   (dc/theme-changes))
 
 (defun dc/dark-theme-changes ()
   (interactive)
   (set-face-attribute 'default nil
-		      :foreground "#839496"
-		      :family "fira mono"
-		      :height 120)
+		      :inherit 'fixed-pitch
+		      :foreground "#aaaaaa")
   (dc/theme-changes))
 
 (defun dc/theme-changes ()
   (interactive)
   (dc/org-theme)
 
-  ;; font changes
+  (set-face-attribute 'fixed-pitch nil
+		      :family "mononoki"
+		      :height 120)
+
+  (set-face-attribute 'variable-pitch nil
+		      :family "Linux Libertine O"
+		      :weight 'light
+		      :height 130)
+
+  (set-face-attribute 'header-line nil
+		      :background nil
+		      :inherit nil)
+
   (set-face-attribute 'font-lock-constant-face nil
 		      :bold nil)
 
