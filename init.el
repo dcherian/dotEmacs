@@ -130,6 +130,12 @@
   (super-save-mode +1)
   (setq super-save-auto-save-when-idle t))
 
+(use-package keyfreq
+  :ensure
+  :config
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
+
 ;; tramp
 (setq tramp-default-method "ssh")
 (setq tramp-backup-directory-alist backup-directory-alist)
@@ -567,7 +573,7 @@
  '(helm-mode t)
  '(ivy-mode t)
  '(package-selected-packages
-   '(super-save wucuo counsel-projectile company-lsp lsp-ui lsp-mode citeproc citeproc-orgref company-quickhelp moody ox-reveal org-reveal minions company-statistics circadian cdlatex counsel outshine yaml-mode auto-dim-other-buffers matlab-mode-elpa ox-latex beginend smooth-scrolling helm-dash dumb-jump org-sticky-header spaceline-all-the-icons spaceline all-the-icons major-mode-icons pydoc kaomoji elpy helm-pydoc origami transpose-frame w3 org-edit-latex rainbow-mode markdown-mode company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit no-littering helm-projectile goto-last-change helm-describe-modes helm-ls-git ox-nikola multiple-cursors helm-ag hungry-delete helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights use-package undo-tree smart-mode-line org-bullets magit comment-dwim-2))
+   '(keyfreq super-save wucuo counsel-projectile company-lsp lsp-ui lsp-mode citeproc citeproc-orgref company-quickhelp moody ox-reveal org-reveal minions company-statistics circadian cdlatex counsel outshine yaml-mode matlab-mode-elpa ox-latex beginend smooth-scrolling helm-dash dumb-jump org-sticky-header spaceline-all-the-icons spaceline all-the-icons major-mode-icons pydoc kaomoji elpy helm-pydoc origami transpose-frame w3 org-edit-latex rainbow-mode markdown-mode company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit no-littering goto-last-change helm-describe-modes helm-ls-git ox-nikola multiple-cursors helm-ag hungry-delete helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights use-package undo-tree smart-mode-line org-bullets magit comment-dwim-2))
  '(projectile-mode t nil (projectile))
  '(safe-local-variable-values
    '((eval add-hook 'after-save-hook 'org-latex-export-to-latex t t)
