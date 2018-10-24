@@ -381,7 +381,6 @@
 	      :map projectile-command-map
 	      ("s" . counsel-projectile-ag))
   :config
-  ;; (helm-projectile-on)
   (counsel-projectile-mode)
   (setq projectile-completion-system 'counsel
 	projectile-switch-project-action 'counsel-projectile-find-file

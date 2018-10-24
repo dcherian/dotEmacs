@@ -30,16 +30,6 @@
 (setq x-stretch-cursor nil)
 (setq x-underline-at-descent-line t)
 
-;; modeline options
-(use-package smart-mode-line
-  :ensure t
-  :disabled
-  :config
-  (setq sml/no-confirm-load-theme t
-	sml/theme 'respectful)
-  (sml/setup)
-  (smart-mode-line-enable))
-
 (use-package minions
   :ensure t
   :config
@@ -51,15 +41,6 @@
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode)
   (setq moody-mode-line-height 28))
-
-(use-package auto-dim-other-buffers
-  :disabled
-  :config
-  ;;  prevents helm from getting screwed up
-  (setq auto-dim-other-buffers-dim-on-switch-to-minibuffer nil)
-
-  (add-hook 'after-init-hook (lambda ()
-			       (auto-dim-other-buffers-mode t))))
 
 (defun dc/light-theme-changes ()
   (interactive)
