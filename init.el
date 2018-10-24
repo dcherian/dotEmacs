@@ -453,21 +453,8 @@
 					    (projectile-relevant-known-projects))))
 	    (setq magit-repository-directories-depth 1)))
 
-  ;; set untracked files to not be visible by default
-  ;; modified from http://emacs.stackexchange.com/questions/20754/change-the-default-visibility-of-a-magit-section
-  (defun local-magit-initially-hide-untracked (section)
-    (and (not magit-insert-section--oldroot)
-	 (eq (magit-section-type section) 'untracked)
-	 'hide))
-  (defun local-magit-initially-hide-stashes (section)
-    (and (not magit-insert-section--oldroot)
-	 (eq (magit-section-type section) 'stashes)
-	 'hide))
+  (add-to-list 'magit-section-initial-visibility-alist '(untracked . hide))
 
-  (add-hook 'magit-section-set-visibility-hook
-   	    'local-magit-initially-hide-untracked)
-  (add-hook 'magit-section-set-visibility-hook
-  	    'local-magit-initially-hide-stashes)
   (magit-auto-revert-mode)
   (setq vc-handled-backends '(SVN Hg)))
 
@@ -570,32 +557,34 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
+ '(auth-source-save-behavior nil)
  '(auto-dim-other-buffers-mode nil)
  '(debug-on-error nil)
  '(debug-on-quit nil)
  '(electric-indent-mode t)
- '(global-aggressive-indent-mode t)
+ '(global-aggressive-indent-mode nil)
  '(global-undo-tree-mode t)
  '(helm-flx-mode t)
  '(helm-mode t)
  '(ivy-mode t)
  '(package-selected-packages
-   (quote
-    (auto-highlight-symbol ace-window company-statistics circadian cdlatex counsel outshine yaml-mode auto-dim-other-buffers matlab-mode-elpa org-plus-contrib ox-latex beginend smooth-scrolling helm-dash dumb-jump org-sticky-header spaceline-all-the-icons spaceline all-the-icons major-mode-icons pydoc kaomoji elpy helm-pydoc origami transpose-frame w3 org-edit-latex smartparens rainbow-mode markdown-mode company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext company helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit avy no-littering helm-projectile projectile goto-last-change helm-describe-modes helm-ls-git yasnippet ox-nikola multiple-cursors helm-ag adaptive-wrap hungry-delete aggressive-indent helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights visual-fill-column use-package undo-tree solarized-theme smart-mode-line org-ref org-bullets magit comment-dwim-2)))
+   '(super-save wucuo counsel-projectile company-lsp lsp-ui lsp-mode citeproc citeproc-orgref company-quickhelp moody ox-reveal org-reveal minions company-statistics circadian cdlatex counsel outshine yaml-mode auto-dim-other-buffers matlab-mode-elpa ox-latex beginend smooth-scrolling helm-dash dumb-jump org-sticky-header spaceline-all-the-icons spaceline all-the-icons major-mode-icons pydoc kaomoji elpy helm-pydoc origami transpose-frame w3 org-edit-latex rainbow-mode markdown-mode company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit no-littering helm-projectile goto-last-change helm-describe-modes helm-ls-git ox-nikola multiple-cursors helm-ag hungry-delete helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights use-package undo-tree smart-mode-line org-bullets magit comment-dwim-2))
+ '(projectile-mode t nil (projectile))
  '(safe-local-variable-values
-   (quote
-    ((org-image-actual-width . 300)
+   '((eval add-hook 'after-save-hook 'org-latex-export-to-latex t t)
+     (eval add-hook 'after-save-hook 'org-html-export-to-latex t t)
+     (eval add-hook 'after-save-hook 'org-html-export-to-html t t)
+     (org-image-actual-width . 300)
      (org-publish-use-timestamps-flag)
      (eval when
-	   (fboundp
-	    (quote rainbow-mode))
+	   (fboundp 'rainbow-mode)
 	   (rainbow-mode 1))
      (org-latex-table-scientific-notation)
      (org-latex-hyperref-template)
      (TeX-engine . xetex)
      (TeX-master . t)
      (org-image-actual-width . 600)
-     (org-latex-remove-logfiles))))
+     (org-latex-remove-logfiles)))
  '(yas-global-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
