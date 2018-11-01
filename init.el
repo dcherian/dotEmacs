@@ -377,7 +377,30 @@
   :config
   (setq sdcv-hit-face 'font-lock-constant-face)
   (setq sdcv-failed-face 'font-lock-warning-face)
-  (setq sdcv-heading-face 'font-lock-keyword-face))
+  (setq sdcv-heading-face 'font-lock-keyword-face)
+
+  (defvar sdcv-index nil)
+
+  (defun my-sdcv-search ()
+    (interactive)
+    (flet ((read-string
+            (prompt &optional initial-input history
+                    default-value inherit-input-method)
+            (ivy-read prompt
+                      (or sdcv-index
+                          (with-temp-buffer
+                            (insert-file-contents
+                             "/home/deepak/.stardict/dic/dictd_www.dict.org_web1913.idx")
+                            (goto-char (point-max))
+                            (insert ")")
+                            (goto-char (point-min))
+                            (insert "(")
+                            (goto-char (point-min))
+                            (setq sdcv-index (read (current-buffer)))))
+                      :history history
+                      :initial-input initial-input
+                      :def default-value)))
+      (call-interactively #'sdcv-search))))
 
 (use-package counsel-projectile
   :ensure t
