@@ -622,17 +622,18 @@ line are justified."
 		      :inherit 'variable-pitch
 		      :foreground nil
 		      :weight 'semibold
-		      :height 1.3)
+		      :height 1.25)
   (set-face-attribute 'org-level-2 nil
   		      :inherit 'variable-pitch
 		      :foreground nil
 		      :slant 'italic
-		      :height 1.2)
+		      :weight 'medium
+		      :height 1.15)
   (set-face-attribute 'org-level-3 nil
   		      :inherit 'variable-pitch
 		      :foreground nil
-		      :weight 'bold
-		      :height 1.1)
+		      :weight 'semibold
+		      :height 1.05)
   (set-face-attribute 'org-level-4 nil
   		      :inherit 'variable-pitch
 		      :foreground nil

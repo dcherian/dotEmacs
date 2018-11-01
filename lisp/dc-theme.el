@@ -26,7 +26,9 @@
                            ("19:30" . solarized-dark)))
   (circadian-setup))
 
-(setq-default line-spacing 0.2)
+(setq-default line-spacing 6)
+(setq-default cursor-type 'bar)
+(blink-cursor-mode t)
 (setq x-stretch-cursor nil)
 (setq x-underline-at-descent-line t)
 
@@ -62,10 +64,10 @@
 
   (set-face-attribute 'fixed-pitch nil
 		      :family "mononoki"
-		      :height 115)
+		      :height 125)
 
   (set-face-attribute 'variable-pitch nil
-		      :family "Linux Libertine O"
+		      :family "Fira Sans Condensed"
 		      :weight 'light
 		      :height 130)
 
