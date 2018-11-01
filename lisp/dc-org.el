@@ -61,7 +61,7 @@
 	org-special-ctrl-k t
 	org-ellipsis "…"
 	org-log-done t
-	org-catch-invisible-edits 'show
+	org-catch-invisible-edits 'smart
 	org-list-allow-alphabetical t
 	org-hide-emphasis-markers t
 	org-image-actual-width 680
