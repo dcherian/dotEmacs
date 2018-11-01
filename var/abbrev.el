@@ -1,136 +1,4 @@
 ;;-*-coding: utf-8;-*-
-(define-abbrev-table 'Buffer-menu-mode-abbrev-table '())
-
-(define-abbrev-table 'Custom-mode-abbrev-table '())
-
-(define-abbrev-table 'Info-edit-mode-abbrev-table '())
-
-(define-abbrev-table 'Man-mode-abbrev-table '())
-
-(define-abbrev-table 'TeX-error-overview-mode-abbrev-table '())
-
-(define-abbrev-table 'TeX-output-mode-abbrev-table '())
-
-(define-abbrev-table 'apropos-mode-abbrev-table '())
-
-(define-abbrev-table 'awk-mode-abbrev-table '())
-
-(define-abbrev-table 'biblio-selection-mode-abbrev-table '())
-
-(define-abbrev-table 'bibtex-mode-abbrev-table '())
-
-(define-abbrev-table 'bookmark-bmenu-mode-abbrev-table '())
-
-(define-abbrev-table 'bookmark-edit-annotation-mode-abbrev-table '())
-
-(define-abbrev-table 'c++-mode-abbrev-table '())
-
-(define-abbrev-table 'c-mode-abbrev-table '())
-
-(define-abbrev-table 'calc-trail-mode-abbrev-table '())
-
-(define-abbrev-table 'calendar-mode-abbrev-table '())
-
-(define-abbrev-table 'change-log-mode-abbrev-table '())
-
-(define-abbrev-table 'checkdoc-output-mode-abbrev-table '())
-
-(define-abbrev-table 'comint-mode-abbrev-table '())
-
-(define-abbrev-table 'completion-list-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-colon-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-desktop-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-javaprop-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-ppd-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-space-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-toml-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-unix-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-windows-mode-abbrev-table '())
-
-(define-abbrev-table 'conf-xdefaults-mode-abbrev-table '())
-
-(define-abbrev-table 'context-mode-abbrev-table '())
-
-(define-abbrev-table 'css-mode-abbrev-table '())
-
-(define-abbrev-table 'debugger-mode-abbrev-table '())
-
-(define-abbrev-table 'diary-fancy-display-mode-abbrev-table '())
-
-(define-abbrev-table 'diary-mode-abbrev-table '())
-
-(define-abbrev-table 'diff-mode-abbrev-table '())
-
-(define-abbrev-table 'dig-mode-abbrev-table '())
-
-(define-abbrev-table 'display-time-world-mode-abbrev-table '())
-
-(define-abbrev-table 'doctex-mode-abbrev-table '())
-
-(define-abbrev-table 'dun-mode-abbrev-table '())
-
-(define-abbrev-table 'edebug-eval-mode-abbrev-table '())
-
-(define-abbrev-table 'edit-abbrevs-mode-abbrev-table '())
-
-(define-abbrev-table 'eieio-custom-mode-abbrev-table '())
-
-(define-abbrev-table 'elisp-byte-code-mode-abbrev-table '())
-
-(define-abbrev-table 'elisp-refs-mode-abbrev-table '())
-
-(define-abbrev-table 'elpy-refactor-mode-abbrev-table '())
-
-(define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
-
-(define-abbrev-table 'epa-info-mode-abbrev-table '())
-
-(define-abbrev-table 'epa-key-list-mode-abbrev-table '())
-
-(define-abbrev-table 'epa-key-mode-abbrev-table '())
-
-(define-abbrev-table 'ert-results-mode-abbrev-table '())
-
-(define-abbrev-table 'ert-simple-view-mode-abbrev-table '())
-
-(define-abbrev-table 'eshell-mode-abbrev-table '())
-
-(define-abbrev-table 'eww-bookmark-mode-abbrev-table '())
-
-(define-abbrev-table 'eww-buffers-mode-abbrev-table '())
-
-(define-abbrev-table 'eww-history-mode-abbrev-table '())
-
-(define-abbrev-table 'eww-mode-abbrev-table '())
-
-(define-abbrev-table 'f90-mode-abbrev-table '())
-
-(define-abbrev-table 'ffip-diff-mode-abbrev-table '())
-
-(define-abbrev-table 'flycheck-error-list-mode-abbrev-table '())
-
-(define-abbrev-table 'flymake-diagnostics-buffer-mode-abbrev-table '())
-
-(define-abbrev-table 'fundamental-mode-abbrev-table '())
-
-(define-abbrev-table 'gdb-script-mode-abbrev-table '())
-
-(define-abbrev-table 'gfm-mode-abbrev-table '())
-
-(define-abbrev-table 'gfm-view-mode-abbrev-table '())
-
-(define-abbrev-table 'git-commit-elisp-text-mode-abbrev-table '())
-
-(define-abbrev-table 'git-rebase-mode-abbrev-table '())
-
 (define-abbrev-table 'global-abbrev-table
   '(
     ("abbout" "about" nil :count 0)
@@ -161,7 +29,7 @@
     ("addtions" "additions" nil :count 0)
     ("adequit" "adequate" nil :count 0)
     ("adequite" "adequate" nil :count 0)
-    ("adn" "and" nil :count 0)
+    ("adn" "and" nil :count 1)
     ("adress" "address" nil :count 0)
     ("advanage" "advantage" nil :count 0)
     ("advectuon" "advection" nil :count 0)
@@ -182,7 +50,7 @@
     ("almots" "almost" nil :count 0)
     ("almsot" "almost" nil :count 0)
     ("alomst" "almost" nil :count 0)
-    ("alot" "a lot" nil :count 0)
+    ("alot" "a lot" nil :count 1)
     ("alraedy" "already" nil :count 0)
     ("alreayd" "already" nil :count 0)
     ("alreday" "already" nil :count 0)
@@ -207,6 +75,7 @@
     ("anothe" "another" nil :count 0)
     ("anual" "annual" nil :count 0)
     ("apache" "Apache" nil :count 0)
+    ("apepars" "appears" nil :count 0)
     ("apparant" "apparent" nil :count 0)
     ("apparrent" "apparent" nil :count 0)
     ("appearence" "appearance" nil :count 0)
@@ -232,6 +101,7 @@
     ("asayymmetrical" "asymmetrical" nil :count 0)
     ("asdvertising" "advertising" nil :count 0)
     ("assistent" "assistant" nil :count 0)
+    ("assocaited" "associated" nil :count 0)
     ("asthe" "as the" nil :count 0)
     ("atention" "attention" nil :count 0)
     ("atmopsheric" "atmospheric" nil :count 0)
@@ -325,7 +195,7 @@
     ("checkk" "check" nil :count 0)
     ("cheif" "chief" nil :count 0)
     ("chekc" "check" nil :count 0)
-    ("cherian" "cherian" nil :count 52)
+    ("cherian" "cherian" nil :count 57)
     ("chnage" "change" nil :count 0)
     ("chunkn" "chunk" nil :count 0)
     ("cieling" "ceiling" nil :count 0)
@@ -335,16 +205,17 @@
     ("claerly" "clearly" nil :count 0)
     ("cliant" "client" nil :count 0)
     ("cliche" "cliche" nil :count 0)
-    ("cna" "can" nil :count 1)
+    ("cna" "can" nil :count 2)
     ("cnnected" "connected" nil :count 0)
     ("cocnvective" "convective" nil :count 0)
+    ("coincinde" "coincide" nil :count 0)
     ("colection" "collection" nil :count 0)
     ("colelcted" "collected" nil :count 0)
     ("collabrations" "collaborations" nil :count 0)
     ("comanies" "companies" nil :count 0)
     ("comany" "company" nil :count 0)
     ("comapnies" "companies" nil :count 0)
-    ("comapny" "company" nil :count 0)
+    ("comapny" "company" nil :count 2)
     ("combintation" "combination" nil :count 0)
     ("comited" "committed" nil :count 0)
     ("comittee" "committee" nil :count 0)
@@ -475,6 +346,7 @@
     ("differencing" "difference" nil :count 0)
     ("differnt" "different" nil :count 1)
     ("diffrent" "different" nil :count 0)
+    ("diffusivty" "diffusivity" nil :count 0)
     ("diirection" "direction" nil :count 0)
     ("directer" "director" nil :count 0)
     ("directers" "directors" nil :count 0)
@@ -575,7 +447,7 @@
     ("flutuations" "fluctuations" nil :count 0)
     ("follwo" "follow" nil :count 0)
     ("follwoing" "following" nil :count 0)
-    ("foloowing" "following" nil :count 0)
+    ("foloowing" "following" nil :count 1)
     ("fora" "for a" nil :count 0)
     ("foriegn" "foreign" nil :count 0)
     ("formua" "formula" nil :count 0)
@@ -600,6 +472,7 @@
     ("gemeral" "general" nil :count 0)
     ("geogrpahic" "geographic" nil :count 0)
     ("geophsyical" "geophysical" nil :count 0)
+    ("geopphysical" "geophysical" nil :count 0)
     ("gerat" "great" nil :count 0)
     ("gerneral" "general" nil :count 0)
     ("gesotrophic" "geostrophic" nil :count 0)
@@ -673,7 +546,7 @@
     ("identifiy" "identify" nil :count 0)
     ("identofy" "identify" nil :count 0)
     ("idffusiviry" "diffusivity" nil :count 0)
-    ("igure" "figure" nil :count 5)
+    ("igure" "figure" nil :count 10)
     ("ihs" "his" nil :count 0)
     ("imediate" "immediate" nil :count 0)
     ("imediatly" "immediately" nil :count 0)
@@ -718,7 +591,7 @@
     ("invstigated" "investigated" nil :count 0)
     ("inwhich" "in which" nil :count 0)
     ("irreverible" "irreversible" nil :count 0)
-    ("isnt" "isn't" nil :count 0)
+    ("isnt" "isn't" nil :count 1)
     ("isthe" "is the" nil :count 0)
     ("itis" "it is" nil :count 0)
     ("ititial" "initial" nil :count 0)
@@ -763,6 +636,7 @@
     ("litttle" "little" nil :count 0)
     ("liuke" "like" nil :count 0)
     ("liveing" "living" nil :count 0)
+    ("lmitations" "limitations" nil :count 0)
     ("lnie" "line" nil :count 0)
     ("locall" "local" nil :count 0)
     ("loev" "love" nil :count 0)
@@ -776,11 +650,12 @@
     ("mantain" "maintain" nil :count 0)
     ("marraige" "marriage" nil :count 0)
     ("masschusetts" "massachusetts" nil :count 0)
+    ("maximium" "maximum" nil :count 0)
     ("maxmimum" "maximum" nil :count 0)
     ("mcuh" "much" nil :count 0)
     ("mecahnism" "mechanism" nil :count 0)
     ("memeber" "member" nil :count 0)
-    ("mena" "mean" nil :count 1)
+    ("mena" "mean" nil :count 4)
     ("merchent" "merchant" nil :count 0)
     ("mesage" "message" nil :count 0)
     ("mesages" "messages" nil :count 0)
@@ -796,7 +671,7 @@
     ("moeny" "money" nil :count 0)
     ("momving" "moving" nil :count 0)
     ("morgage" "mortgage" nil :count 0)
-    ("mroe" "more" nil :count 0)
+    ("mroe" "more" nil :count 1)
     ("mysefl" "myself" nil :count 0)
     ("myu" "my" nil :count 0)
     ("nad" "and" nil :count 1)
@@ -808,7 +683,7 @@
     ("necesarily" "necessarily" nil :count 0)
     ("necesary" "necessary" nil :count 0)
     ("negotiaing" "negotiating" nil :count 0)
-    ("ni" "in" nil :count 3)
+    ("ni" "in" nil :count 5)
     ("nkow" "know" nil :count 0)
     ("noe" "one" nil :count 0)
     ("noly" "only" nil :count 0)
@@ -822,9 +697,10 @@
     ("obervations" "observations" nil :count 0)
     ("ocasion" "occasion" nil :count 0)
     ("occassion" "occasion" nil :count 0)
-    ("occured" "occurred" nil :count 0)
+    ("occured" "occurred" nil :count 1)
     ("occurence" "occurrence" nil :count 0)
     ("occurences" "occurrences" nil :count 0)
+    ("occureneces" "occurrences" nil :count 0)
     ("occuring" "occurring" nil :count 0)
     ("occurrance" "occurrence" nil :count 0)
     ("oceanogrpahy" "oceanography" nil :count 0)
@@ -945,6 +821,7 @@
     ("quide" "guide" nil :count 0)
     ("quqiver" "quiver" nil :count 0)
     ("raidus" "RADIUS" nil :count 0)
+    ("realtively" "relatively" nil :count 0)
     ("realyl" "really" nil :count 0)
     ("reccomend" "recommend" nil :count 0)
     ("reccommend" "recommend" nil :count 0)
@@ -1052,6 +929,7 @@
     ("simulatons" "simulations" nil :count 0)
     ("sincerly" "sincerely" nil :count 0)
     ("sitll" "still" nil :count 0)
+    ("slainity" "salinity" nil :count 0)
     ("slighly" "slightly" nil :count 0)
     ("smae" "same" nil :count 0)
     ("smoe" "some" nil :count 0)
@@ -1061,7 +939,7 @@
     ("somethign" "something" nil :count 0)
     ("someting" "something" nil :count 0)
     ("somewaht" "somewhat" nil :count 0)
-    ("somthing" "something" nil :count 0)
+    ("somthing" "something" nil :count 1)
     ("somtimes" "sometimes" nil :count 0)
     ("soudn" "sound" nil :count 0)
     ("soudns" "sounds" nil :count 0)
@@ -1108,24 +986,24 @@
     ("swithc" "switch" nil :count 0)
     ("symmertic" "symmetric" nil :count 0)
     ("tahn" "than" nil :count 0)
-    ("taht" "that" nil :count 0)
+    ("taht" "that" nil :count 2)
     ("talekd" "talked" nil :count 0)
     ("talior" "tailor" nil :count 0)
     ("talkign" "talking" nil :count 0)
     ("tath" "that" nil :count 0)
     ("tecnical" "technical" nil :count 0)
-    ("teh" "the" nil :count 1)
+    ("teh" "the" nil :count 3)
     ("tehy" "they" nil :count 0)
     ("temeprature" "temperature" nil :count 0)
     ("tempearture" "temperature" nil :count 0)
-    ("tentaively" "tentatively" nil :count 0)
+    ("tentaively" "tentatively" nil :count 1)
     ("terminiated" "terminated" nil :count 0)
     ("termoil" "turmoil" nil :count 0)
     ("tghe" "the" nil :count 0)
     ("tghis" "this" nil :count 0)
     ("thansk" "thanks" nil :count 0)
     ("thatthe" "that the" nil :count 0)
-    ("the" "the" nil :count 1420)
+    ("the" "the" nil :count 1789)
     ("thecompany" "the company" nil :count 0)
     ("thefirst" "the first" nil :count 0)
     ("thegovernment" "the government" nil :count 0)
@@ -1186,6 +1064,7 @@
     ("truley" "truly" nil :count 0)
     ("tryed" "tried" nil :count 0)
     ("tthe" "the" nil :count 3)
+    ("turbulewnce" "turbulence" nil :count 0)
     ("tyhat" "that" nil :count 0)
     ("tyhe" "the" nil :count 0)
     ("udnergraduate" "undergraduate" nil :count 0)
@@ -1227,7 +1106,7 @@
     ("wherre" "where" nil :count 0)
     ("whic" "which" nil :count 0)
     ("whihc" "which" nil :count 1)
-    ("whos" "who's" nil :count 4)
+    ("whos" "who's" nil :count 15)
     ("whove" "who've" nil :count 0)
     ("whta" "what" nil :count 0)
     ("wief" "wife" nil :count 0)
@@ -1236,7 +1115,7 @@
     ("wiht" "with" nil :count 1)
     ("willbe" "will be" nil :count 0)
     ("windoes" "windows" nil :count 0)
-    ("witha" "with a" nil :count 0)
+    ("witha" "with a" nil :count 1)
     ("withe" "with" nil :count 0)
     ("withthe" "with the" nil :count 0)
     ("wiull" "will" nil :count 0)
@@ -1271,212 +1150,4 @@
     ("yuo" "you" nil :count 0)
     ("yuor" "your" nil :count 1)
    ))
-
-(define-abbrev-table 'gnus-article-edit-mode-abbrev-table '())
-
-(define-abbrev-table 'gnus-article-mode-abbrev-table '())
-
-(define-abbrev-table 'gnus-group-mode-abbrev-table '())
-
-(define-abbrev-table 'gnus-sticky-article-mode-abbrev-table '())
-
-(define-abbrev-table 'grep-mode-abbrev-table '())
-
-(define-abbrev-table 'gud-mode-abbrev-table '())
-
-(define-abbrev-table 'helm-ag-mode-abbrev-table '())
-
-(define-abbrev-table 'helm-grep-mode-abbrev-table '())
-
-(define-abbrev-table 'helm-major-mode-abbrev-table '())
-
-(define-abbrev-table 'helm-moccur-mode-abbrev-table '())
-
-(define-abbrev-table 'help-mode-abbrev-table '())
-
-(define-abbrev-table 'helpful-mode-abbrev-table '())
-
-(define-abbrev-table 'html-mode-abbrev-table '())
-
-(define-abbrev-table 'ibuffer-mode-abbrev-table '())
-
-(define-abbrev-table 'idl-mode-abbrev-table '())
-
-(define-abbrev-table 'image-dired-display-image-mode-abbrev-table '())
-
-(define-abbrev-table 'image-dired-thumbnail-mode-abbrev-table '())
-
-(define-abbrev-table 'inferior-python-mode-abbrev-table '())
-
-(define-abbrev-table 'ivy-occur-grep-mode-abbrev-table '())
-
-(define-abbrev-table 'ivy-occur-mode-abbrev-table '())
-
-(define-abbrev-table 'java-mode-abbrev-table '())
-
-(define-abbrev-table 'js-jsx-mode-abbrev-table '())
-
-(define-abbrev-table 'js-mode-abbrev-table '())
-
-(define-abbrev-table 'latex-mode-abbrev-table '())
-
-(define-abbrev-table 'lisp-mode-abbrev-table '())
-
-(define-abbrev-table 'log-edit-mode-abbrev-table '())
-
-(define-abbrev-table 'lsp-ui-flycheck-list-mode-abbrev-table '())
-
-(define-abbrev-table 'lsp-ui-imenu-mode-abbrev-table '())
-
-(define-abbrev-table 'lua-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-cherry-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-diff-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-log-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-log-select-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-merge-preview-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-popup-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-process-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-reflog-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-refs-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-repolist-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-revision-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-stash-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-stashes-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-status-mode-abbrev-table '())
-
-(define-abbrev-table 'magit-submodule-list-mode-abbrev-table '())
-
-(define-abbrev-table 'markdown-mode-abbrev-table '())
-
-(define-abbrev-table 'markdown-view-mode-abbrev-table '())
-
-(define-abbrev-table 'matlab-mode-abbrev-table '())
-
-(define-abbrev-table 'matlab-shell-help-mode-abbrev-table '())
-
-(define-abbrev-table 'matlab-shell-topic-mode-abbrev-table '())
-
-(define-abbrev-table 'message-mode-abbrev-table '())
-
-(define-abbrev-table 'messages-buffer-mode-abbrev-table '())
-
-(define-abbrev-table 'mhtml-mode-abbrev-table '())
-
-(define-abbrev-table 'nxml-mode-abbrev-table '())
-
-(define-abbrev-table 'objc-mode-abbrev-table '())
-
-(define-abbrev-table 'occur-edit-mode-abbrev-table '())
-
-(define-abbrev-table 'occur-mode-abbrev-table '())
-
-(define-abbrev-table 'org-export-stack-mode-abbrev-table '())
-
-(define-abbrev-table 'org-lint--report-mode-abbrev-table '())
-
-(define-abbrev-table 'org-mode-abbrev-table '())
-
-(define-abbrev-table 'outline-mode-abbrev-table '())
-
-(define-abbrev-table 'package-menu-mode-abbrev-table '())
-
-(define-abbrev-table 'pike-mode-abbrev-table '())
-
-(define-abbrev-table 'plain-tex-mode-abbrev-table '())
-
-(define-abbrev-table 'process-menu-mode-abbrev-table '())
-
-(define-abbrev-table 'prog-mode-abbrev-table '())
-
-(define-abbrev-table 'pydoc-mode-abbrev-table '())
-
-(define-abbrev-table 'python-mode-abbrev-table '())
-
-(define-abbrev-table 'python-mode-skeleton-abbrev-table
-  '(
-   ))
-
-(define-abbrev-table 'rst-mode-abbrev-table
-  '(
-   ))
-
-(define-abbrev-table 'rst-toc-mode-abbrev-table '())
-
-(define-abbrev-table 'ruby-mode-abbrev-table '())
-
-(define-abbrev-table 'scss-mode-abbrev-table '())
-
-(define-abbrev-table 'sdcv-mode-abbrev-table '())
-
-(define-abbrev-table 'select-tags-table-mode-abbrev-table '())
-
-(define-abbrev-table 'sgml-mode-abbrev-table '())
-
-(define-abbrev-table 'sh-mode-abbrev-table '())
-
-(define-abbrev-table 'shell-mode-abbrev-table '())
-
-(define-abbrev-table 'slitex-mode-abbrev-table '())
-
-(define-abbrev-table 'smime-mode-abbrev-table '())
-
-(define-abbrev-table 'snippet-mode-abbrev-table '())
-
-(define-abbrev-table 'special-mode-abbrev-table '())
-
-(define-abbrev-table 'speedbar-mode-abbrev-table '())
-
-(define-abbrev-table 'srecode-template-mode-abbrev-table '())
-
-(define-abbrev-table 'tablist-mode-abbrev-table '())
-
-(define-abbrev-table 'tabulated-list-mode-abbrev-table '())
-
-(define-abbrev-table 'tags-table-mode-abbrev-table '())
-
-(define-abbrev-table 'tar-mode-abbrev-table '())
-
-(define-abbrev-table 'term-mode-abbrev-table '())
-
-(define-abbrev-table 'tex-mode-abbrev-table '())
-
-(define-abbrev-table 'tex-shell-abbrev-table '())
-
-(define-abbrev-table 'texinfo-mode-abbrev-table '())
-
-(define-abbrev-table 'text-mode-abbrev-table '())
-
-(define-abbrev-table 'url-cookie-mode-abbrev-table '())
-
-(define-abbrev-table 'use-package-statistics-mode-abbrev-table '())
-
-(define-abbrev-table 'vc-git-log-edit-mode-abbrev-table '())
-
-(define-abbrev-table 'vc-git-log-view-mode-abbrev-table '())
-
-(define-abbrev-table 'vc-git-region-history-mode-abbrev-table '())
-
-(define-abbrev-table 'vc-hg-log-view-mode-abbrev-table '())
-
-(define-abbrev-table 'woman-mode-abbrev-table '())
-
-(define-abbrev-table 'xref--xref-buffer-mode-abbrev-table '())
-
-(define-abbrev-table 'yaml-mode-abbrev-table '())
 
