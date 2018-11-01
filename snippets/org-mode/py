@@ -3,6 +3,10 @@
 # key: py
 # --
 
-#+BEGIN_SRC ipython :session :ipyfile ${$$(concat "images/temp/" (make-temp-name "img") ".png")}
+#+BEGIN_SRC ipython :session
+f, ax = plt.subplots(1, 1, constrained_layout=True)
 $0
+f.savefig('${1:`(read-string "Image filename: " (concat "images/temp/" (make-temp-name "img") ".png"))`}')
 #+END_SRC
+#+CAPTION:
+[[file:$1]]

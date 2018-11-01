@@ -42,7 +42,7 @@
   )
 
 (setq org-babel-default-header-args:ipython
-      '((:results . "drawer")
+      '((:results . "none")
 	;;(:session . "none")
 	(:exports . "results")
 	(:cache .   "no")
