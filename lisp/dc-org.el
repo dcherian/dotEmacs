@@ -28,7 +28,7 @@
 	      ("s-j" . org-babel-next-src-block)
 	      ("s-k" . org-babel-previous-src-block)
 	      ("s-l" . org-edit-src-code)
-	      ("s-h" . org-babel-split-src-block)
+	      ("s-h" . scimax-split-src-block)
 	      ("s-g" . dc/org-babel-execute-named-block)
 	      ("C-c C-q" . dc/org-babel-execute-current-block-qt)
 	      ("C-c C-i" . dc/org-babel-execute-current-block-inline)
@@ -272,30 +272,6 @@ Use a prefix arg to get regular RET. "
 	(when cands
 	  (list (match-beginning 0) (match-end 0) cands)))))
 
-  ;; some jupyter notebook-like commands from jkitchin
-  (defun org-babel-split-src-block (&optional below)
-    "Split the current src block.
-With a prefix BELOW move point to lower block."
-    (interactive "P")
-    (let* ((el (org-element-context))
-	   (language (org-element-property :language el))
-	   (parameters (org-element-property :parameters el)))
-
-      (beginning-of-line)
-      (insert (format "#+END_SRC
-#+BEGIN_SRC %s %s\n" language (or parameters "")))
-      (beginning-of-line)
-      (when (not below)
-	(org-babel-previous-src-block))))
-
-  (defun org-babel-execute-to-point ()
-    "Execute all the blocks up to and including the one point is on."
-    (interactive)
-    (let ((p (point)))
-      (save-excursion
-	(goto-char (point-min))
-	(while (and (org-babel-next-src-block) (< (point) p))
-	  (org-babel-execute-src-block)))))
 
   (defun dc/org-babel-execute-current-block-qt ()
     (interactive)

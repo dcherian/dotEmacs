@@ -20,6 +20,10 @@
 ;;   :config
 ;;   (setq jedi:complete-on-dot t))
 
+(use-package beacon
+  :ensure)
+(require 'scimax-org-babel-python)
+(require 'scimax-org-babel-ipython-upstream)
 ;; ob-ipython and org-mode stuff
 (require 'ob-ipython)
 (use-package ob-ipython
