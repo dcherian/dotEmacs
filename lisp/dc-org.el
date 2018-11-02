@@ -632,6 +632,7 @@ line are justified."
 		      :height 1.05)
   (set-face-attribute 'org-link nil
 		      :inherit 'fixed-pitch
+		      :underline t
 		      :foreground nil) ; links are only underlined
   ;; footnotes shouldn't be highlighted
   (set-face-attribute 'org-footnote nil
@@ -660,14 +661,14 @@ line are justified."
 		      :foreground "#586e75"
 		      :background nil)
   (set-face-attribute 'org-table nil
-		      :family "Ubuntu Mono"
+		      :inherit 'fixed-pitch
 		      :background nil)
   (set-face-attribute 'org-date nil
 		      :foreground nil
 		      :inherit 'org-link)
   (set-face-attribute 'org-latex-and-related nil
 		      :foreground "#268bd2"
-		      :family "TeX Gyre Pagella"
+		      :family "CMU Bright"
 		      :slant 'italic)
   (set-face-attribute 'org-tag nil
 		      :height 0.8

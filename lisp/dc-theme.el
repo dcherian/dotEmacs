@@ -22,11 +22,11 @@
   :ensure t
   :demand
   :config
-  (setq circadian-themes '(("8:00" . solarized-light)
-                           ("19:30" . solarized-dark)))
+  (setq circadian-themes '(("8:00" . apropospriate-light)
+                           ("19:30" . apropospriate-dark)))
   (circadian-setup))
 
-(setq-default line-spacing 6)
+(setq-default line-spacing 5)
 (setq-default cursor-type 'bar)
 (blink-cursor-mode t)
 (setq x-stretch-cursor nil)
@@ -47,6 +47,7 @@
 (defun dc/light-theme-changes ()
   (interactive)
   (set-face-attribute 'default nil
+		      :family "mononoki"
 		      :inherit 'fixed-pitch
 		      :foreground "#21505a")
   (dc/theme-changes))
@@ -54,6 +55,7 @@
 (defun dc/dark-theme-changes ()
   (interactive)
   (set-face-attribute 'default nil
+		      :family "mononoki"
 		      :inherit 'fixed-pitch
 		      :foreground "#aaaaaa")
   (dc/theme-changes))
@@ -67,9 +69,9 @@
 		      :height 125)
 
   (set-face-attribute 'variable-pitch nil
-		      :family "Fira Sans Condensed"
-		      :weight 'light
-		      :height 130)
+		      :family "CMU Sans Serif"
+		      :weight 'regular
+		      :height 135)
 
   (set-face-attribute 'header-line nil
 		      :background nil
@@ -102,5 +104,7 @@
   (set-face-attribute 'lsp-face-highlight-write nil
 		      :foreground "#b58900"
 		      :background nil))
+
+(use-package apropospriate-theme)
 
 (provide 'dc-theme)
