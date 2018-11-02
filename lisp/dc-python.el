@@ -1,5 +1,5 @@
 ;; elpy & jedi
-(require 'package)
+(require 'elpy)
 
 (setq elpy-modules '(;; elpy-module-highlight-indentation
 		     elpy-module-sane-defaults
@@ -10,16 +10,15 @@
 		     ;; elpy-module-yasnippet
 		     ;; elpy-module-django
 		     ))
-;; (add-to-list 'elpy-modules 'elpy-module-highlight-indentation)
-;; (elpy-enable)
+(elpy-enable)
 (setq elpy-rpc-backend "jedi")
 
 (setq eldoc-idle-delay 1)
 
-(use-package company-jedi
-  :ensure t
-  :config
-  (setq jedi:complete-on-dot t))
+;; (use-package company-jedi
+;;   :ensure t
+;;   :config
+;;   (setq jedi:complete-on-dot t))
 
 ;; ob-ipython and org-mode stuff
 (require 'ob-ipython)
@@ -123,6 +122,7 @@
 
 (use-package lsp-mode
   :ensure t
+  :disabled
   :config
 
   ;; make sure we have lsp-imenu everywhere we have LSP
