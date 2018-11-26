@@ -49,6 +49,7 @@
   (set-face-attribute 'default nil
 		      :family "mononoki"
 		      :inherit 'fixed-pitch
+		      :height 140
 		      :foreground "#21505a")
   (dc/theme-changes))
 
@@ -57,6 +58,7 @@
   (set-face-attribute 'default nil
 		      :family "mononoki"
 		      :inherit 'fixed-pitch
+		      :height 135
 		      :foreground "#aaaaaa")
   (dc/theme-changes))
 
@@ -66,12 +68,12 @@
 
   (set-face-attribute 'fixed-pitch nil
 		      :family "mononoki"
-		      :height 125)
+		      :height 140)
 
   (set-face-attribute 'variable-pitch nil
 		      :family "CMU Sans Serif"
 		      :weight 'regular
-		      :height 135)
+		      :height 140)
 
   (set-face-attribute 'header-line nil
 		      :background nil

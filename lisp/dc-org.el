@@ -656,6 +656,8 @@ line are justified."
 		      :inherit 'fixed-pitch
 		      :foreground nil
 		      :background nil)
+  (set-face-attribute 'org-block-end-line nil
+		      :inherit 'org-meta-line)
   (set-face-attribute 'org-target nil
 		      :inherit 'fixed-pitch
 		      :foreground "#586e75"
