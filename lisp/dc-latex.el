@@ -35,7 +35,7 @@
   (auctex-latexmk-setup)
   (setq auctex-latexmk-inherit-TeX-PDF-mode t))
 
-(setq-default TeX-PDF-mode t
+(setq-default TeX-PDF-mode nil
 	      TeX-master nil)
 
 (setq TeX-auto-save t

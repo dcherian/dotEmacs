@@ -15,17 +15,14 @@
 
 (setq eldoc-idle-delay 1)
 
-;; (use-package company-jedi
-;;   :ensure t
-;;   :config
-;;   (setq jedi:complete-on-dot t))
-
 (use-package beacon
   :ensure)
+
 (require 'scimax-org-babel-python)
 (require 'scimax-org-babel-ipython-upstream)
-;; ob-ipython and org-mode stuff
-(require 'ob-ipython)
+
+(setq ob-ipython-buffer-unique-kernel nil)
+
 (use-package ob-ipython
   :ensure t
   :bind (:map dc-bindings-map
@@ -60,6 +57,8 @@
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 (setq-default python-indent-offset 4)
 (setq python-shell-prompt-detect-failure-warning nil)
+(add-to-list 'python-shell-completion-native-disabled-interpreters
+             "jupyter")
 
 (use-package pydoc
   :ensure t
@@ -67,8 +66,8 @@
 
 (defun darya-setup ()
   (message "Setting python paths for darya.")
-  (setq python-shell-interpreter "/home/deepak/anaconda3/bin/ipython")
-  (setq python-shell-interpreter-args "--simple-prompt --pylab")
+  (setq python-shell-interpreter "/home/deepak/anaconda3/bin/jupyter")
+  (setq python-shell-interpreter-args "console --simple-prompt")
   (setq-default org-babel-python-command "/home/deepak/anaconda3/bin/jupyter")
   (setq-default ob-ipython-command "/home/deepak/anaconda3/bin/jupyter")
   (setq-default ob-ipython-kernel-extra-args 'nil)

@@ -720,5 +720,7 @@ line are justified."
 
 (use-package ox-clip)
 
+(require 'scimax-ob)
+
 (provide 'dc-org)
 ;;; dc-org ends here
