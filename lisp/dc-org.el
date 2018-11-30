@@ -339,10 +339,6 @@ applying latex prettifycations in org mode buffers."
 	     (memq (char-syntax (or (char-after end) ?\s)) syntaxes-end))
 	    (nth 8 (syntax-ppss))))))
 
-  (defun dc/set-latex-pretty-org-mode ()
-    (interactive)
-    (prettify-symbols-mode t))
-
   ;; remove comments from org document for use with export hook
   ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
   (defun delete-org-comments (backend)
@@ -706,8 +702,7 @@ line are justified."
   (variable-pitch-mode)
   (require 'tex-mode)
   (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
-  (setq prettify-symbols-compose-predicate #'prettify-symbols-org-latex-compose-p)
-  (dc/set-latex-pretty-org-mode))
+  (setq prettify-symbols-compose-predicate #'prettify-symbols-org-latex-compose-p))
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
 

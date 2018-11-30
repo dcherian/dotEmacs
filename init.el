@@ -1,6 +1,6 @@
 ;; time emacs -l init.elc -batch --eval '(message "Hello, world!")'
-(package-initialize)
-(setq package-enable-at-startup t)
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0 t)
+;; (setq package-enable-at-startup t)
 (setq load-prefer-newer t)
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
@@ -39,8 +39,6 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
-
-;; (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0 t)
 
 ;; from https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 
@@ -525,12 +523,6 @@
 (use-package poporg
   :bind (:map dc-bindings-map
               ("s-l" . 'poporg-dwim)))
-
-(use-package outshine
-  :config
-  (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
-
-  (setq-default outline-regexp "[*]+"))
 
 (use-package wucuo
   :config
