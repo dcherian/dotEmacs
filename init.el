@@ -466,22 +466,12 @@
 	      ("C-x l" . magit-log-buffer-file)
               ("C-x d" . magit-log-trace-definition))
   :config
-
-  ;; from https://stackoverflow.com/questions/21931883/how-to-change-repo-with-magit-emacs#21932488
-  ;; The code below is executed after projectile is loaded.
-  ;; It gets the list of projects known to projectile by doing
-  ;; (projectile-relevant-known-projects), iterates through them
-  ;; and adds the projects that have .git/ folder to magit-repo-dirs,
-  ;; it also sets magit-repo-dirs-depth to 1 so magit looks for git
-  ;; repos only in the top directories.
-  (eval-after-load "projectile"
-    '(progn (setq magit-repository-directories
-                  (mapcar (lambda (dir)
-			    (substring dir 0 -1))
-			  (cl-remove-if-not (lambda (project)
-					      (file-directory-p (concat project "/.git/")))
-					    (projectile-relevant-known-projects))))
-	    (setq magit-repository-directories-depth 1)))
+  (setq magit-repository-directories
+	'(("~/.emacs.d/" . 0)
+	  ("~/dotfiles/" . 0)
+	  ("~/pods/" . 3)
+	  ("~/python/" . 2)
+	  ("~/gits/" . 1)))
 
   (add-to-list 'magit-section-initial-visibility-alist '(untracked . hide))
 
