@@ -58,8 +58,8 @@
   (set-face-attribute 'default nil
 		      :family "mononoki"
 		      :inherit 'fixed-pitch
-		      :height 135
-		      :foreground "#aaaaaa")
+		      :height 140
+		      :foreground "#cccccc")
   (dc/theme-changes))
 
 (defun dc/theme-changes ()
