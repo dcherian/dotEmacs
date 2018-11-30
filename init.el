@@ -3,6 +3,10 @@
 (setq package-enable-at-startup t)
 (setq load-prefer-newer t)
 
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 (setq use-package-enable-imenu-support t
       use-package-compute-statistics t)
 (require 'use-package)
@@ -591,46 +595,3 @@
 
 (diminish 'dc-bindings-mode)
 (diminish 'auto-revert-mode)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(auth-source-save-behavior nil)
- '(auto-dim-other-buffers-mode nil)
- '(debug-on-error nil)
- '(debug-on-quit nil)
- '(electric-indent-mode t)
- '(global-aggressive-indent-mode nil)
- '(global-undo-tree-mode t)
- '(helm-flx-mode t)
- '(helm-mode t)
- '(ivy-mode t)
- '(package-selected-packages
-   '(keyfreq super-save wucuo counsel-projectile company-lsp lsp-ui lsp-mode citeproc citeproc-orgref company-quickhelp moody ox-reveal org-reveal minions company-statistics circadian cdlatex counsel outshine yaml-mode matlab-mode-elpa ox-latex beginend smooth-scrolling helm-dash dumb-jump org-sticky-header spaceline-all-the-icons spaceline all-the-icons major-mode-icons pydoc kaomoji elpy helm-pydoc origami transpose-frame w3 org-edit-latex rainbow-mode markdown-mode company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit no-littering goto-last-change helm-describe-modes helm-ls-git ox-nikola multiple-cursors helm-ag hungry-delete helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights use-package undo-tree smart-mode-line org-bullets magit comment-dwim-2))
- '(projectile-mode t nil (projectile))
- '(safe-local-variable-values
-   '((eval add-hook 'after-save-hook 'org-latex-export-to-latex t t)
-     (eval add-hook 'after-save-hook 'org-html-export-to-latex t t)
-     (eval add-hook 'after-save-hook 'org-html-export-to-html t t)
-     (org-image-actual-width . 300)
-     (org-publish-use-timestamps-flag)
-     (eval when
-	   (fboundp 'rainbow-mode)
-	   (rainbow-mode 1))
-     (org-latex-table-scientific-notation)
-     (org-latex-hyperref-template)
-     (TeX-engine . xetex)
-     (TeX-master . t)
-     (org-image-actual-width . 600)
-     (org-latex-remove-logfiles)))
- '(yas-global-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
