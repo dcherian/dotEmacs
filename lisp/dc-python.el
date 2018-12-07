@@ -123,6 +123,9 @@
 ;; (define-key elpy-mode-map (kbd "C-<up>") 'nil)
 ;; (define-key elpy-mode-map (kbd "C-<down>") 'nil)
 
+(define-key inferior-python-mode-map (kbd "C-c C-c")
+  'ob-ipython-interrupt-kernel)
+
 (use-package lsp-mode
   :ensure t
   :disabled
