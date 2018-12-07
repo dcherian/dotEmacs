@@ -367,6 +367,9 @@ applying latex prettifycations in org mode buffers."
   :config
   ;; (require 'org-ref-citeproc)
 
+  (unbind-key "C-<left>" org-ref-cite-keymap)
+  (unbind-key "C-<right>" org-ref-cite-keymap)
+
   (setq org-ref-notes-directory "~/Papers/notes/"
 	org-ref-bibliography-notes "~/org/papers.org"
 	org-ref-default-bibliography '("~/Papers/bibtexLibrary.bib")
