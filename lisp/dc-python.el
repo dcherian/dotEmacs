@@ -12,6 +12,7 @@
 		     ))
 (elpy-enable)
 (setq elpy-rpc-backend "jedi")
+(setq elpy-company-add-completion-from-shell t)
 
 (setq eldoc-idle-delay 1)
 
