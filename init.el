@@ -478,6 +478,9 @@
   (magit-auto-revert-mode)
   (setq vc-handled-backends '(SVN Hg)))
 
+(use-package forge
+  :ensure t)
+
 (use-package discover-my-major
   :ensure t
   :bind (:map dc-bindings-map
