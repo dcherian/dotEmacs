@@ -523,7 +523,6 @@
 
 (use-package flycheck
   :config
-  (global-flycheck-mode)
   (flycheck-define-checker proselint
     "A linter for prose."
     :command ("proselint" source-inplace)
