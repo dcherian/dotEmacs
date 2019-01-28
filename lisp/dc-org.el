@@ -75,15 +75,18 @@
 	org-latex-image-default-width "\\textwidth"
 	fill-column 90
 	org-src-window-setup 'current-window
-	org-export-time-stamp-file nil)
+	org-export-time-stamp-file nil
+	org-imenu-depth 3)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((ipython . t)
-     (matlab . t)
+   '((matlab . t)
      (emacs-lisp . t)
      (latex . t)
-     (shell . t)))
+     (shell . t)
+     (python . t)
+     (ipython . t)
+     (jupyter . t)))
 
   ;; from abo-abo
   (defun hot-expand (str)
