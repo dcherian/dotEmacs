@@ -361,7 +361,7 @@ applying latex prettifycations in org mode buffers."
   :ensure t
   :demand
   :bind (:map dc-bindings-map
-	      ("C-c [" . org-ref-helm-insert-ref-link)
+	      ("C-c [" . org-ref-ivy-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
   :config
@@ -451,8 +451,6 @@ Argument KEY is the bibtex key."
 (use-package ox-gfm
   :defer
   :ensure t)
-
-(use-package org-pretty-table)
 
 (use-package ox-latex
   :defer
