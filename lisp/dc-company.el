@@ -35,6 +35,7 @@
 	  company-dabbrev)))
 
 (use-package company-math
+  :disabled
   :after (company)
   :config
   (add-to-list 'company-backends 'company-math-symbols-latex)
