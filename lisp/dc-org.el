@@ -41,7 +41,7 @@
 	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map org-src-mode-map
 	      ("s-l" . org-edit-src-exit)
-	      :map orgstruct-mode-map
+	      :map orgalist-mode-map
 	      ("RET" . scimax/org-return))
   :config
   (setq org-directory "~/org")
