@@ -721,6 +721,12 @@ line are justified."
 
 (use-package ox-clip)
 
+(use-package ox-hugo
+  :ensure t
+  :after ox)
+
+(require 'org-num)
+
 (require 'scimax-ob)
 
 (provide 'dc-org)
