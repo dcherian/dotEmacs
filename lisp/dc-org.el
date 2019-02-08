@@ -41,7 +41,7 @@
 	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map org-src-mode-map
 	      ("s-l" . org-edit-src-exit)
-	      :map orgalist-mode-map
+	      :map org-mode-map
 	      ("RET" . scimax/org-return))
   :config
   (setq org-directory "~/org")
@@ -446,6 +446,9 @@ Argument KEY is the bibtex key."
 
 (use-package orgalist
   :ensure
+  :bind (:map dc-bindings-map
+	      (:map org-mode-map
+		    ("RET" . scimax/org-return)))
   :config
   (add-hook 'git-commit-setup-hook #'orgalist-mode)
   (add-hook 'mail-mode-hook #'orgalist-mode)
