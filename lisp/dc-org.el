@@ -98,10 +98,7 @@
     (insert "\\begin{" env "}\n")
     (save-excursion
       (insert "\n\\end{" env "}")))
-
-  (add-to-list 'org-structure-template-alist
-	       '("F" "#+CAPTION: "))
-
+  
   (defhydra hydra-org-template (:color blue :hint nil)
     "
 _c_enter  _q_uote    _L_aTeX:
@@ -364,7 +361,7 @@ applying latex prettifycations in org mode buffers."
   :ensure t
   :demand
   :bind (:map dc-bindings-map
-	      ("C-c [" . org-ref-ivy-insert-ref-link)
+	      ("C-c [" . org-ref-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
   :config
