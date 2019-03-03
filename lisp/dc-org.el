@@ -85,7 +85,6 @@
      (latex . t)
      (shell . t)
      (python . t)
-     (ipython . t)
      (jupyter . t)))
 
   ;; from abo-abo

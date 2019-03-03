@@ -11,35 +11,50 @@
 		     ;; elpy-module-django
 		     ))
 (elpy-enable)
-(setq elpy-rpc-backend "jedi")
-(setq elpy-company-add-completion-from-shell t)
+(setq elpy-get-info-from-shell nil)
+(setq elpy-rpc-python-command "python")
 
 (setq eldoc-idle-delay 1)
 
 (use-package beacon
   :ensure)
 
-(require 'scimax-org-babel-python)
-(require 'scimax-org-babel-ipython-upstream)
+;; (use-package ob-ipython
+;;   :ensure t
+;;   :bind (:map dc-bindings-map
+;; 	      ("C-c p" . python-shell-run-region-or-line)
+;; 	      ("s-i" . ob-ipython-inspect)
+;; 	      ("C-c t" . dc-switch-to-python-shell)
+;; 	      ("C-<tab>" . org-hide-block-toggle-maybe)
+;; 	      :map org-mode-map
+;; 	      ("C-c C-v C-k" . ob-ipython-kill-kernel)
+;; 	      ("C-c C-v C-i" . ob-ipython-interrupt-kernel)
+;; 	      :map inferior-python-mode-map
+;; 	      ("C-c C-v C-k" . ob-ipython-kill-kernel)
+;; 	      ("C-c C-v C-i" . ob-ipython-interrupt-kernel))
+;;   :config
+;;   (require 'scimax-org-babel-python)
+;;   (require 'scimax-org-babel-ipython-upstream)
 
-(setq ob-ipython-buffer-unique-kernel nil)
+;;   (setq ob-ipython-buffer-unique-kernel nil)
 
-(use-package ob-ipython
-  :ensure t
-  :bind (:map dc-bindings-map
-	      ("C-c p" . python-shell-run-region-or-line)
-	      ("s-i" . ob-ipython-inspect)
-	      ("C-c t" . dc-switch-to-python-shell)
-	      ("C-<tab>" . org-hide-block-toggle-maybe)
-	      :map org-mode-map
-	      ("C-c C-v C-k" . ob-ipython-kill-kernel)
-	      ("C-c C-v C-i" . ob-ipython-interrupt-kernel)
-	      :map inferior-python-mode-map
-	      ("C-c C-v C-k" . ob-ipython-kill-kernel)
-	      ("C-c C-v C-i" . ob-ipython-interrupt-kernel))
+;;   ;; unusuably slow
+;;   ;; (add-to-list 'company-backends 'company-ob-ipython)
+;;   )
+
+(use-package jupyter
   :config
-  ;; unusuably slow
-  ;; (add-to-list 'company-backends 'company-ob-ipython)
+  (org-babel-jupyter-override-src-block "python")
+
+  (setq org-babel-default-header-args:jupyter-python
+	'((:results . "none")
+	  ;;(:session . "none")
+	  (:exports . "results")
+	  (:cache .   "no")
+	  (:noweb . "yes")
+	  (:hlines . "no")
+	  (:tangle . "yes")
+	  (:eval . "never-export")))
   )
 
 (setq org-babel-default-header-args:ipython
