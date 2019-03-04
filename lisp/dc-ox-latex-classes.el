@@ -61,21 +61,19 @@
 	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
 	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-    (add-to-list 'org-latex-classes
-		 '("ametsoc"
-		   "[NO-DEFAULT-PACKAGES]
+(add-to-list 'org-latex-classes
+	     '("ametsoc"
+	       "[NO-DEFAULT-PACKAGES]
 [NO-PACKAGES]
 \\documentclass{ametsoc}
-\\usepackage[english]{babel}
-\\usepackage{fixltx2e}
-\\usepackage[mathletters]{ucs}
-\\usepackage[utf8x]{inputenx}
 \\usepackage[T1]{fontenc}
+\\usepackage[utf8]{inputenc}
+\\usepackage{alphabeta}
+\\usepackage[english]{babel}
 \\usepackage{array}
 \\usepackage{booktabs}
 \\usepackage{multirow}
 \\usepackage{longtable}
-\\usepackage{subfig}
 \\usepackage{float}
 \\usepackage[normalem]{ulem}
 \\usepackage{etoolbox}
@@ -85,15 +83,14 @@
 \\usepackage{siunitx}
 \\usepackage{xfrac}
 \\usepackage{bigints}
-\\usepackage[protrusion=true]{microtype}
-\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = --, per-mode=reciprocal, retain-unity-mantissa=false }
+\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = ‐, per-mode=reciprocal, retain-unity-mantissa=false }
 \\bibpunct{(}{)}{;}{a}{}{,}
 [EXTRA]"
-		   ("\\section{%s}" . "\\section*{%s}")
-		   ("\\subsection{%s}" . "\\subsection*{%s}")
-		   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+	       ("\\section{%s}" . "\\section*{%s}")
+	       ("\\subsection{%s}" . "\\subsection*{%s}")
+	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
+	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 (add-to-list 'org-latex-classes
 	     '("JMR-review"
@@ -119,7 +116,7 @@
 \\usepackage{xfrac}
 \\usepackage{bigints}
 \\usepackage[protrusion=true]{microtype}
-\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = --, per-mode=reciprocal, retain-unity-mantissa=false }\
+\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = ‐, per-mode=reciprocal, retain-unity-mantissa=false }
 \\usepackage{JMR}
 [EXTRA]"
 	       ("\\section{%s}" . "\\section*{%s}")
