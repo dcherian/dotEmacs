@@ -99,13 +99,14 @@
 		      :foreground "#fdf6e3"
 		      :background "#d33682")
 
-  (set-face-attribute 'lsp-face-highlight-read nil
-		      :foreground "#d33682"
-		      :background nil)
+					;  (set-face-attribute 'lsp-face-highlight-read nil
+					;  :foreground "#d33682"
+;  :background nil)
 
-  (set-face-attribute 'lsp-face-highlight-write nil
-		      :foreground "#b58900"
-		      :background nil))
+;;  (set-face-attribute 'lsp-face-highlight-write nil
+;		      :foreground "#b58900"
+;		      :background nil)
+)
 
 (use-package apropospriate-theme)
 
