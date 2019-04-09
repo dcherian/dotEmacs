@@ -358,7 +358,6 @@ applying latex prettifycations in org mode buffers."
 
 (use-package org-ref
   :ensure t
-  :demand
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
@@ -455,7 +454,6 @@ Argument KEY is the bibtex key."
   :ensure t)
 
 (use-package ox-latex
-  :defer
   :config
   (defun dc/org-latex-word-count ()
     (interactive)

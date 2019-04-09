@@ -143,6 +143,7 @@
 
 (use-package helm-org-rifle
   :ensure t
+  :disabled
   :after (helm)
   :bind (:map dc-bindings-map
 	      ("C-x C-r" . helm-org-rifle)

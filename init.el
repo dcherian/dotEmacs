@@ -134,6 +134,7 @@
 
 (use-package keyfreq
   :ensure
+  :disabled
   :config
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1))
@@ -310,7 +311,6 @@
 
 (use-package undo-tree
   :ensure t
-  :demand t
   :diminish undo-tree-mode
   :bind (:map dc-bindings-map
 	      ("M--" . undo-tree-undo)
@@ -332,7 +332,6 @@
 
 (use-package crux
   :ensure t
-  :demand
   :bind (:map dc-bindings-map
 	      ("C-a" . crux-move-beginning-of-line)
 	      ("C-c s" . crux-transpose-windows)
@@ -355,7 +354,6 @@
 
 (use-package projectile
   :ensure t
-  :demand t
   :diminish projectile-mode
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
@@ -430,7 +428,7 @@
 
 (use-package ws-butler
   :ensure t
-  :demand t
+  :demand
   :diminish
   :config
   (ws-butler-global-mode t))
