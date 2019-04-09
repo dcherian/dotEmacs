@@ -42,7 +42,9 @@
 ;;   ;; (add-to-list 'company-backends 'company-ob-ipython)
 ;;   )
 
+(require 'quelpa-use-package)
 (use-package jupyter
+  :quelpa ((jupyter :fetcher github :repo "dzop/emacs-jupyter") :upgrade t)
   :bind (:map dc-bindings-map
 	      ("C-c p" . python-shell-run-region-or-line)
 	      ("C-c t" . jupyter-repl-pop-to-buffer)
@@ -54,19 +56,27 @@
 	      ;; ("C-c C-v C-k" . ob-ipython-kill-kernel)
 	      ("C-c C-v C-i" . jupyter-repl-interrupt-kernel))
   :config
+  (set-face-attribute 'jupyter-repl-traceback nil
+		      :background nil)
+
+  (set-face-attribute 'jupyter-repl-input-prompt nil
+		      :foreground "#b58900")
+
+  (set-face-attribute 'jupyter-repl-output-prompt nil
+		      :foreground "#dc322f")
+
   (org-babel-jupyter-override-src-block "python")
 
   (setq org-babel-default-header-args:jupyter-python
 	'((:results . "none")
-	  ;;(:session . "none")
+	  (:session . "py")
 	  (:exports . "results")
 	  (:kernel . "python3")
 	  (:cache .   "no")
 	  (:noweb . "yes")
 	  (:hlines . "no")
 	  (:tangle . "yes")
-	  (:eval . "never-export")))
-  )
+	  (:eval . "never-export"))))
 
 (setq org-babel-default-header-args:ipython
       '((:results . "none")
