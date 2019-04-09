@@ -37,7 +37,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    '(quelpa-use-package quelpa ox-hugo forge zmq jupyter beacon apropospriate-theme super-save wucuo counsel-projectile citeproc citeproc-orgref company-quickhelp moody ox-reveal org-reveal minions company-statistics circadian cdlatex counsel yaml-mode auto-dim-other-buffers matlab-mode-elpa ox-latex beginend smooth-scrolling helm-dash dumb-jump org-sticky-header spaceline-all-the-icons spaceline all-the-icons major-mode-icons pydoc kaomoji elpy helm-pydoc origami transpose-frame w3 org-edit-latex rainbow-mode markdown-mode company-jedi fancy-narrow helm-org-rifle lua-mode helm-ext helm-unicode helm-descbinds which-key discover-my-major restart-emacs ob-ipython ein matlab paredit no-littering helm-projectile goto-last-change helm-describe-modes helm-ls-git ox-nikola multiple-cursors helm-ag hungry-delete helm-flx helm-fuzzier helm-swoop expand-region exec-path-from-shell matlab-mode crux ws-butler wc-mode volatile-highlights use-package undo-tree smart-mode-line org-bullets magit comment-dwim-2))
- '(projectile-mode t nil (projectile)))
+ '(projectile-mode t nil (projectile))
  '(safe-local-variable-values
    (quote
     ((eval add-hook
