@@ -5,12 +5,13 @@
 (setq custom-safe-themes t)
 
 (use-package solarized-theme
+  :ensure
   :config
   (load-theme 'solarized-light t)
   (load-theme 'solarized-dark t)
   (setq solarized-use-less-bold t
-      solarized-use-more-italic nil
-      solarized-use-variable-pitch t)
+	solarized-use-more-italic nil
+	solarized-use-variable-pitch t)
   (let ((line (face-attribute 'mode-line :underline)))
     (set-face-attribute 'mode-line          nil :overline   line)
     (set-face-attribute 'mode-line-inactive nil :overline   line)

@@ -1,6 +1,22 @@
 ;; time emacs -l init.elc -batch --eval '(message "Hello, world!")'
 ;; (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0 t)
-;; (setq package-enable-at-startup t)
+(setq package-enable-at-startup t)
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
+(set-variable 'package-archives
+	      `(("gnu" . "https://elpa.gnu.org/packages/")
+		("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+		("melpa" . "https://melpa.org/packages/")
+		("org" . "https://orgmode.org/elpa/")))
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+
 (setq load-prefer-newer t)
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
@@ -25,20 +41,11 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
-(require 'auto-compile)
-(auto-compile-on-load-mode)
-(auto-compile-on-save-mode)
-(setq auto-compile-display-buffer nil)
-(setq auto-compile-mode-line-counter t)
-
-(set-variable 'package-archives
-	      `(("gnu" . "https://elpa.gnu.org/packages/")
-		("melpa" . "https://melpa.org/packages/")
-		("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
-		("org" . "https://orgmode.org/elpa/")))
-
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+;; (require 'auto-compile)
+;; (auto-compile-on-load-mode)
+;; (auto-compile-on-save-mode)
+;; (setq auto-compile-display-buffer nil)
+;; (setq auto-compile-mode-line-counter t)
 
 ;; from https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 
@@ -90,10 +97,9 @@
 (setq shell-command-switch "-lc")
 
 ;; mac-specific
-;; (when (memq window-system '(mac ns))
-;;   ;; (setq ns-command-modifier 'meta)
-;;   ;; (mac-auto-operator-composition-mode)
-;;   )
+(when (memq window-system '(mac ns))
+  (setq ns-command-modifier 'meta)
+  (mac-auto-operator-composition-mode))
 
 (defvar dc-bindings-map (make-keymap) "A keymap for custom bindings.")
 
@@ -140,9 +146,18 @@
   (keyfreq-autosave-mode 1))
 
 ;; tramp
-(setq tramp-default-method "ssh")
-(setq tramp-backup-directory-alist backup-directory-alist)
-(setq tramp-auto-save-directory autosave-dir)
+(use-package tramp
+  :config
+  (setq tramp-default-method "ssh")
+  (setq tramp-backup-directory-alist backup-directory-alist)
+  (setq tramp-auto-save-directory autosave-dir)
+
+  (add-to-list 'password-word-equivalents "Token_Response")
+  (setq tramp-password-prompt-regexp
+    (format "^.*\\(%s\\).*:\^@? *"
+	    (regexp-opt (or (bound-and-true-p password-word-equivalents)
+                            '("password" "passphrase")))))
+  )
 
 (setq-default bidi-display-reordering nil)
 
@@ -327,7 +342,7 @@
 	      ("M-0 s" . yas-insert-snippet)
 	      ("M-0 v" . yas-visit-snippet-file))
   :config
-  (add-to-list 'yas-snippet-dirs "/home/deepak/.emacs.d/snippets")
+  (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
   (yas-global-mode))
 
 (use-package crux
@@ -363,6 +378,7 @@
   (projectile-mode))
 
 (use-package wc-mode
+  :ensure
   :config
   (setq wc-modeline-format "[%tw/%tc]"))
 
@@ -481,7 +497,7 @@
 
 (use-package discover-my-major
   :ensure t
-  :bind (:map dc-bindings-map
+  :bind (:map dc-bindings-map~
 	      ("C-h C-m" . discover-my-major)
 	      ("C-h M-m" . discover-my-mode)))
 
@@ -516,19 +532,21 @@
               ("s-l" . 'poporg-dwim)))
 
 (use-package wucuo
+  :ensure
   :config
   (wucuo-start))
 
 (use-package flycheck
+  :ensure
   :config
   (flycheck-define-checker proselint
-    "A linter for prose."
-    :command ("proselint" source-inplace)
-    :error-patterns
-    ((warning line-start (file-name) ":" line ":" column ": "
-	      (id (one-or-more (not (any " "))))
-	      (message) line-end))
-    :modes (text-mode markdown-mode gfm-mode org-mode))
+                           "A linter for prose."
+                           :command ("proselint" source-inplace)
+                           :error-patterns
+                           ((warning line-start (file-name) ":" line ":" column ": "
+	                             (id (one-or-more (not (any " "))))
+	                             (message) line-end))
+                           :modes (text-mode markdown-mode gfm-mode org-mode))
 
   (add-to-list 'flycheck-checkers 'proselint))
 

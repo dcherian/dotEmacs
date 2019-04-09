@@ -441,6 +441,7 @@ Argument KEY is the bibtex key."
 
 (use-package orgalist
   :ensure
+  :after org
   :bind (:map dc-bindings-map
 	      (:map org-mode-map
 		    ("RET" . scimax/org-return)))
@@ -713,10 +714,12 @@ line are justified."
   (setq org-reveal-root "file:///home/deepak/gits/reveal.js"))
 
 (use-package citeproc-orgref
+  :ensure
   :config
   (citeproc-orgref-setup))
 
-(use-package ox-clip)
+(use-package ox-clip
+  :ensure)
 
 (use-package ox-hugo
   :ensure t

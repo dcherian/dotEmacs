@@ -1,1 +1,1 @@
-/home/deepak/gits/ox-ipynb/ox-ipynb.el
+/Users/dcherian/gits/ox-ipynb/ox-ipynb.el

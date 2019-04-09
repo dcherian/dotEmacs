@@ -38,7 +38,7 @@
 (setq-default TeX-PDF-mode nil
 	      TeX-master nil)
 
-(setq TeX-auto-save t
+(setq TeX-auto-save nil
       TeX-parse-self t
       TeX-source-correlate-method 'synctex)
 

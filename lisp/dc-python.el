@@ -181,4 +181,8 @@
 ;;                             (apply f args))
 ;;                         (apply f args))))
 
+
+(use-package ein
+  :ensure
+  )
 (provide 'dc-python)
