@@ -7,6 +7,7 @@
 (use-package solarized-theme
   :config
   (load-theme 'solarized-light t)
+  (load-theme 'solarized-dark t)
   (setq solarized-use-less-bold t
       solarized-use-more-italic nil
       solarized-use-variable-pitch t)
@@ -22,8 +23,8 @@
   :ensure t
   :demand
   :config
-  (setq circadian-themes '(("8:00" . apropospriate-light)
-                           ("19:30" . apropospriate-dark)))
+  (setq circadian-themes '(("8:00" . solarized-light)
+                           ("19:30" . solarized-dark)))
   (circadian-setup))
 
 (setq-default line-spacing 5)
@@ -49,7 +50,7 @@
   (set-face-attribute 'default nil
 		      :family "mononoki"
 		      :inherit 'fixed-pitch
-		      :height 140
+		      :height 120
 		      :foreground "#21505a")
   (dc/theme-changes))
 
@@ -68,12 +69,16 @@
 
   (set-face-attribute 'fixed-pitch nil
 		      :family "mononoki"
-		      :height 140)
+		      :height 120)
 
   (set-face-attribute 'variable-pitch nil
 		      :family "CMU Sans Serif"
 		      :weight 'regular
-		      :height 140)
+		      :height 120)
+
+  ;; (set-face-attribute 'hl-line nil
+  ;; 		      :foreground nil
+  ;; 		      :background nil)
 
   (set-face-attribute 'header-line nil
 		      :background nil
@@ -101,13 +106,14 @@
 
 					;  (set-face-attribute 'lsp-face-highlight-read nil
 					;  :foreground "#d33682"
-;  :background nil)
+					;  :background nil)
 
-;;  (set-face-attribute 'lsp-face-highlight-write nil
-;		      :foreground "#b58900"
-;		      :background nil)
-)
+  ;;  (set-face-attribute 'lsp-face-highlight-write nil
+					;		      :foreground "#b58900"
+					;		      :background nil)
+  )
 
-(use-package apropospriate-theme)
+(use-package apropospriate-theme
+  :disabled)
 
 (provide 'dc-theme)
