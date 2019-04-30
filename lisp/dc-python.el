@@ -3,7 +3,7 @@
 
 (setq elpy-modules '(;; elpy-module-highlight-indentation
 		     elpy-module-sane-defaults
-		     elpy-module-company
+		     ;; elpy-module-company
 		     elpy-module-flymake
 		     elpy-module-eldoc
 		     ;; elpy-module-pyvenv
@@ -12,7 +12,11 @@
 		     ))
 (elpy-enable)
 (setq elpy-get-info-from-shell nil)
-(setq elpy-rpc-python-command "python")
+(setq elpy-rpc-python-command "ipython")
+;; use emacs-jupyter instead
+(define-key elpy-mode-map (kbd "C-c C-c") nil)
+(define-key elpy-mode-map (kbd "C-c C-b") nil)
+(define-key elpy-mode-map (kbd "C-c C-z") nil)
 
 (setq eldoc-idle-delay 1)
 (define-key elpy-mode-map (kbd "C-<up>") 'nil)
