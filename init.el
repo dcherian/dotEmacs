@@ -18,9 +18,6 @@
 
 (setq load-prefer-newer t)
 
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(when (file-exists-p custom-file)
-  (load custom-file))
 
 (setq use-package-enable-imenu-support t
       use-package-compute-statistics t)
@@ -565,6 +562,10 @@
 (require 'dc-python)
 (require 'dc-ibuffer)
 (require 'dc-projects)
+
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 (dc/theme-changes)
 
