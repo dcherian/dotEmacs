@@ -465,13 +465,12 @@ line are justified."
 
 (use-package org-ref
   :ensure t
-  :demand
   :after org
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
-  :hook (org-mode . dc/org-ref-faces)
+  :hook ((org-mode circadian-after-load-theme) . dc/org-ref-faces)
   :config
   (defun dc/org-ref-faces ()
     (interactive)
