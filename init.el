@@ -309,19 +309,18 @@
   :bind (:map dc-bindings-map
 	      ("C-x x" . goto-last-change)))
 
-
 (use-package volatile-highlights
   :ensure t
   :diminish volatile-highlights-mode
   :hook (circadian-after-load-theme . dc/vhl-faces)
   :config
+  (volatile-highlights-mode)
   (defun dc/vhl-faces ()
     (interactive)
     (set-face-attribute 'vhl/default-face nil
 			:foreground "#fdf6e3"
 			:background "#d33682"))
-
-  (volatile-highlights-mode t))
+  (dc/vhl-faces))
 
 (use-package undo-tree
   :ensure t
