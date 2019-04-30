@@ -522,6 +522,7 @@
   :init (setq markdown-command "multimarkdown"))
 
 (use-package poporg
+  :ensure
   :bind (:map dc-bindings-map
               ("s-l" . 'poporg-dwim)))
 
