@@ -716,10 +716,14 @@ Argument KEY is the bibtex key."
   :config
   (setq org-reveal-root "file:///home/deepak/gits/reveal.js"))
 
-(use-package citeproc-orgref
+(use-package citeproc-org
   :ensure
+  :quelpa ((citeproc-org
+	    :fetcher github
+	    :repo "andras-simonyi/citeproc-org"
+	    :upgrade nil))
   :config
-  (citeproc-orgref-setup))
+  (citeproc-org-setup))
 
 (use-package ox-clip
   :ensure)
