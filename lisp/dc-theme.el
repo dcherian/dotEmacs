@@ -50,21 +50,19 @@
 
 (defun dc/light-theme-changes ()
   (interactive)
+  (dc/theme-changes)
   (set-face-attribute 'default nil
-		      :family "mononoki"
 		      :inherit 'fixed-pitch
-		      :height 120
-		      :foreground "#21505a")
-  (dc/theme-changes))
+		      :height nil
+		      :foreground "#21505a"))
 
 (defun dc/dark-theme-changes ()
   (interactive)
+  (dc/theme-changes)
   (set-face-attribute 'default nil
-		      :family "mononoki"
 		      :inherit 'fixed-pitch
-		      :height 140
-		      :foreground "#cccccc")
-  (dc/theme-changes))
+		      :height nil
+		      :foreground "#cccccc"))
 
 (defun dc/theme-changes ()
   (interactive)
@@ -72,12 +70,13 @@
 
   (set-face-attribute 'fixed-pitch nil
 		      :family "mononoki"
+		      :weight 'regular
 		      :height 120)
 
   (set-face-attribute 'variable-pitch nil
 		      :family "CMU Sans Serif"
 		      :weight 'regular
-		      :height 120)
+		      :height 140)
 
   ;; (set-face-attribute 'hl-line nil
   ;; 		      :foreground nil
@@ -90,9 +89,11 @@
   (set-face-attribute 'font-lock-constant-face nil
 		      :bold nil)
 
-  (set-face-attribute 'font-lock-comment-face nil
-		      :inherit 'fixed-pitch
+  (set-face-attribute 'font-lock-keyword-face nil
 		      :bold nil)
+
+  (set-face-attribute 'font-lock-comment-face nil
+		      :inherit 'fixed-pitch)
 
   (set-face-attribute 'font-lock-builtin-face nil
 		      :foreground "#b58900"
@@ -101,16 +102,7 @@
   (set-face-attribute 'tooltip nil
 		      :inherit 'default
 		      :foreground "#586e75"
-		      :background "#eee8d5")
-
-					;  (set-face-attribute 'lsp-face-highlight-read nil
-					;  :foreground "#d33682"
-					;  :background nil)
-
-  ;;  (set-face-attribute 'lsp-face-highlight-write nil
-					;		      :foreground "#b58900"
-					;		      :background nil)
-  )
+		      :background "#eee8d5"))
 
 (use-package apropospriate-theme
   :disabled)
