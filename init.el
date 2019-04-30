@@ -38,10 +38,7 @@
 
 (use-package no-littering
   :ensure t
-  :config
-  (require 'recentf)
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory))
+  :demand)
 
 ;; (require 'auto-compile)
 ;; (auto-compile-on-load-mode)
@@ -140,7 +137,10 @@
 (setq desktop-auto-save-timeout 10)
 
 (use-package recentf
+  :requires no-littering
   :config
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
   (setq recentf-max-saved-items nil)
   (run-at-time (current-time) 300 'recentf-save-list))
 
