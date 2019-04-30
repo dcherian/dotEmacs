@@ -15,7 +15,7 @@
   (define-key ctl-x-map "t" 'dc/toggle-map))
 
 (use-package org
-  :demand
+  :commands (scimax/org-return org-babel-lob-ingest)
   :bind (:map dc-bindings-map
 	      ("C-c c" . org-capture)
 	      ("C-c b" . org-iswitchb)
@@ -45,8 +45,6 @@
 	      ("RET" . scimax/org-return))
   :config
   (setq org-directory "~/org")
-  (require 'ox-ipynb)
-  (org-babel-lob-ingest (expand-file-name "~/org/library-of-babel.org"))
 
   ;;use org mode for eml files (useful for thunderbird plugin)
   (add-to-list 'auto-mode-alist '("\\.eml\\'" . org-mode))
@@ -86,6 +84,8 @@
      (shell . t)
      (python . t)
      (jupyter . t)))
+
+  (org-babel-lob-ingest (expand-file-name "~/org/library-of-babel.org"))
 
   ;; from abo-abo
   (defun hot-expand (str)
@@ -350,6 +350,55 @@ applying latex prettifycations in org mode buffers."
   ;; add to export hook
   (add-hook 'org-export-before-processing-hook 'delete-org-comments)
 
+  (setq org-preview-latex-default-process 'imagemagick)
+
+  (use-package ov
+    :ensure)
+
+  ;; specify the justification you want
+  (plist-put org-format-latex-options :justify 'center)
+
+  (defun org-justify-fragment-overlay (beg end image imagetype)
+    "Adjust the justification of a LaTeX fragment.
+The justification is set by :justify in
+`org-format-latex-options'. Only equations at the beginning of a
+line are justified."
+    (cond
+     ;; Centered justification
+     ((and (eq 'center (plist-get org-format-latex-options :justify))
+           (= beg (line-beginning-position)))
+      (let* ((img (create-image image 'imagemagick t))
+             (width (car (image-size img)))
+             (offset (floor (- (/ (window-text-width) 2) (/ width 2)))))
+	(overlay-put (ov-at) 'before-string (make-string offset ? ))))
+     ;; Right justification
+     ((and (eq 'right (plist-get org-format-latex-options :justify))
+           (= beg (line-beginning-position)))
+      (let* ((img (create-image image 'imagemagick t))
+             (width (car (image-display-size (overlay-get (ov-at) 'display))))
+             (offset (floor (- (window-text-width) width (- (line-end-position) end)))))
+	(overlay-put (ov-at) 'before-string (make-string offset ? ))))))
+
+  (defun org-latex-fragment-tooltip (beg end image imagetype)
+    "Add the fragment tooltip to the overlay and set click function to toggle it."
+    (overlay-put (ov-at) 'help-echo
+		 (concat (buffer-substring beg end)
+			 "mouse-1 to toggle."))
+    (overlay-put (ov-at) 'local-map (let ((map (make-sparse-keymap)))
+                                      (define-key map [mouse-1]
+					`(lambda ()
+                                           (interactive)
+                                           (org-remove-latex-fragment-image-overlays ,beg ,end)))
+                                      map)))
+
+  ;; advise the function to a
+  (advice-add 'org--format-latex-make-overlay :after 'org-justify-fragment-overlay)
+  (advice-add 'org--format-latex-make-overlay :after 'org-latex-fragment-tooltip)
+
+  ;; That is it. If you get tired of the advice, remove it like this:
+  ;; (advice-remove 'org--format-latex-make-overlay 'org-justify-fragment-overlay)
+  ;; (advice-remove 'org--format-latex-make-overlay 'org-latex-fragment-tooltip)
+
   (setq org-file-apps
 	'((auto-mode . emacs)
 	  ("\\.pdf\\'" . "mupdf %s")
@@ -358,12 +407,20 @@ applying latex prettifycations in org mode buffers."
 
 (use-package org-ref
   :ensure t
+  :after org
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
   :config
   ;; (require 'org-ref-citeproc)
+
+  (set-face-attribute 'org-ref-cite-face nil
+  		      :inherit 'org-link
+  		      :foreground nil)
+  (set-face-attribute 'org-ref-ref-face nil
+  		      :inherit 'org-ref-cite-face
+  		      :foreground nil)
 
   (unbind-key "C-<left>" org-ref-cite-keymap)
   (unbind-key "C-<right>" org-ref-cite-keymap)
@@ -541,55 +598,6 @@ Argument KEY is the bibtex key."
 	 :image-converter
 	 ("convert -density 180 -trim -antialias %f -quality 100 %O")))))
 
-(setq org-preview-latex-default-process 'imagemagick)
-
-(use-package ov
-  :ensure)
-
-;; specify the justification you want
-(plist-put org-format-latex-options :justify 'center)
-
-(defun org-justify-fragment-overlay (beg end image imagetype)
-  "Adjust the justification of a LaTeX fragment.
-The justification is set by :justify in
-`org-format-latex-options'. Only equations at the beginning of a
-line are justified."
-  (cond
-   ;; Centered justification
-   ((and (eq 'center (plist-get org-format-latex-options :justify))
-         (= beg (line-beginning-position)))
-    (let* ((img (create-image image 'imagemagick t))
-           (width (car (image-size img)))
-           (offset (floor (- (/ (window-text-width) 2) (/ width 2)))))
-      (overlay-put (ov-at) 'before-string (make-string offset ? ))))
-   ;; Right justification
-   ((and (eq 'right (plist-get org-format-latex-options :justify))
-         (= beg (line-beginning-position)))
-    (let* ((img (create-image image 'imagemagick t))
-           (width (car (image-display-size (overlay-get (ov-at) 'display))))
-           (offset (floor (- (window-text-width) width (- (line-end-position) end)))))
-      (overlay-put (ov-at) 'before-string (make-string offset ? ))))))
-
-(defun org-latex-fragment-tooltip (beg end image imagetype)
-  "Add the fragment tooltip to the overlay and set click function to toggle it."
-  (overlay-put (ov-at) 'help-echo
-               (concat (buffer-substring beg end)
-                       "mouse-1 to toggle."))
-  (overlay-put (ov-at) 'local-map (let ((map (make-sparse-keymap)))
-                                    (define-key map [mouse-1]
-                                      `(lambda ()
-                                         (interactive)
-                                         (org-remove-latex-fragment-image-overlays ,beg ,end)))
-                                    map)))
-
-;; advise the function to a
-(advice-add 'org--format-latex-make-overlay :after 'org-justify-fragment-overlay)
-(advice-add 'org--format-latex-make-overlay :after 'org-latex-fragment-tooltip)
-
-;; That is it. If you get tired of the advice, remove it like this:
-;; (advice-remove 'org--format-latex-make-overlay 'org-justify-fragment-overlay)
-;; (advice-remove 'org--format-latex-make-overlay 'org-latex-fragment-tooltip)
-
 (defun dc/org-theme ()
   (interactive)
   (set-face-attribute 'org-level-1 nil
@@ -680,14 +688,7 @@ line are justified."
 		      :height 0.85)
   (set-face-attribute 'org-document-title nil
 		      :foreground nil
-		      :weight 'normal)
-  (set-face-attribute 'org-ref-cite-face nil
-  		      :inherit 'org-link
-  		      :foreground nil)
-  (set-face-attribute 'org-ref-ref-face nil
-  		      :inherit 'org-ref-cite-face
-  		      :foreground nil)
-  )
+		      :weight 'normal))
 
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
@@ -725,7 +726,8 @@ line are justified."
   :ensure t
   :after ox)
 
-(require 'org-num)
+(use-package org-num
+  :after org)
 
 (require 'scimax-ob)
 
