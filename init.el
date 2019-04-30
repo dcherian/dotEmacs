@@ -395,6 +395,10 @@
               ("C-x o" . ace-window)))
 
 (use-package sdcv-mode
+  :quelpa ((sdcv-mode
+	    :fetcher "github"
+	    :repo "gucong/emacs-sdcv"
+	    :upgrade nil))
   :bind (:map dc-bindings-map
 	      ("C-c C-d" . sdcv-search))
   :config
