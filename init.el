@@ -18,6 +18,10 @@
 
 (setq load-prefer-newer t)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
 (setq use-package-enable-imenu-support t
       use-package-compute-statistics t
       use-package-verbose t
