@@ -21,7 +21,6 @@
 (use-package beacon
   :ensure)
 
-(require 'quelpa-use-package)
 (use-package jupyter
   :commands (dc/jupyter-faces)
   :quelpa ((jupyter
