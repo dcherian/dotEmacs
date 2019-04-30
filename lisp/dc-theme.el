@@ -68,15 +68,24 @@
   (interactive)
   (dc/org-theme)
 
-  (set-face-attribute 'fixed-pitch nil
-		      :family "mononoki"
-		      :weight 'regular
-		      :height 120)
+  (when (eq system-type 'darwin)
+    (set-face-attribute 'fixed-pitch nil
+			:family "Monaco"
+			:height 140)
 
-  (set-face-attribute 'variable-pitch nil
-		      :family "CMU Sans Serif"
-		      :weight 'regular
-		      :height 140)
+    (set-face-attribute 'variable-pitch nil
+			:family "Avenir"
+			:weight 'regular
+			:height 140))
+
+  (when (eq window-system '(gnu/linux))
+    (set-face-attribute 'fixed-pitch nil
+			:family "mononoki"
+			:height 120)
+    (set-face-attribute 'variable-pitch nil
+			:family "CMU Sans Serif"
+			:weight 'regular
+			:height 140))
 
   ;; (set-face-attribute 'hl-line nil
   ;; 		      :foreground nil

@@ -68,11 +68,10 @@
 (use-package gcmh
   :ensure)
 
-(use-package quelpa
-  :ensure
-  (use-package quelpa-use-package
-    :ensure
-    :demand))
+(require 'quelpa)
+(require 'quelpa-use-package)
+(if (eq system-type 'darwin)
+    (setq-default quelpa-build-tar-executable "/usr/local/bin/gtar"))
 
 (use-package restart-emacs
   :ensure)
@@ -139,8 +138,11 @@
       kept-old-versions 2
       version-control t)
 (setq desktop-auto-save-timeout 10)
-(setq recentf-max-saved-items nil)
-(run-at-time (current-time) 300 'recentf-save-list)
+
+(use-package recentf
+  :config
+  (setq recentf-max-saved-items nil)
+  (run-at-time (current-time) 300 'recentf-save-list))
 
 (use-package super-save
   :ensure t
@@ -412,23 +414,23 @@
 
   (defun my-sdcv-search ()
     (interactive)
-    (flet ((read-string
-            (prompt &optional initial-input history
-                    default-value inherit-input-method)
-            (ivy-read prompt
-                      (or sdcv-index
-                          (with-temp-buffer
-                            (insert-file-contents
-                             "/home/deepak/.stardict/dic/dictd_www.dict.org_web1913.idx")
-                            (goto-char (point-max))
-                            (insert ")")
-                            (goto-char (point-min))
-                            (insert "(")
-                            (goto-char (point-min))
-                            (setq sdcv-index (read (current-buffer)))))
-                      :history history
-                      :initial-input initial-input
-                      :def default-value)))
+    (cl-flet ((read-string
+               (prompt &optional initial-input history
+                       default-value inherit-input-method)
+               (ivy-read prompt
+                         (or sdcv-index
+                             (with-temp-buffer
+                               (insert-file-contents
+                                "/home/deepak/.stardict/dic/dictd_www.dict.org_web1913.idx")
+                               (goto-char (point-max))
+                               (insert ")")
+                               (goto-char (point-min))
+                               (insert "(")
+                               (goto-char (point-min))
+                               (setq sdcv-index (read (current-buffer)))))
+                         :history history
+                         :initial-input initial-input
+                         :def default-value)))
       (call-interactively #'sdcv-search))))
 
 (use-package goto-addr
