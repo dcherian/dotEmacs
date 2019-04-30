@@ -68,9 +68,11 @@
 (use-package gcmh
   :ensure)
 
-(use-package quelpa-use-package
-  :ensure)
-(require 'quelpa-use-package)
+(use-package quelpa
+  :ensure
+  (use-package quelpa-use-package
+    :ensure
+    :demand))
 
 (use-package restart-emacs
   :ensure)
