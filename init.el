@@ -144,7 +144,8 @@
 
 (use-package counsel
   :ensure
-  ;; :config
+  :bind (:map dc-bindings-map
+	      ("M-9" . counsel-semantic-or-imenu))
   ;; (unbind-key "C-c C-l" shell-mode-map)
   ;; (bind-key "C-c C-l" #'counsel-shell-history shell-mode-map)
   )

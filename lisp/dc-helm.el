@@ -43,7 +43,6 @@
 	 ("C-h o" . helm-occur)
 	 ("C-h a" . helm-apropos)
 	 ("C-h t" . helm-world-time)
-	 ("M-9" . helm-semantic-or-imenu)
 	 ("C-M-s" . helm-imenu-in-all-buffers))
   :config
   (helm-mode 1)
