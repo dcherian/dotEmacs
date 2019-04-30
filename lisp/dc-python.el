@@ -38,8 +38,10 @@
 	      ("C-c C-v C-i" . jupyter-repl-interrupt-kernel)
 	      :map inferior-python-mode-map
 	      ("C-c C-v C-i" . jupyter-repl-interrupt-kernel))
+  :hook ((circadian-after-load-theme jupyter-repl-mode) . dc/jupyter-face)
   :config
   (defun dc/jupyter-faces ()
+    (interactive)
     (set-face-attribute 'jupyter-repl-traceback nil
 			:background nil)
 

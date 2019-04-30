@@ -470,15 +470,16 @@ line are justified."
 	      ("C-c [" . org-ref-insert-ref-link)
 	      ("C-c ]" . org-ref-helm-insert-cite-link)
 	      ("C-c \\" . org-ref-helm-insert-label-link))
+  :hook (org-mode . dc/org-ref-faces)
   :config
-  ;; (require 'org-ref-citeproc)
-
-  (set-face-attribute 'org-ref-cite-face nil
-  		      :inherit 'org-link
-  		      :foreground nil)
-  (set-face-attribute 'org-ref-ref-face nil
-  		      :inherit 'org-ref-cite-face
-  		      :foreground nil)
+  (defun dc/org-ref-faces ()
+    (interactive)
+    (set-face-attribute 'org-ref-cite-face nil
+  			:inherit 'org-link
+  			:foreground nil)
+    (set-face-attribute 'org-ref-ref-face nil
+  			:inherit 'org-ref-cite-face
+  			:foreground nil))
 
   (unbind-key "C-<left>" org-ref-cite-keymap)
   (unbind-key "C-<right>" org-ref-cite-keymap)
