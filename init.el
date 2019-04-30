@@ -13,6 +13,11 @@
 		("melpa" . "https://melpa.org/packages/")
 		("org" . "https://orgmode.org/elpa/")))
 
+(when (eq system-type 'darwin)
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (package-initialize))
+
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
 
