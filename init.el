@@ -18,18 +18,16 @@
 
 (setq load-prefer-newer t)
 
-
 (setq use-package-enable-imenu-support t
-      use-package-compute-statistics t)
+      use-package-compute-statistics t
+      use-package-verbose t
+      use-package-always-defer t
+      use-package-minimum-reported-time 0.01)
+
 (eval-when-compile
   (require 'use-package))
 (require 'diminish)                ;; if you use :diminish
 (require 'bind-key)                ;; if you use any :bind variant
-
-(setq use-package-verbose t)
-(setq use-package-always-defer t)
-;; (setq use-package-always-ensure t) ;; forces package refresh!
-(setq use-package-minimum-reported-time 0.01)
 
 (setq vc-follow-symlinks t)
 
