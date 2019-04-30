@@ -53,7 +53,6 @@
   (dc/theme-changes)
   (set-face-attribute 'default nil
 		      :inherit 'fixed-pitch
-		      :height nil
 		      :foreground "#21505a"))
 
 (defun dc/dark-theme-changes ()
@@ -61,7 +60,6 @@
   (dc/theme-changes)
   (set-face-attribute 'default nil
 		      :inherit 'fixed-pitch
-		      :height nil
 		      :foreground "#cccccc"))
 
 (defun dc/theme-changes ()
