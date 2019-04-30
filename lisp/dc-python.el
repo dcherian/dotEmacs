@@ -23,6 +23,7 @@
 
 (require 'quelpa-use-package)
 (use-package jupyter
+  :commands (dc/jupyter-faces)
   :quelpa ((jupyter
 	    :fetcher github
 	    :repo "dzop/emacs-jupyter")
@@ -38,7 +39,7 @@
 	      ("C-c C-v C-i" . jupyter-repl-interrupt-kernel)
 	      :map inferior-python-mode-map
 	      ("C-c C-v C-i" . jupyter-repl-interrupt-kernel))
-  :hook ((circadian-after-load-theme jupyter-repl-mode) . dc/jupyter-face)
+  :hook ((circadian-after-load-theme jupyter-repl-mode) . dc/jupyter-faces)
   :config
   (defun dc/jupyter-faces ()
     (interactive)

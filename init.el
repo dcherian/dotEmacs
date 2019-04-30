@@ -306,10 +306,13 @@
 (use-package volatile-highlights
   :ensure t
   :diminish volatile-highlights-mode
+  :hook (circadian-after-load-theme . dc/vhl-faces)
   :config
-  (set-face-attribute 'vhl/default-face nil
-		      :foreground "#fdf6e3"
-		      :background "#d33682")
+  (defun dc/vhl-faces ()
+    (interactive)
+    (set-face-attribute 'vhl/default-face nil
+			:foreground "#fdf6e3"
+			:background "#d33682"))
 
   (volatile-highlights-mode t))
 
