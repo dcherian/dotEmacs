@@ -111,7 +111,8 @@
 
 (use-package ein
   :ensure
-  )
+  :config
+  (require 'ob-ein))
 
 
 ;; (use-package ob-ipython

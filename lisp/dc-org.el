@@ -465,6 +465,7 @@ line are justified."
 
 (use-package org-ref
   :ensure t
+  :demand
   :after org
   :bind (:map dc-bindings-map
 	      ("C-c [" . org-ref-insert-ref-link)
