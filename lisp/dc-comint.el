@@ -5,6 +5,11 @@
 ;;; Code
 ;; other comint options
 (use-package comint
+  :init (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+  :hook (shell-mode . ansi-color-for-comint-mode-on)
+  :bind (:map comint-mode-map
+	      ("<up>" . comint-previous-matching-input-from-input)
+	      ("<down>" . comint-next-matching-input-from-input))
   :config
   (setq comint-scroll-to-bottom-on-input t  ; always insert at the bottom
 	comint-scroll-to-bottom-on-output t ; always add output at the bottom
@@ -17,21 +22,12 @@
 	comint-input-ring-size 5000         ; max shell history size
 	protect-buffer-bury-p nil)
 
-					; interpret and use ansi color codes in shell output windows
-  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+  ;; interpret and use ansi color codes in shell output windows
   ;; truncate buffers continuously
-  (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
-
   (set-face-attribute 'comint-highlight-input nil
 		      :inherit 'font-lock-keyword-face :weight 'normal)
   (set-face-attribute 'comint-highlight-prompt nil
 		      :inherit 'font-lock-constant-face)
-
-  ;; how is this not the default?!
-  (define-key comint-mode-map (kbd "<up>")
-    'comint-previous-matching-input-from-input)
-  (define-key comint-mode-map (kbd "<down>")
-    'comint-next-matching-input-from-input)
 
   ;; close comint Completion buffers by default
   ;; from https://snarfed.org/automatically_close_completions_in_emacs_shell_comint_mode
