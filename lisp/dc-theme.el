@@ -36,11 +36,13 @@
 
 (use-package minions
   :ensure t
+  :demand
   :config
   (minions-mode))
 
 (use-package moody
   :ensure t
+  :demand
   :config
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode)
@@ -100,10 +102,6 @@
 		      :inherit 'default
 		      :foreground "#586e75"
 		      :background "#eee8d5")
-
-  (set-face-attribute 'vhl/default-face nil
-		      :foreground "#fdf6e3"
-		      :background "#d33682")
 
 					;  (set-face-attribute 'lsp-face-highlight-read nil
 					;  :foreground "#d33682"

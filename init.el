@@ -366,7 +366,6 @@
 
 (use-package counsel-projectile
   :ensure t
-  :after (projectile counsel)
   :bind (:map dc-bindings-map
 	      ("C-c C-f" . counsel-projectile-find-file-dwim)
 	      :map projectile-command-map
