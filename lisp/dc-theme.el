@@ -79,9 +79,7 @@
 			:family "Avenir"
 			:weight 'regular))
 
-  (when (eq window-system '(gnu/linux))
-    (set-face-attribute 'default nil
-			:height 120)
+  (when (eq window-system 'x)
     (set-face-attribute 'fixed-pitch nil
 			:family "mononoki"
 			:height 120)

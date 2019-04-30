@@ -502,7 +502,7 @@
 
 (use-package discover-my-major
   :ensure t
-  :bind (:map dc-bindings-map~
+  :bind (:map dc-bindings-map
 	      ("C-h C-m" . discover-my-major)
 	      ("C-h M-m" . discover-my-mode)))
 
