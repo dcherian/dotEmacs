@@ -1,16 +1,22 @@
 (use-package ibuffer
+  :bind (:map dc-bindings-map
+	      ("C-x C-b" . ibuffer))
   :config
   (setq ibuffer-saved-filter-groups
 	(quote (("default"
 		 ("rama" (filename . "rama"))
+		 ("pump" (filename . "pump"))
 		 ("ebob" (filename . "ebob"))
+		 ("magit" (filename . "magit"))
 		 ("eq-waves" (filename . "eq_waves"))
 		 ("eddyshelf" (filename . "eddyshelf"))
 		 ("dired" (mode . dired-mode))
 		 ("org" (name . "^.*org$"))
+		 ("helm" (name . "helm"))
 		 ("programming" (or
 				 (mode . python-mode)
-				 (mode . matlab-mode)))
+				 (mode . matlab-mode)
+				 (mode . jupyter-repl-mode)))
 		 ("emacs" (or
 			   (name . "^\\*scratch\\*$")
 			   (name . "^\\*Messages\\*$")))

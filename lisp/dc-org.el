@@ -15,6 +15,7 @@
   (define-key ctl-x-map "t" 'dc/toggle-map))
 
 (use-package org
+  :ensure org-plus-contrib
   :commands (scimax/org-return org-babel-lob-ingest)
   :bind (:map dc-bindings-map
 	      ("C-c c" . org-capture)

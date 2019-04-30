@@ -15,7 +15,6 @@
 
 (use-package helm-config
   :ensure helm
-  :diminish helm-mode
   :demand t
   :init
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
@@ -59,7 +58,8 @@
 	helm-imenu-fuzzy-match t)
 
   ;; Work with Spotlight on OS X instead of the regular locate
-  ;;(setq helm-locate-command "mdfind -name -onlyin ~ %s %s")
+  (if (eq window-system 'darwin)
+      (setq helm-locate-command "mdfind -name -onlyin ~ %s %s"))
 
   (setq helm-split-window-in-side-p t ; open helm buffer inside current window, not occupy whole other window
 	helm-move-to-line-cycle-in-source t ; move to end/beginning of source when reaching top/bottom of source.

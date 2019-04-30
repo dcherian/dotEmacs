@@ -1,8 +1,11 @@
 (use-package smartparens-config
   :ensure smartparens
-  :diminish smartparens-mode
   :demand
-  :bind (:map smartparens-mode-map
+  :hook
+  ((prog-mode markdown-mode) . turn-on-smartparens-strict-mode)
+  :init
+  (smartparens-global-mode)
+  (show-smartparens-global-mode)  :bind (:map smartparens-mode-map
 	      ("C-S-a" . sp-beginning-of-sexp)
 	      ("C-S-e" . sp-end-of-sexp)
 
@@ -105,12 +108,6 @@
   (require 'smartparens-latex)
   (require 'smartparens-html)
   (require 'smartparens-org)
-  (setq sp-show-pair-from-inside t)
-  :hook
-  (prog-mode . turn-on-smartparens-strict-mode)
-  (markdown-mode . turn-on-smartparens-strict-mode)
-  :init
-  (smartparens-global-mode)
-  (show-smartparens-global-mode))
+  (setq sp-show-pair-from-inside t))
 
 (provide 'dc-parens)
