@@ -182,12 +182,6 @@
 (which-function-mode t)
 (display-time-mode t)
 
-;; diminsh some built-in modes
-(diminish 'auto-revert-mode)
-(diminish 'visual-line-mode)
-(diminish 'subword-mode)
-(diminish 'abbrev-mode)
-
 (unbind-key "C-x C-z")  ;; I never suspend-frame
 
 (setq inhibit-startup-message t
@@ -293,14 +287,12 @@
 
 (use-package aggressive-indent
   :ensure t
-  :diminish aggressive-indent-mode
   :config
   (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
   (global-aggressive-indent-mode 1))
 
 (use-package hungry-delete
   :ensure t
-  :diminish hungry-delete-mode
   :config
   (global-hungry-delete-mode t))
 
@@ -314,7 +306,6 @@
   :ensure t
   :diminish volatile-highlights-mode
   :config
-
   (set-face-attribute 'vhl/default-face nil
 		      :foreground "#fdf6e3"
 		      :background "#d33682")
@@ -323,7 +314,6 @@
 
 (use-package undo-tree
   :ensure t
-  :diminish undo-tree-mode
   :bind (:map dc-bindings-map
 	      ("M--" . undo-tree-undo)
 	      ("M-=" . undo-tree-redo)
