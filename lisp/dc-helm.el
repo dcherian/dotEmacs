@@ -123,31 +123,27 @@
 
 (use-package helm-unicode
   :ensure t
+  :after helm
   :bind (:map dc-bindings-map
 	      ("C-h u" . helm-unicode)))
 
 (use-package helm-describe-modes
   :ensure t
+  :after helm
   :config
   (global-set-key [remap describe-mode] #'helm-describe-modes))
 
 (use-package helm-fuzzier
   :ensure t
+  :after helm
   :init
   (helm-fuzzier-mode))
 
 (use-package helm-ext
+  :after helm
   :ensure t
   :config
   (helm-ext-ff-enable-skipping-dots t))
-
-(use-package helm-org-rifle
-  :ensure t
-  :disabled
-  :after (helm)
-  :bind (:map dc-bindings-map
-	      ("C-x C-r" . helm-org-rifle)
-	      ("C-x C-o" . helm-org-rifle-org-directory)))
 
 (use-package helm-dash
   :ensure t
