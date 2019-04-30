@@ -67,16 +67,21 @@
   (dc/org-theme)
 
   (when (eq system-type 'darwin)
+    (set-face-attribute 'default nil
+			:height 120)
+
     (set-face-attribute 'fixed-pitch nil
-			:family "Monaco"
-			:height 140)
+			:inherit 'default
+			:family "Monaco")
 
     (set-face-attribute 'variable-pitch nil
+			:inherit 'default
 			:family "Avenir"
-			:weight 'regular
-			:height 140))
+			:weight 'regular))
 
   (when (eq window-system '(gnu/linux))
+    (set-face-attribute 'default nil
+			:height 120)
     (set-face-attribute 'fixed-pitch nil
 			:family "mononoki"
 			:height 120)
