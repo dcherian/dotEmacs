@@ -1,9 +1,8 @@
 (use-package company
   :diminish company-mode
   :ensure t
+  :hook (after-init . global-company-mode)
   :config
-  ;; Enable company-mode globally.
-  (add-hook 'after-init-hook 'global-company-mode)
   ;; Except when you're in term-mode.
   (setq company-global-modes '(not term-mode))
 
