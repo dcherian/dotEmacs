@@ -148,10 +148,11 @@
 (use-package helm-dash
   :ensure t
   :after (helm)
+  :hook ((org-mode . org-doc)
+	 ((python-mode python-shell-first-prompt jupyter-repl-mode-hook) . python-doc))
   :bind (:map dc-bindings-map
 	      ("C-," . helm-dash-at-point))
   :config
-
   (setq helm-dash-docsets-path "/home/deepak/docs/docsets/")
   (defun python-doc ()
     (interactive)
@@ -165,10 +166,6 @@
     (setq-local helm-dash-docsets '("Org_Mode" "Python_3" "HTML"
 				    "NumPy" "SciPy" "Matplotlib"
 				    "CSS" "LaTeX" "Pandas" "xarray"
-				    "Seaborn")))
-
-  (add-hook 'python-shell-first-prompt-hook 'python-doc)
-  (add-hook 'python-mode-hook 'python-doc)
-  (add-hook 'org-mode-hook 'org-doc))
+				    "Seaborn"))))
 
 (provide 'dc-helm)
