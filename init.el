@@ -1,12 +1,11 @@
 ;; time emacs -l init.elc -batch --eval '(message "Hello, world!")'
 ;; (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0 t)
-(setq package-enable-at-startup t)
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
+;; Increase the garbage collection threshold to 500 MB to ease startup
+(setq gc-cons-threshold (* 500 1024 1024))
+
+(setq package-enable-at-startup t)
+(setq package-quickstart t)
 
 (set-variable 'package-archives
 	      `(("gnu" . "https://elpa.gnu.org/packages/")
@@ -25,14 +24,17 @@
 
 (setq use-package-enable-imenu-support t
       use-package-compute-statistics t)
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 (require 'diminish)                ;; if you use :diminish
 (require 'bind-key)                ;; if you use any :bind variant
 
 (setq use-package-verbose t)
-;; (setq use-package-always-defer t)
+(setq use-package-always-defer t)
 ;; (setq use-package-always-ensure t) ;; forces package refresh!
-(setq use-package-minimum-reported-time 0.05)
+(setq use-package-minimum-reported-time 0.01)
+
+(setq vc-follow-symlinks t)
 
 (use-package no-littering
   :ensure t
@@ -49,23 +51,22 @@
 
 ;; from https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 
-(setq tls-checktrust t)
+;; (setq tls-checktrust t)
+;; (let ((trustfile
+;;        (replace-regexp-in-string
+;;         "\\\\" "/"
+;;         (replace-regexp-in-string
+;;          "\n" ""
+;;          (shell-command-to-string "python -m certifi")))))
+;;   (setq tls-program
+;;         (list
+;;          (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
+;;                  (if (eq window-system 'w32) ".exe" "") trustfile)))
+;;   (setq gnutls-verify-error t)
+;;   (setq gnutls-trustfiles (list trustfile)))
 
-(let ((trustfile
-       (replace-regexp-in-string
-        "\\\\" "/"
-        (replace-regexp-in-string
-         "\n" ""
-         (shell-command-to-string "python -m certifi")))))
-  (setq tls-program
-        (list
-         (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
-                 (if (eq window-system 'w32) ".exe" "") trustfile)))
-  (setq gnutls-verify-error t)
-  (setq gnutls-trustfiles (list trustfile)))
-
-;; Increase the garbage collection threshold to 500 MB to ease startup
-(setq gc-cons-threshold (* 500 1024 1024))
+(use-package gcmh
+  :ensure)
 
 (use-package restart-emacs
   :ensure)
@@ -75,6 +76,7 @@
   (setq-default show-trailing-whitespace nil)
   (defun no-trailing-whitespace ()
     (setq show-trailing-whitespace nil))
+
   (add-hook 'minibuffer-setup-hook
 	    'no-trailing-whitespace)
   (add-hook 'eww-mode-hook
@@ -131,38 +133,14 @@
       kept-old-versions 2
       version-control t)
 (setq desktop-auto-save-timeout 10)
+(setq recentf-max-saved-items nil)
+(run-at-time (current-time) 300 'recentf-save-list)
 
 (use-package super-save
   :ensure t
   :config
   (super-save-mode +1)
   (setq super-save-auto-save-when-idle t))
-
-(use-package keyfreq
-  :ensure
-  :disabled
-  :config
-  (keyfreq-mode 1)
-  (keyfreq-autosave-mode 1))
-
-;; tramp
-(use-package tramp
-  :config
-  (setq tramp-default-method "ssh")
-  (setq tramp-backup-directory-alist backup-directory-alist)
-  (setq tramp-auto-save-directory autosave-dir)
-
-  (add-to-list 'password-word-equivalents "Token_Response")
-  (setq tramp-password-prompt-regexp
-    (format "^.*\\(%s\\).*:\^@? *"
-	    (regexp-opt (or (bound-and-true-p password-word-equivalents)
-                            '("password" "passphrase")))))
-  )
-
-(setq-default bidi-display-reordering nil)
-
-(setq recentf-max-saved-items nil)
-(run-at-time (current-time) 300 'recentf-save-list)
 
 (use-package counsel
   :ensure
@@ -177,6 +155,38 @@
   (setq ivy-re-builders-alist
 	'((t . ivy--regex-ignore-order)))
   (bind-key "s-s" #'swiper-all dc-bindings-map))
+
+(use-package tramp
+  :config
+  (setq tramp-default-method "ssh")
+  (setq tramp-backup-directory-alist backup-directory-alist)
+  (setq tramp-auto-save-directory autosave-dir)
+
+  (add-to-list 'password-word-equivalents "Token_Response")
+  (setq tramp-password-prompt-regexp
+	(format "^.*\\(%s\\).*:\^@? *"
+		(regexp-opt (or (bound-and-true-p password-word-equivalents)
+				'("password" "passphrase"))))))
+
+;; enable built-in modes
+(desktop-save-mode 1)
+(delete-selection-mode 1)
+
+(save-place-mode 1)
+(blink-cursor-mode 0)
+(global-visual-line-mode t)
+(global-hl-line-mode 1)
+(global-subword-mode 1)
+(global-prettify-symbols-mode t)
+(windmove-default-keybindings)
+(which-function-mode t)
+(display-time-mode t)
+
+;; diminsh some built-in modes
+(diminish 'auto-revert-mode)
+(diminish 'visual-line-mode)
+(diminish 'subword-mode)
+(diminish 'abbrev-mode)
 
 (unbind-key "C-x C-z")  ;; I never suspend-frame
 
@@ -199,10 +209,11 @@
       confirm-nonexistent-file-or-buffer nil
       tab-always-indent 'complete
       read-file-name-completion-ignore-case t
-      auto-window-vscroll nil)
+      auto-window-vscroll nil
+      display-time-24hr-format t)
 
-(setq-default fill-column 80)
-
+(setq-default fill-column 80
+	      bidi-display-reordering nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; smoooth - scrolling?
@@ -210,28 +221,6 @@
 ;;       scroll-conservatively 4
 ;;       scroll-up-aggressively 0.1
 ;;       scroll-down-aggressively 0.1)
-
-;; enable built-in modes
-(desktop-save-mode 1)
-(delete-selection-mode 1)
-
-(save-place-mode 1)
-(blink-cursor-mode 0)
-(global-visual-line-mode t)
-(global-hl-line-mode 1)
-(global-subword-mode 1)
-(global-prettify-symbols-mode t)
-(windmove-default-keybindings)
-(which-function-mode t)
-
-(display-time-mode t)
-(setq display-time-24hr-format t)
-
-;; diminsh some built-in modes
-(diminish 'auto-revert-mode)
-(diminish 'visual-line-mode)
-(diminish 'subword-mode)
-(diminish 'abbrev-mode)
 
 ;; global key bindings
 (global-set-key "\C-xw" 'delete-frame)
@@ -253,8 +242,10 @@
 (global-set-key (kbd "<f8>") 'gud-finish) ;; equiv matlab step out
 
 ;; use aspell
-(setq ispell-program-name "aspell")
-(add-hook 'text-mode-hook 'flyspell-mode)
+(use-package flyspell
+  :config
+  (setq ispell-program-name "aspell")
+  (add-hook 'text-mode-hook 'flyspell-mode))
 
 ;; (define-key fortran-mode-map (kbd "C-c C-c") 'compile)
 
@@ -318,10 +309,16 @@
   :bind (:map dc-bindings-map
 	      ("C-x x" . goto-last-change)))
 
+
 (use-package volatile-highlights
   :ensure t
   :diminish volatile-highlights-mode
   :config
+
+  (set-face-attribute 'vhl/default-face nil
+		      :foreground "#fdf6e3"
+		      :background "#d33682")
+
   (volatile-highlights-mode t))
 
 (use-package undo-tree
@@ -377,6 +374,19 @@
   (setq projectile-enable-caching t)
   (projectile-mode))
 
+(use-package counsel-projectile
+  :ensure t
+  :after (projectile counsel)
+  :bind (:map dc-bindings-map
+	      ("C-c C-f" . counsel-projectile-find-file-dwim)
+	      :map projectile-command-map
+	      ("s" . counsel-projectile-ag))
+  :config
+  (counsel-projectile-mode)
+  (setq projectile-completion-system 'counsel
+	projectile-switch-project-action 'counsel-projectile-find-file
+	projectile-switch-project-action 'counsel-projectile))
+
 (use-package wc-mode
   :ensure
   :config
@@ -418,19 +428,6 @@
                       :def default-value)))
       (call-interactively #'sdcv-search))))
 
-(use-package counsel-projectile
-  :ensure t
-  :after projectile
-  :bind (:map dc-bindings-map
-	      ("C-c C-f" . counsel-projectile-find-file-dwim)
-	      :map projectile-command-map
-	      ("s" . counsel-projectile-ag))
-  :config
-  (counsel-projectile-mode)
-  (setq projectile-completion-system 'counsel
-	projectile-switch-project-action 'counsel-projectile-find-file
-	projectile-switch-project-action 'counsel-projectile))
-
 (use-package goto-addr
   :hook ((compilation-mode . goto-address-mode)
          (prog-mode . goto-address-prog-mode)
@@ -445,7 +442,6 @@
 (use-package ws-butler
   :ensure t
   :demand
-  :diminish
   :config
   (ws-butler-global-mode t))
 
@@ -493,6 +489,7 @@
   (setq vc-handled-backends '(SVN Hg)))
 
 (use-package forge
+  :after magit
   :ensure t)
 
 (use-package discover-my-major
@@ -556,7 +553,7 @@
 (require 'dc-latex)
 (require 'dc-editing)
 (require 'dc-parens)
-(require 'dc-website)
+;;(require 'dc-website)
 (require 'dc-matlab)
 (require 'dc-company)
 (require 'dc-python)
@@ -589,6 +586,10 @@
       (assq-delete-all 'dc-bindings-mode minor-mode-map-alist)
       (add-to-list 'minor-mode-map-alist mykeys))))
 (add-hook 'after-load-functions 'dc-keys-have-priority)
+
+;; start emacs server only it has not already been started
+(require 'server)
+(unless (server-running-p) (server-start))
 
 ;; Garbage collector - decrease threshold to 15 MB
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold (* 15 1024 1024))))
