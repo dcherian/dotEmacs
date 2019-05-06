@@ -12,7 +12,7 @@
 		     ))
 (elpy-enable)
 (setq elpy-get-info-from-shell nil)
-(setq elpy-rpc-python-command "ipython")
+(setq elpy-rpc-python-command "python")
 ;; use emacs-jupyter instead
 (define-key elpy-mode-map (kbd "C-c C-c") nil)
 (define-key elpy-mode-map (kbd "C-c C-b") nil)
