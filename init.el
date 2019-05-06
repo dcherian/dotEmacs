@@ -384,15 +384,16 @@
 
 (use-package counsel-projectile
   :ensure t
+  :demand
   :bind (:map dc-bindings-map
 	      ("C-c C-f" . counsel-projectile-find-file-dwim)
 	      :map projectile-command-map
 	      ("s" . counsel-projectile-ag))
   :config
-  (counsel-projectile-mode)
   (setq projectile-completion-system 'counsel
 	projectile-switch-project-action 'counsel-projectile-find-file
-	projectile-switch-project-action 'counsel-projectile))
+	projectile-switch-project-action 'counsel-projectile)
+  (counsel-projectile-mode))
 
 (use-package wc-mode
   :ensure
