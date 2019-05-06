@@ -29,12 +29,6 @@
 			 ".tex")))
 ;; (define-key latex-mode-map "\C-cw" 'dc/latex-word-count)
 
-(use-package auctex-latexmk
-  :disabled t
-  :config
-  (auctex-latexmk-setup)
-  (setq auctex-latexmk-inherit-TeX-PDF-mode t))
-
 (setq-default TeX-PDF-mode nil
 	      TeX-master nil)
 
