@@ -4,6 +4,9 @@
 ;; Increase the garbage collection threshold to 500 MB to ease startup
 (setq gc-cons-threshold (* 500 1024 1024))
 
+(defvar doom--file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
 (setq package-enable-at-startup t)
 (setq package-quickstart t)
 
@@ -609,3 +612,6 @@
 
 (diminish 'dc-bindings-mode)
 (diminish 'auto-revert-mode)
+
+(add-hook 'emacs-startup-hook
+  (lambda () (setq file-name-handler-alist doom--file-name-handler-alist)))
