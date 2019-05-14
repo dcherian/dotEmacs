@@ -700,7 +700,11 @@ Argument KEY is the bibtex key."
 		      :height 0.85)
   (set-face-attribute 'org-document-title nil
 		      :foreground nil
-		      :weight 'normal))
+		      :weight 'bold)
+  (set-face-attribute 'org-table nil
+		      :inherit 'fixed-pitch
+		      :foreground 'nil
+		      :height 0.9))
 
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
