@@ -457,11 +457,20 @@ line are justified."
   ;; (advice-remove 'org--format-latex-make-overlay 'org-justify-fragment-overlay)
   ;; (advice-remove 'org--format-latex-make-overlay 'org-latex-fragment-tooltip)
 
-  (setq org-file-apps
-	'((auto-mode . emacs)
-	  ("\\.pdf\\'" . "mupdf %s")
-	  ("\\.png\\'" . "gpicview %s")
-	  ("\\.html\\'" . "firefox %s"))))
+  (when (eq window-system 'x)
+    (setq org-file-apps
+	  '((auto-mode . emacs)
+	    ("\\.pdf\\'" . "mupdf %s")
+	    ("\\.png\\'" . "gpicview %s")
+	    ("\\.html\\'" . "firefox %s"))))
+
+  (when (memq window-system '(mac ns))
+    (setq org-file-apps
+	  '((auto-mode . emacs)
+	    ("\\.pdf\\'" . "open %s")
+	    ("\\.png\\'" . "open %s")
+	    ("\\.html\\'" . "firefox %s"))))
+  )
 
 (use-package org-ref
   :ensure t
