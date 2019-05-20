@@ -458,11 +458,20 @@ line are justified."
   ;; (advice-remove 'org--format-latex-make-overlay 'org-justify-fragment-overlay)
   ;; (advice-remove 'org--format-latex-make-overlay 'org-latex-fragment-tooltip)
 
-  (setq org-file-apps
-	'((auto-mode . emacs)
-	  ("\\.pdf\\'" . "mupdf %s")
-	  ("\\.png\\'" . "gpicview %s")
-	  ("\\.html\\'" . "firefox %s"))))
+  (when (eq window-system 'x)
+    (setq org-file-apps
+	  '((auto-mode . emacs)
+	    ("\\.pdf\\'" . "mupdf %s")
+	    ("\\.png\\'" . "gpicview %s")
+	    ("\\.html\\'" . "firefox %s"))))
+
+  (when (memq window-system '(mac ns))
+    (setq org-file-apps
+	  '((auto-mode . emacs)
+	    ("\\.pdf\\'" . "open %s")
+	    ("\\.png\\'" . "open %s")
+	    ("\\.html\\'" . "firefox %s"))))
+  )
 
 (use-package org-ref
   :ensure t
@@ -692,7 +701,11 @@ Argument KEY is the bibtex key."
 		      :height 0.85)
   (set-face-attribute 'org-document-title nil
 		      :foreground nil
-		      :weight 'normal))
+		      :weight 'bold)
+  (set-face-attribute 'org-table nil
+		      :inherit 'fixed-pitch
+		      :foreground 'nil
+		      :height 0.9))
 
 (defun my-org-mode-hook ()
   (visual-fill-column-mode)
