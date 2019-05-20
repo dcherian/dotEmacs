@@ -374,9 +374,9 @@
 
 (use-package projectile
   :ensure t
-  :diminish projectile-mode
+  :bind (:map projectile-mode-map
+	      ("M-p" . projectile-command-map))
   :config
-  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
   (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name)))
 	projectile-sort-order 'access-time)
   (setq projectile-enable-caching t)
@@ -497,6 +497,7 @@
 
   (add-to-list 'magit-section-initial-visibility-alist '(untracked . hide))
 
+  (add-to-list 'magit-buffer-log-args "--follow")
   (magit-auto-revert-mode)
   (setq vc-handled-backends '(SVN Hg)))
 
@@ -561,15 +562,15 @@
   (add-to-list 'flycheck-checkers 'proselint))
 
 (require 'dc-org)
+(require 'dc-python)
 (require 'dc-helm)
 (require 'dc-comint)
 (require 'dc-latex)
 (require 'dc-editing)
 (require 'dc-parens)
-;;(require 'dc-website)
+(require 'dc-website)
 (require 'dc-matlab)
 (require 'dc-company)
-(require 'dc-python)
 (require 'dc-ibuffer)
 (require 'dc-projects)
 
