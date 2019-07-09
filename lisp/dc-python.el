@@ -26,11 +26,8 @@
   :ensure)
 
 (use-package jupyter
+  :after org
   :commands (dc/jupyter-faces)
-  :quelpa ((jupyter
-	    :fetcher github
-	    :repo "dzop/emacs-jupyter")
-	   :upgrade nil)
   :bind (:map jupyter-repl-mode-map
 	      ("<up>" . jupyter-repl-history-previous)
 	      ("<down>" . jupyter-repl-history-next)
@@ -44,6 +41,8 @@
 	      ("C-c C-v C-i" . jupyter-repl-interrupt-kernel))
   :hook ((circadian-after-load-theme jupyter-repl-mode) . dc/jupyter-faces)
   :config
+  (require 'jupyter-tramp)
+
   (defun dc/jupyter-faces ()
     (interactive)
     (set-face-attribute 'jupyter-repl-traceback nil
@@ -54,8 +53,6 @@
 
     (set-face-attribute 'jupyter-repl-output-prompt nil
 			:foreground "#dc322f"))
-
-  (add-hook jupyter-repl-mode-hook 'dc/jupyter-faces)
 
   (org-babel-jupyter-override-src-block "python")
 

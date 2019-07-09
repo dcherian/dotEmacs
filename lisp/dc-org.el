@@ -77,17 +77,6 @@
 	org-export-time-stamp-file nil
 	org-imenu-depth 3)
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((matlab . t)
-     (emacs-lisp . t)
-     (latex . t)
-     (shell . t)
-     (python . t)
-     (jupyter . t)))
-
-  (org-babel-lob-ingest (expand-file-name "~/org/library-of-babel.org"))
-
   ;; don’t prompt me to confirm everytime I want to evaluate a block
   (setq org-confirm-babel-evaluate nil)
   ;; display/update images in the buffer after I evaluate

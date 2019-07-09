@@ -615,5 +615,18 @@
 (diminish 'dc-bindings-mode)
 (diminish 'auto-revert-mode)
 
+(pyvenv-activate "~/miniconda3/envs/dcpy/")
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (latex . t)
+   (shell . t)
+   (python . t)
+   (jupyter . t)
+   ))
+
+(org-babel-lob-ingest (expand-file-name "~/org/library-of-babel.org"))
+
 (add-hook 'emacs-startup-hook
   (lambda () (setq file-name-handler-alist doom--file-name-handler-alist)))
