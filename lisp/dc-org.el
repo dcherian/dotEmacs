@@ -77,11 +77,6 @@
 	org-export-time-stamp-file nil
 	org-imenu-depth 3)
 
-  ;; don’t prompt me to confirm everytime I want to evaluate a block
-  (setq org-confirm-babel-evaluate nil)
-  ;; display/update images in the buffer after I evaluate
-  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
-
   ;; from abo-abo
   (defun hot-expand (str)
     "Expand org template."
@@ -266,48 +261,6 @@ Use a prefix arg to get regular RET. "
 	(when cands
 	  (list (match-beginning 0) (match-end 0) cands)))))
 
-
-  (defun dc/org-babel-execute-current-block-qt ()
-    (interactive)
-    (setq info (org-babel-lob--src-info "mpl-qt"))
-    (when info
-      (org-babel-execute-src-block nil info))
-
-    (org-babel-mark-block)
-    (elpy-shell-send-region-or-buffer))
-
-  (defun dc/org-babel-execute-current-block-in-shell ()
-    (interactive)
-    (org-babel-mark-block)
-    (elpy-shell-send-region-or-buffer))
-
-  (defun dc/org-babel-execute-current-block-inline ()
-    (interactive)
-    (setq info (org-babel-lob--src-info "mpl-inline"))
-    (when info
-      (org-babel-execute-src-block nil info))
-
-    (org-babel-mark-block)
-    (elpy-shell-send-region-or-buffer))
-
-  (defun dc/org-babel-execute-named-block ()
-    (interactive)
-    (setq name (ivy-read "Choose code block: "
-			 (append org-babel-library-of-babel
-				 (org-babel-src-block-names))
-			 :history 'dc/org-named-block-history
-			 :require-match t
-			 :sort t))
-    (setq src (org-babel-find-named-block name))
-    (if src
-	(save-excursion
-	  (goto-char src)
-	  (org-babel-execute-src-block-maybe))
-      (progn
-	(setq info (org-babel-lob--src-info name))
-	(when info
-	  (org-babel-execute-src-block nil info)))))
-
   ;; make prettify-symbols-mode work for latex in org files
   ;; from https://emacs.stackexchange.com/questions/33797/use-literal-greek-characters-in-latex-fragments-in-org-mode
   (defun prettify-symbols-org-latex-compose-p (start end _match)
@@ -461,6 +414,70 @@ line are justified."
 	    ("\\.png\\'" . "open %s")
 	    ("\\.html\\'" . "firefox %s"))))
   )
+
+;; jupyter-independent settings
+(use-package ob
+  :after org
+  :demand t
+  :config
+  (dolist (language '((emacs-lisp . t)
+                      (org . t)
+                      (python . t)
+                      (shell . t)
+                      (latex . t)))
+    (add-to-list 'org-babel-load-languages language))
+  (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+
+
+
+  (defun dc/org-babel-execute-current-block-qt ()
+    (interactive)
+    (setq info (org-babel-lob--src-info "mpl-qt"))
+    (when info
+      (org-babel-execute-src-block nil info))
+
+    (org-babel-mark-block)
+    (elpy-shell-send-region-or-buffer))
+
+  (defun dc/org-babel-execute-current-block-in-shell ()
+    (interactive)
+    (org-babel-mark-block)
+    (elpy-shell-send-region-or-buffer))
+
+  (defun dc/org-babel-execute-current-block-inline ()
+    (interactive)
+    (setq info (org-babel-lob--src-info "mpl-inline"))
+    (when info
+      (org-babel-execute-src-block nil info))
+
+    (org-babel-mark-block)
+    (elpy-shell-send-region-or-buffer))
+
+  (defun dc/org-babel-execute-named-block ()
+    (interactive)
+    (setq name (ivy-read "Choose code block: "
+			 (append org-babel-library-of-babel
+				 (org-babel-src-block-names))
+			 :history 'dc/org-named-block-history
+			 :require-match t
+			 :sort t))
+    (setq src (org-babel-find-named-block name))
+    (if src
+	(save-excursion
+	  (goto-char src)
+	  (org-babel-execute-src-block-maybe))
+      (progn
+	(setq info (org-babel-lob--src-info name))
+	(when info
+	  (org-babel-execute-src-block nil info)))))
+
+
+  ;; don’t prompt me to confirm everytime I want to evaluate a block
+  (setq org-confirm-babel-evaluate nil)
+  ;; display/update images in the buffer after I evaluate
+  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+
+)
 
 (use-package org-ref
   :ensure t
