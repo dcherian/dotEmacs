@@ -83,7 +83,7 @@
 \\usepackage{siunitx}
 \\usepackage{xfrac}
 \\usepackage{bigints}
-\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = ‐, per-mode=reciprocal, retain-unity-mantissa=false }
+\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = --, per-mode=reciprocal, retain-unity-mantissa=false }
 \\bibpunct{(}{)}{;}{a}{}{,}
 [EXTRA]"
 	       ("\\section{%s}" . "\\section*{%s}")
@@ -116,7 +116,7 @@
 \\usepackage{xfrac}
 \\usepackage{bigints}
 \\usepackage[protrusion=true]{microtype}
-\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = ‐, per-mode=reciprocal, retain-unity-mantissa=false }
+\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-units=single, range-phrase = --, per-mode=reciprocal, retain-unity-mantissa=false }
 \\usepackage{JMR}
 [EXTRA]"
 	       ("\\section{%s}" . "\\section*{%s}")

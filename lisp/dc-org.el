@@ -734,11 +734,10 @@ Argument KEY is the bibtex key."
   (setq org-reveal-root "file:///home/deepak/gits/reveal.js"))
 
 (use-package citeproc-org
-  :ensure
   :quelpa ((citeproc-org
 	    :fetcher github
-	    :repo "andras-simonyi/citeproc-org"
-	    :upgrade nil))
+	    :repo "andras-simonyi/citeproc-org")
+	   :upgrade nil)
   :config
   (citeproc-org-setup))
 
