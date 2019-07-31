@@ -16,6 +16,7 @@
 
 (use-package org
   :ensure org-plus-contrib
+  :demand t
   :commands (scimax/org-return org-babel-lob-ingest)
   :bind (:map dc-bindings-map
 	      ("C-c c" . org-capture)
@@ -36,8 +37,6 @@
 	      ("C-c C-v g" . dc/org-babel-execute-named-block)
 	      ("C-c C-v C-g" . dc/org-babel-execute-named-block)
 	      ("C-c C-p" . dc/org-babel-execute-current-block-in-shell)
-	      :map inferior-python-mode-map
-	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map python-mode-map
 	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map org-src-mode-map
@@ -428,8 +427,6 @@ line are justified."
     (add-to-list 'org-babel-load-languages language))
   (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
 
-
-
   (defun dc/org-babel-execute-current-block-qt ()
     (interactive)
     (setq info (org-babel-lob--src-info "mpl-qt"))
@@ -726,7 +723,7 @@ Argument KEY is the bibtex key."
   (org-edit-latex-mode t)
   (dc/org-theme)
   (variable-pitch-mode)
-  (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
+  ;; (setq-local prettify-symbols-alist tex--prettify-symbols-alist)
   (setq prettify-symbols-compose-predicate #'prettify-symbols-org-latex-compose-p))
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
