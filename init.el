@@ -499,7 +499,7 @@
 
   (add-to-list 'magit-buffer-log-args "--follow")
   (magit-auto-revert-mode)
-  (setq vc-handled-backends '(SVN Hg)))
+  (setq vc-handled-backends nil))
 
 (use-package forge
   :after magit
