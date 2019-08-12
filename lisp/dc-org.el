@@ -489,10 +489,10 @@ line are justified."
     (interactive)
     (set-face-attribute 'org-ref-cite-face nil
   			:inherit 'org-link
-  			:foreground nil)
+  			)
     (set-face-attribute 'org-ref-ref-face nil
   			:inherit 'org-ref-cite-face
-  			:foreground nil))
+  			))
 
   (unbind-key "C-<left>" org-ref-cite-keymap)
   (unbind-key "C-<right>" org-ref-cite-keymap)
@@ -618,47 +618,39 @@ Argument KEY is the bibtex key."
   (interactive)
   (set-face-attribute 'org-level-1 nil
 		      :inherit 'variable-pitch
-		      :foreground nil
 		      :weight 'semibold
 		      :height 1.25)
   (set-face-attribute 'org-level-2 nil
   		      :inherit 'variable-pitch
-		      :foreground nil
 		      :slant 'italic
 		      :weight 'medium
 		      :height 1.15)
   (set-face-attribute 'org-level-3 nil
   		      :inherit 'variable-pitch
-		      :foreground nil
 		      :weight 'semibold
 		      :height 1.05)
   (set-face-attribute 'org-level-4 nil
   		      :inherit 'variable-pitch
-		      :foreground nil
 		      :weight 'bold
 		      :height 1.05)
   (set-face-attribute 'org-level-5 nil
   		      :inherit 'variable-pitch
-		      :foreground nil
 		      :weight 'bold
 		      :height 1.05)
   (set-face-attribute 'org-level-6 nil
   		      :inherit 'variable-pitch
-		      :foreground nil
 		      :weight 'bold
 		      :height 1.05)
   (set-face-attribute 'org-level-7 nil
   		      :inherit 'variable-pitch
-		      :foreground nil
 		      :weight 'bold
 		      :height 1.05)
   (set-face-attribute 'org-link nil
 		      :inherit 'fixed-pitch
 		      :underline t
-		      :foreground nil) ; links are only underlined
+		      ) ; links are only underlined
   ;; footnotes shouldn't be highlighted
   (set-face-attribute 'org-footnote nil
-		      :foreground nil
 		      :underline nil
 		      :inherit '(font-lock-comment-face org-foreground))
   (set-face-attribute 'org-checkbox nil
@@ -676,7 +668,7 @@ Argument KEY is the bibtex key."
 		      :weight 'normal)
   (set-face-attribute 'org-block nil
 		      :inherit 'fixed-pitch
-		      :foreground nil
+
 		      :background nil)
   (set-face-attribute 'org-block-end-line nil
 		      :inherit 'org-meta-line)
@@ -688,7 +680,6 @@ Argument KEY is the bibtex key."
 		      :inherit 'fixed-pitch
 		      :background nil)
   (set-face-attribute 'org-date nil
-		      :foreground nil
 		      :inherit 'org-link)
   (set-face-attribute 'org-latex-and-related nil
 		      :foreground "#268bd2"
@@ -703,11 +694,9 @@ Argument KEY is the bibtex key."
 		      :inherit 'fixed-pitch
 		      :height 0.85)
   (set-face-attribute 'org-document-title nil
-		      :foreground nil
 		      :weight 'bold)
   (set-face-attribute 'org-table nil
 		      :inherit 'fixed-pitch
-		      :foreground 'nil
 		      :height 0.9))
 
 (defun my-org-mode-hook ()
