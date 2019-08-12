@@ -1,12 +1,8 @@
 # -*- mode: snippet -*-
-# name: python block
+# name: simple python block
 # key: py
 # --
 
-#+BEGIN_SRC jupyter-python :session py
-f, ax = plt.subplots(1, 1, constrained_layout=True)
+#+BEGIN_SRC jupyter-python
 $0
-f.savefig('${1:`(read-string "Image filename: " (concat "images/temp/" (make-temp-name "img") ".png"))`}')
 #+END_SRC
-#+CAPTION:
-[[file:$1]]
