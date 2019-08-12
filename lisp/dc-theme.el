@@ -96,6 +96,11 @@
 		      :background nil
 		      :inherit nil)
 
+  (set-face-attribute 'cursor nil
+		      :foreground "black"
+		      :background nil
+		      :inherit nil)
+
   (set-face-attribute 'font-lock-constant-face nil
 		      :bold nil)
 
