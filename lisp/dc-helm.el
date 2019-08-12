@@ -146,7 +146,7 @@
 
 (use-package helm-dash
   :ensure t
-  :after (helm)
+  :after (:all helm python)
   :hook ((org-mode . org-doc)
 	 ((python-mode python-shell-first-prompt jupyter-repl-mode-hook) . python-doc))
   :bind (:map dc-bindings-map
