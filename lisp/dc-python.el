@@ -64,6 +64,13 @@
 (use-package beacon
   :ensure)
 
+(use-package python-black
+  :ensure
+  :demand t
+  :after python
+  :bind (:map python-mode-map
+              ("C-c =" . python-black-buffer)))
+
 (use-package jupyter
   :demand t
   :after (:all org python)
