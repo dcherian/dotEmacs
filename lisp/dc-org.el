@@ -489,9 +489,11 @@ line are justified."
     (interactive)
     (set-face-attribute 'org-ref-cite-face nil
   			:inherit 'org-link
+			:foreground nil
   			)
     (set-face-attribute 'org-ref-ref-face nil
   			:inherit 'org-ref-cite-face
+			:foreground nil
   			))
 
   (unbind-key "C-<left>" org-ref-cite-keymap)
@@ -668,7 +670,6 @@ Argument KEY is the bibtex key."
 		      :weight 'normal)
   (set-face-attribute 'org-block nil
 		      :inherit 'fixed-pitch
-
 		      :background nil)
   (set-face-attribute 'org-block-end-line nil
 		      :inherit 'org-meta-line)
@@ -692,7 +693,13 @@ Argument KEY is the bibtex key."
 				 fixed-pitch))
   (set-face-attribute 'org-meta-line nil
 		      :inherit 'fixed-pitch
-		      :height 0.85)
+		      :height 0.9)
+  (set-face-attribute 'org-special-keyword nil
+		      :inherit 'fixed-pitch
+		      :height 0.9)
+  (set-face-attribute 'org-property-value nil
+		      :inherit 'fixed-pitch
+		      :height 0.9)
   (set-face-attribute 'org-document-title nil
 		      :weight 'bold)
   (set-face-attribute 'org-table nil
