@@ -37,8 +37,6 @@
 	      ("C-c C-v g" . dc/org-babel-execute-named-block)
 	      ("C-c C-v C-g" . dc/org-babel-execute-named-block)
 	      ("C-c C-p" . dc/org-babel-execute-current-block-in-shell)
-	      :map python-mode-map
-	      ("s-g" . dc/org-babel-execute-named-block)
 	      :map org-src-mode-map
 	      ("s-l" . org-edit-src-exit)
 	      :map org-mode-map
@@ -580,6 +578,10 @@ Argument KEY is the bibtex key."
 		    ("RET" . scimax/org-return))))
 
 (use-package ox-gfm
+  :defer
+  :ensure t)
+
+(use-package ox-rst
   :defer
   :ensure t)
 

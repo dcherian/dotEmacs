@@ -23,6 +23,9 @@
   ;; buffer at the top of the candidate list.
   (setq company-transformers '(company-sort-by-occurrence))
 
+  (set-face-attribute 'company-tooltip nil
+		      :inherit 'tooltip)
+
   (setq company-backends
 	'(company-capf
 	  company-files

@@ -25,6 +25,13 @@
   :demand
   :ensure)
 
+(use-package flycheck-pycheckers
+  :ensure
+  :hook ((flycheck-mode . flycheck-pycheckers-setup))
+  :config
+  (setq flycheck-pycheckers-checkers '(mypy3))
+  )
+
 (use-package python
   :demand
   :bind ((:map python-mode-map
@@ -94,7 +101,9 @@
   :ensure
   :after python
   :bind (:map python-mode-map
-              ("C-c =" . python-black-buffer)))
+              ("C-c =" . python-black-buffer)
+              ("C-c -" . python-black-partial-dwim)
+	      ))
 
 (use-package jupyter
   :demand t

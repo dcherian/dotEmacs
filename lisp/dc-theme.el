@@ -115,7 +115,7 @@
 		      :bold nil)
 
   (set-face-attribute 'tooltip nil
-		      :inherit 'default
+		      :inherit 'fixed-pitch
 		      :foreground "#586e75"
 		      :background "#eee8d5"))
 
