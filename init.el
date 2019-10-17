@@ -73,6 +73,7 @@
   :ensure)
 
 (require 'quelpa)
+(setq quelpa-update-melpa-p nil)
 (require 'quelpa-use-package)
 (if (eq system-type 'darwin)
     (setq-default quelpa-build-tar-executable "/usr/local/bin/gtar"))
@@ -409,7 +410,9 @@
   :quelpa ((sdcv-mode
 	    :fetcher "github"
 	    :repo "gucong/emacs-sdcv"
-	    :upgrade nil))
+	    )
+           :upgrade nil)
+  :disabled
   :bind (:map dc-bindings-map
 	      ("C-c C-d" . sdcv-search))
   :config
