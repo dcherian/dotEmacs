@@ -1,1 +1,1 @@
-/Users/dcherian/website/org/dc-website.el
+/home/deepak/website/org/dc-website.el

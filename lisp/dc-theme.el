@@ -53,18 +53,21 @@
   (dc/theme-changes)
   (set-face-attribute 'default nil
 		      :inherit 'fixed-pitch
-		      :foreground "#21505a"))
+		      :foreground "black"))
+  ;; :foreground "#21505a")
 
 (defun dc/dark-theme-changes ()
   (interactive)
   (dc/theme-changes)
   (set-face-attribute 'default nil
 		      :inherit 'fixed-pitch
-		      :foreground "#cccccc"))
+		      :foreground "white"))
+  ;; :foreground "#cccccc")
 
 (defun dc/theme-changes ()
   (interactive)
   (dc/org-theme)
+  (dc/jupyter-faces)
 
   (when (eq system-type 'darwin)
     (set-face-attribute 'default nil
@@ -88,9 +91,9 @@
 			:weight 'regular
 			:height 140))
 
-  ;; (set-face-attribute 'hl-line nil
-  ;; 		      :foreground nil
-  ;; 		      :background nil)
+  (set-face-attribute 'hl-line nil
+   		      :foreground nil
+   		      :background "grey")
 
   (set-face-attribute 'header-line nil
 		      :background nil
