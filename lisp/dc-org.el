@@ -59,13 +59,13 @@
 	org-log-done t
 	org-catch-invisible-edits 'smart
 	org-list-allow-alphabetical t
-	org-hide-emphasis-markers t
+	org-hide-emphasis-markers nil
 	org-image-actual-width 680
 	org-export-in-background nil
 	org-src-fontify-natively 1
 	org-src-tab-acts-natively 1
 	org-src-preserve-indentation t
-	org-pretty-entities t
+	org-pretty-entities nil
 	org-pretty-entities-include-sub-superscripts t
 	org-export-dispatch-use-expert-ui t
 	org-latex-image-default-width "\\textwidth"
