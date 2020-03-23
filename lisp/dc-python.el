@@ -85,6 +85,8 @@
 (use-package python-pytest
   :ensure
   :bind (:map python-mode-map
+	      ("C-c C-t" . python-pytest-popup)
+	      :map elpy-mode-map
 	      ("C-c C-t" . python-pytest-popup))
   :config
   (magit-define-popup-switch 'python-pytest-popup
